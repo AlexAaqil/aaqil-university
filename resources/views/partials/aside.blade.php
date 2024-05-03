@@ -1,7 +1,7 @@
 <aside>
     <div class="brand">
         <a href="{{ route('home') }}">
-            <img src="{{ asset('assets/images/logo.jpg') }}" alt="Logo">
+            <x-app-logo />
             <h1>{{ env('APP_NAME') }}</h1>
         </a>
     </div>
@@ -11,6 +11,7 @@
             $navLinks = [
                 ['route' => 'admin.dashboard', 'icon' => 'fas fa-home', 'text' => 'Dashboard'],
                 ['route' => 'users.index', 'icon' => 'fas fa-users', 'text' => 'Users'],
+                ['route' => 'course-categories.index', 'icon' => 'fas fa-users', 'text' => 'Courses'],
                 ['route' => 'comments.index', 'icon' => 'fas fa-comment', 'text' => 'Comments'],
             ];
         @endphp

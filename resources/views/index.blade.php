@@ -9,7 +9,7 @@
             </div>
 
             <div class="image">
-                <img src="{{ asset('assets/images/hero-2.jpg') }}" alt="Aaqil University Hero Image">
+                <img src="{{ asset('assets/images/aaqil-university-hero.jpg') }}" alt="Aaqil University Hero Image">
             </div>
         </div>
     </section>

@@ -29,13 +29,14 @@ form {
     .header {
         border-radius: 6px 6px 0 0;
         padding: 0.5em 0;
-        background: #000;
+        background: $theme-2;
         text-align: center;
         color: #fff;
 
         h1 {
-            font-size: 1em;
-            margin: 0 0 0.5em;
+            font-size: 0.9em;
+            font-weight: 500;
+            margin: 0 auto 0.5em;
         }
 
         p {

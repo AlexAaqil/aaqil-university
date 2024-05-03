@@ -6,7 +6,7 @@ $aside_width: 15%;
 
     .admin_content {
         margin-left: $aside_width;
-        padding: 4px 15px;
+        padding: 8px 15px;
 
         .header {
             display: flex;
@@ -49,8 +49,9 @@ $aside_width: 15%;
                 border-spacing: 0;
 
                 thead {
-                    background: #000;
-                    color: #fff;
+                    background: $theme-1;
+                    color: $theme-4;
+                    border-bottom: 1px solid $theme-4;
                     
                     th {
                         text-align: left;
@@ -72,7 +73,7 @@ $aside_width: 15%;
                     tr {
                         border-bottom: 1px solid rgb(211, 211, 211);
                         &:nth-of-type(odd) {
-                            background: rgb(245, 245, 245);
+                            background: $theme-2;
                         }
 
                         td {
@@ -80,7 +81,7 @@ $aside_width: 15%;
 
                             a {
                                 text-decoration: none;
-                                color: blue;
+                                color: $link_color;
                             }
 
                             .td_span {

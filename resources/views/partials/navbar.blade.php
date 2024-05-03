@@ -9,7 +9,7 @@
         @php
             $nav_links = [
                 ['route' => 'about', 'text' => 'About'],
-                ['route' => 'services', 'text' => 'Services'],
+                ['route' => 'courses', 'text' => 'Courses'],
                 ['route' => 'contact', 'text' => 'Contact'],
             ];
         @endphp

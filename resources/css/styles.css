@@ -42,13 +42,14 @@ form button {
 .custom_form .header {
   border-radius: 6px 6px 0 0;
   padding: 0.5em 0;
-  background: #000;
+  background: #393e46;
   text-align: center;
   color: #fff;
 }
 .custom_form .header h1 {
-  font-size: 1em;
-  margin: 0 0 0.5em;
+  font-size: 0.9em;
+  font-weight: 500;
+  margin: 0 auto 0.5em;
 }
 .custom_form .header p {
   display: grid;
@@ -344,7 +345,7 @@ footer .copyright {
 }
 
 .alert-danger {
-  background: rgb(235, 4, 4);
+  background: rgb(250, 38, 38);
 }
 
 .alert-success {
@@ -362,7 +363,7 @@ footer .copyright {
 .inline_alert {
   margin: 0.1em 0 0;
   font-weight: bold;
-  color: rgb(235, 4, 4);
+  color: rgb(250, 38, 38);
 }
 
 .inline_alert_success {
@@ -383,10 +384,10 @@ aside i {
 }
 aside a {
   text-decoration: none;
-  color: #000;
+  color: #eeeeee;
 }
 aside .active {
-  background: #000;
+  background: #393e46;
   border-radius: 8px;
 }
 aside .active a {
@@ -702,7 +703,7 @@ aside .footer .logout form button i {
   }
 }
 .Admin .Dashboard .stats .stat {
-  background: rgb(222, 222, 253);
+  background: #393e46;
   padding: 8px 16px;
   border-radius: 8px;
   display: grid;
@@ -711,7 +712,7 @@ aside .footer .logout form button i {
   gap: 0.8em;
 }
 .Admin .Dashboard .stats .stat .icon {
-  background: #a3a2fa;
+  background: #222831;
   height: 30px;
   width: 30px;
   border-radius: 50%;
@@ -725,7 +726,7 @@ aside .footer .logout form button i {
 }
 .Admin .Dashboard .stats .stat .text a {
   text-decoration: none;
-  color: #000;
+  color: #eeeeee;
   font-size: 0.9em;
 }
 .Admin .Dashboard .stats .stat .text span {
@@ -737,7 +738,7 @@ aside .footer .logout form button i {
 }
 .Admin .admin_content {
   margin-left: 15%;
-  padding: 4px 15px;
+  padding: 8px 15px;
 }
 .Admin .admin_content .header {
   display: flex;
@@ -773,8 +774,9 @@ aside .footer .logout form button i {
   border-spacing: 0;
 }
 .Admin .admin_content .body table thead {
-  background: #000;
-  color: #fff;
+  background: #222831;
+  color: #eeeeee;
+  border-bottom: 1px solid #eeeeee;
 }
 .Admin .admin_content .body table thead th {
   text-align: left;
@@ -792,14 +794,14 @@ aside .footer .logout form button i {
   border-bottom: 1px solid rgb(211, 211, 211);
 }
 .Admin .admin_content .body table tbody tr:nth-of-type(odd) {
-  background: rgb(245, 245, 245);
+  background: #393e46;
 }
 .Admin .admin_content .body table tbody tr td {
   padding: 4px 6px;
 }
 .Admin .admin_content .body table tbody tr td a {
   text-decoration: none;
-  color: blue;
+  color: lightblue;
 }
 .Admin .admin_content .body table tbody tr td .td_span {
   font-size: 0.65em;
@@ -837,5 +839,11 @@ aside .footer .logout form button i {
   .Admin .admin_content .body {
     width: 100%;
     overflow: scroll;
+  }
+}
+@media screen and (width >= 726px) {
+  .Course_categories .custom_form {
+    width: 50%;
+    margin: 4em auto;
   }
 }/*# sourceMappingURL=styles.css.map */

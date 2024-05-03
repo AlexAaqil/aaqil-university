@@ -1,0 +1,1 @@
+<img src="{{ asset('assets/images/aaqil-university-logo.png') }}" alt="Logo">

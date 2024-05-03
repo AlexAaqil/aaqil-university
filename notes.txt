@@ -1,0 +1,40 @@
+--------------------
+DB Design
+--------------------
+
+course_categories {
+    title
+}
+
+courses {
+    title
+    slug
+    short_description
+    long_description
+    price
+    duration_in_months
+
+    course_category_id
+}
+
+lessons {
+    title
+    ordering
+
+    course_id (fk)
+}
+
+topics {
+    title
+    ordering
+
+    lesson_id (fk)
+}
+
+content {
+    title
+    content
+    ordering
+
+    topic_id (fk)
+}

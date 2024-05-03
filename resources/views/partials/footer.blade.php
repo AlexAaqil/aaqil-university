@@ -2,7 +2,7 @@
     <div class="container">
         <div class="branding">
             <div class="image">
-                <img src="{{ asset('assets/images/logo.png') }}" alt="Logo">
+                <x-app-logo />
             </div>
             <h1>{{ env('APP_NAME') }}</h1>
             <p>Learn Build Repeat</p>
@@ -11,7 +11,7 @@
         <div class="links">
             <a href="{{ route('home') }}">Home</a>
             <a href="{{ route('about') }}">About</a>
-            <a href="{{ route('services') }}">Services</a>
+            <a href="{{ route('courses') }}">Courses</a>
             <a href="{{ route('contact') }}">Contact</a>
         </div>
 
