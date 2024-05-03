@@ -5,7 +5,7 @@
                 <img src="{{ asset('assets/images/logo.png') }}" alt="Logo">
             </div>
             <h1>{{ env('APP_NAME') }}</h1>
-            <p>Some cool slogan.</p>
+            <p>Learn Build Repeat</p>
         </div>
 
         <div class="links">
@@ -18,10 +18,10 @@
         <div class="contacts">
             <div class="details">
                 <p>{{ config('app.phone_number') }}</p>
-                <p>info@twangizametals.com</p>
+                <p>aaqiluniversity@gmail.com</p>
             </div>
         </div>
     </div>
 
-    <p class="copyright">&copy; 2024 | All rights reserved</p>
+    <p class="copyright">&copy; 2023 | All rights reserved</p>
 </footer>

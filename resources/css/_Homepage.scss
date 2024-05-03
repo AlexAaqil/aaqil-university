@@ -1,0 +1,86 @@
+.HomePage {
+    section {
+        margin: 0 0 5em;
+    }
+
+    .Hero {
+        height: 40dvh;
+        overflow: hidden;
+
+        .container {
+            text-align: center;
+
+            .text {
+                .hero_btn {
+                    margin: 2.5em 0;
+                    a {
+                        text-decoration: none;
+                        text-transform: uppercase;
+                        background: $theme-3;
+                        color: $theme-4;
+                        padding: 10px 12px;
+                        border-radius: 4px;
+                        font-size: 1em;
+                        font-weight: bold;
+                        letter-spacing: 0.25px;
+                    }
+                }
+            }
+
+            .image {
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    object-position: 0 -125px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (width >=726px) {
+    .HomePage {
+        .Hero {
+            // *{border: 1px solid red}
+            height: 85dvh;
+            display: flex;
+            flex-direction: column;
+            // justify-content: center;
+            position: relative;
+
+            .container {
+                margin: 4em 0 0;
+                .text {
+                    h1 {
+                        font-size: 2.5em;
+                        width: 70%;
+                        margin: auto;
+                    }
+                }
+
+                .image {
+                    border: 12px solid $theme-2;
+                    border-radius: 16px;
+                    height: 350px;
+                    width: 90%;
+                    position: absolute;
+                    margin: 2.5em auto;
+                    left: 0;
+                    right: 0;
+                    top: 1;
+                }
+            }
+        }
+
+        .About {
+            .container {
+                p {
+                    width: 70%;
+                    margin: auto;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

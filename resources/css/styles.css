@@ -5,6 +5,11 @@
   font-family: sans-serif, Roboto, "Open Sans", "Helvetica Neue";
 }
 
+body {
+  background: #222831;
+  color: #eeeeee;
+}
+
 .container {
   padding: 10px 5%;
 }
@@ -159,14 +164,15 @@ nav {
   padding: 15px 5%;
   position: sticky;
   top: 0;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(32, 32, 32, 0.3);
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
-  box-shadow: 4px 2px 4px #5f5f5f;
+  box-shadow: 4px 2px 4px #222222;
+  z-index: 1000;
 }
 nav a {
   text-decoration: none;
-  color: #000;
+  color: #eeeeee;
 }
 nav .brand a h1 {
   font-size: 1.2em;
@@ -200,7 +206,7 @@ nav .nav_authentication .actions .logout_btn {
   background: rgb(240, 6, 6);
 }
 nav .nav_authentication .login_btn {
-  background: #000;
+  background: #393e46;
 }
 nav .burger_menu {
   display: none;
@@ -268,8 +274,8 @@ nav .burger_menu {
 }
 footer {
   padding: 16px 0 0;
-  background: hsl(238, 38%, 16%);
-  color: #fff;
+  background: #393e46;
+  color: #eeeeee;
 }
 footer .container a {
   text-decoration: none;
@@ -491,6 +497,71 @@ aside .footer .logout form button i {
   }
   aside .footer .logout form button i {
     color: #fff;
+  }
+}
+.HomePage section {
+  margin: 0 0 5em;
+}
+.HomePage .Hero {
+  height: 40dvh;
+  overflow: hidden;
+}
+.HomePage .Hero .container {
+  text-align: center;
+}
+.HomePage .Hero .container .text .hero_btn {
+  margin: 2.5em 0;
+}
+.HomePage .Hero .container .text .hero_btn a {
+  text-decoration: none;
+  text-transform: uppercase;
+  background: #fd7014;
+  color: #eeeeee;
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: 0.25px;
+}
+.HomePage .Hero .container .image img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 0 -125px;
+     object-position: 0 -125px;
+}
+
+@media screen and (width >= 726px) {
+  .HomePage .Hero {
+    height: 85dvh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .HomePage .Hero .container {
+    margin: 4em 0 0;
+  }
+  .HomePage .Hero .container .text h1 {
+    font-size: 2.5em;
+    width: 70%;
+    margin: auto;
+  }
+  .HomePage .Hero .container .image {
+    border: 12px solid #393e46;
+    border-radius: 16px;
+    height: 350px;
+    width: 90%;
+    position: absolute;
+    margin: 2.5em auto;
+    left: 0;
+    right: 0;
+    top: 1;
+  }
+  .HomePage .About .container p {
+    width: 70%;
+    margin: auto;
+    text-align: center;
   }
 }
 .Contact .container {
