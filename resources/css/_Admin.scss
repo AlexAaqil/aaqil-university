@@ -8,6 +8,18 @@ $aside_width: 15%;
         margin-left: $aside_width;
         padding: 8px 15px;
 
+        .related_pages_navbar {
+            margin: 0 0 0.8em;
+
+            a {
+                text-decoration: none;
+                background: #000;
+                color: #fff;
+                padding: 4px 8px;
+                border-radius: 0 8px 0 0;
+            }
+        }
+
         .header {
             display: flex;
             align-items: center;

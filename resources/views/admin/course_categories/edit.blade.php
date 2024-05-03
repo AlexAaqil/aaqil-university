@@ -1,7 +1,7 @@
 <x-admin-layout class="Course_categories">
     <div class="custom_form">
         <div class="header">
-            <h1>update Course Category</h1>
+            <h1>Update Course Category</h1>
         </div>
 
         <form action="{{ route('course-categories.update', ['course_category' => $course_category->id]) }}" method="post">

@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('slug');
             $table->string('short_description', 255);
             $table->text('long_description')->nullable();
-            $table->decimal('price', 10, 2);
+            $table->decimal('price', 10, 2)->default('0.00');
             $table->unsignedTinyInteger('duration_in_months')->nullable();
+            $table->unsignedTinyInteger('ordering')->default(200);
 
             $table->foreignId('course_category_id')->nullable()->constrained('course_categories')->onDelete('set null')->index();
             $table->timestamps();

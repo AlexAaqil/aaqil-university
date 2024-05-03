@@ -1,13 +1,13 @@
-<x-admin-layout class="Courses_categories">
+<x-admin-layout class="Courses">
     <x-related-pages-navbar :routes="[
         ['name' => 'courses.index', 'label' => 'Courses'],
         ['name' => 'course-categories.index', 'label' => 'Course Categories'],
     ]"/>
 
     <x-admin-header 
-        header_title="Course Categories"
-        :total_count="count($course_categories)"
-        route="{{ route('course-categories.create') }}"
+        header_title="Courses"
+        :total_count="count($courses)"
+        route="{{ route('courses.create') }}"
     />
 
     <div class="body">
@@ -17,29 +17,33 @@
                     <th>ID</th>
                     <th>Title</th>
                     <th>Slug</th>
+                    <th>Price</th>
+                    <th>Duration</th>
                     <th>Actions</th>
                 </tr>
             </thead>
 
             <tbody>
-                @if(count($course_categories) > 0)
+                @if(count($courses) > 0)
                     @php $id = 1 @endphp
-                    @foreach($course_categories as $course_category)
+                    @foreach($courses as $course)
                         <tr>
                             <td>
-                                <a href="{{ route('course-categories.edit', ['course_category' => $course_category->id]) }}">
+                                <a href="{{ route('courses.edit', ['course' => $course->id]) }}">
                                     {{ $id++ }}
                                 </a>
                             </td>
-                            <td>{{ $course_category->title }}</td>
-                            <td>{{ $course_category->slug }}</td>
+                            <td>{{ $course->title }}</td>
+                            <td>{{ $course->slug }}</td>
+                            <td>{{ $course->price }}</td>
+                            <td>{{ $course->duration }}</td>
                             <td class="actions">
                                 <div class="action">
-                                    <form id="deleteForm_{{ $course_category->id }}" action="{{ route('course-categories.destroy', ['course_category' => $course_category->id]) }}" method="post">
+                                    <form id="deleteForm_{{ $course->id }}" action="{{ route('courses.destroy', ['course' => $course->id]) }}" method="post">
                                         @csrf
                                         @method('DELETE')
 
-                                        <button type="button" onclick="deleteItem({{ $course_category->id }}, 'course category');">
+                                        <button type="button" onclick="deleteItem({{ $course->id }}, 'course');">
                                             <i class="fas fa-trash-alt delete"></i>
                                         </button>
                                     </form>

@@ -740,6 +740,16 @@ aside .footer .logout form button i {
   margin-left: 15%;
   padding: 8px 15px;
 }
+.Admin .admin_content .related_pages_navbar {
+  margin: 0 0 0.8em;
+}
+.Admin .admin_content .related_pages_navbar a {
+  text-decoration: none;
+  background: #000;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 0 8px 0 0;
+}
 .Admin .admin_content .header {
   display: flex;
   align-items: center;
