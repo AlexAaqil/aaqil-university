@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Course;
 
 class GeneralPagesController extends Controller
 {
@@ -18,7 +18,9 @@ class GeneralPagesController extends Controller
 
     public function courses()
     {
-        return view("courses");
+        $courses = Course::orderBy('title')->where('visibility', 1)->get();
+        
+        return view("courses", compact('courses'));
     }
 
     public function contact()

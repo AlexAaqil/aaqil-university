@@ -1,9 +1,4 @@
 <x-admin-layout class="Courses">
-    <x-related-pages-navbar :routes="[
-        ['name' => 'courses.index', 'label' => 'Courses'],
-        ['name' => 'course-categories.index', 'label' => 'Course Categories'],
-    ]"/>
-
     <x-admin-header 
         header_title="Courses"
         :total_count="count($courses)"
@@ -17,8 +12,7 @@
                     <th>ID</th>
                     <th>Title</th>
                     <th>Slug</th>
-                    <th>Price</th>
-                    <th>Duration</th>
+                    <th>Visibility</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -35,8 +29,7 @@
                             </td>
                             <td>{{ $course->title }}</td>
                             <td>{{ $course->slug }}</td>
-                            <td>{{ $course->price }}</td>
-                            <td>{{ $course->duration }}</td>
+                            <td>{!! $course->visibility == 1 ? "<span><i class='fas fa-check green'></i></span>" : "<span><i class='fas fa-times danger'></i></span>" !!}</td>
                             <td class="actions">
                                 <div class="action">
                                     <form id="deleteForm_{{ $course->id }}" action="{{ route('courses.destroy', ['course' => $course->id]) }}" method="post">

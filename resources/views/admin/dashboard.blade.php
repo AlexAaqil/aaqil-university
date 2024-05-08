@@ -10,7 +10,17 @@
             </div>
             <div class="text">
                 <a href="{{ route('users.index') }}">Users</a>
-                <span>{{ $count_users }}</span>
+                <span>{{ $count_users }} <del>{{ $count_admins }}</del></span>
+            </div>
+        </div>
+
+        <div class="stat">
+            <div class="icon">
+                <i class="fas fa-comment"></i>
+            </div>
+            <div class="text">
+                <a href="">Courses</a>
+                <span>{{ $count_visible_courses }} <del>{{ $count_courses }}</del></span>
             </div>
         </div>
 

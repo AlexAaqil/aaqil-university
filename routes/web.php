@@ -6,7 +6,6 @@ use App\Http\Controllers\GeneralPagesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\CourseCategoryController;
 use App\Http\Controllers\CourseController;
 
 Route::get('/', [GeneralPagesController::class, 'home'])->name('home');
@@ -34,7 +33,6 @@ Route::middleware(['auth', 'verified', 'admin'])
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
-    Route::resource('course-categories', CourseCategoryController::class);
     Route::resource('courses', CourseController::class);
 
     Route::resource('comments', CommentController::class)->only('index', 'edit', 'update', 'destroy');

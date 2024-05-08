@@ -4,7 +4,7 @@
             <div class="text">
                 <h1>LEARNING THAT SETS YOU UP FOR THE REAL WORLD</h1>
                 <div class="hero_btn">
-                    <a href="">Start Learning</a>
+                    <a href="{{ route('courses') }}">Start Learning</a>
                 </div>
             </div>
 

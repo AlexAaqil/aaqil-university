@@ -2,19 +2,22 @@
 DB Design
 --------------------
 
-course_categories {
-    title
+users {
+    first_name
+    last_name
+    email
+    phone_number
+    password
+    avatar
+    user_level
 }
 
 courses {
     title
     slug
-    short_description
-    long_description
-    price
-    duration_in_months
-
-    course_category_id
+    description
+    thumbnail
+    visibility
 }
 
 lessons {
@@ -37,4 +40,9 @@ content {
     ordering
 
     topic_id (fk)
+}
+
+enrollments {
+    user_id
+    courses (array of courses ids)
 }

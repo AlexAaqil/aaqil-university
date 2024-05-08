@@ -4,43 +4,45 @@
             <h1>New Course</h1>
         </div>
 
-        <form action="{{ route('courses.store') }}" method="post">
+        <form action="{{ route('courses.store') }}" method="post" enctype="multipart/form-data">
             @csrf
-
-            <div class="input_group">
-                <label for="title">Course</label>
-                <input type="text" name="title" id="title" placeholder="Course Title" value="{{ old('title') }}">
-                <span class="inline_alert">{{ $errors->first('title') }}</span>
-            </div>
 
             <div class="row_input_group">
                 <div class="input_group">
-                    <label for="price">Price</label>
-                    <input type="number" name="price" id="price" placeholder="Price" value="{{ old('price') }}">
-                    <span class="inline_alert">{{ $errors->first('price') }}</span>
+                    <label for="title">Course Title</label>
+                    <input type="text" name="title" id="title" placeholder="Course Title" value="{{ old('title') }}">
+                    <span class="inline_alert">{{ $errors->first('title') }}</span>
                 </div>
-
+    
                 <div class="input_group">
-                    <label for="duration_in_months">Duration in Months</label>
-                    <input type="number" name="duration_in_months" id="duration_in_months" placeholder="Duration in Months" value="{{ old('duration_in_months') }}">
-                    <span class="inline_alert">{{ $errors->first('duration_in_months') }}</span>
+                    <label for="visibility">Visible</label>
+                    <div class="custom_radio_buttons">
+                        <label>
+                            <input class="option_radio" type="radio" name="visibility" id="visible" value="1" {{ old('visibility', 1) == '1' ? 'checked' : '' }}>
+                            <span>Yes</span>
+                        </label>
+
+                        <label>
+                            <input class="option_radio" type="radio" name="visibility" id="not_visible" value="0" {{ old('visibility') == '0' ? 'checked' : '' }}>
+                            <span>No</span>
+                        </label>
+                    </div>
+                    <span class="inline_alert">{{ $errors->first('visibility') }}</span>
                 </div>
             </div>
 
             <div class="input_group">
                 <div class="input_group">
-                    <label for="short_description">Short Description</label>
-                    <input type="text" name="short_description" id="short_description" placeholder="Short Description" value="{{ old('short_description') }}">
-                    <span class="inline_alert">{{ $errors->first('short_description') }}</span>
+                    <label for="description">Description</label>
+                    <input type="text" name="description" id="description" placeholder="Short description of the course" value="{{ old('description') }}">
+                    <span class="inline_alert">{{ $errors->first('description') }}</span>
                 </div>
             </div>
 
             <div class="input_group">
-                <div class="input_group">
-                    <label for="long_description">Short Description</label>
-                    <textarea name="long_description" id="long_description" cols="30" rows="10" placeholder="Long Description">{{ old('long_description') }}</textarea>
-                    <span class="inline_alert">{{ $errors->first('long_description') }}</span>
-                </div>
+                <label for="thumbnail">Thumbnail</label>
+                <input type="file" name="thumbnail" id="thumbnail" accept=".png, .jpg, .jpeg, .webp" />
+                <span class="inline_alert">{{ $errors->first('thumbnail') }}</span>
             </div>
 
             <button type="submit">Save</button>

@@ -12,10 +12,8 @@ class course extends Model
     protected $fillable = [
         'title',
         'slug',
-        'short_description',
-        'long_description',
-        'price',
-        'duration_in_months',
-        'course_category_id'
+        'description',
+        'thumbnail',
+        'visibility',
     ];
 }

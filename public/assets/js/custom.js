@@ -10,11 +10,15 @@ document.addEventListener('DOMContentLoaded', function () {
     var burgerIcon = document.getElementById('burgerIcon');
     var navLinks = document.querySelector('.nav_links');
 
-    burgerIcon.addEventListener('click', function () {
-        navLinks.classList.toggle('show');
-        burgerIcon.classList.toggle('active_burger', navLinks.classList.contains('show'));
-    });
+    // Check if burgerIcon exists before adding event listener
+    if (burgerIcon) {
+        burgerIcon.addEventListener('click', function () {
+            navLinks.classList.toggle('show');
+            burgerIcon.classList.toggle('active_burger', navLinks.classList.contains('show'));
+        });
+    }
 });
+
 
 function searchFunction() {
     // Get the input value
