@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
-use App\Models\CourseSpecialization;
+use App\Models\User;
 
 class GeneralPagesController extends Controller
 {
@@ -14,7 +14,8 @@ class GeneralPagesController extends Controller
 
     public function about()
     {
-        return view("about");
+        $users = User::where('user_level', 2)->get();
+        return view("about", compact('users'));
     }
 
     public function courses()

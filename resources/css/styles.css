@@ -641,6 +641,52 @@ aside .footer .logout form button i {
     text-align: center;
   }
 }
+.AboutPage section {
+  margin: 0 0 3em;
+}
+.AboutPage .Hero .container {
+  padding: 4em 5%;
+}
+.AboutPage .Hero .container p {
+  line-height: 1.5;
+}
+.AboutPage .Team .team_members {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5em;
+  gap: 3em;
+  margin: 2em 0;
+}
+@media screen and (width >= 726px) {
+  .AboutPage .Team .team_members {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.AboutPage .Team .team_members .team_member {
+  text-align: center;
+}
+.AboutPage .Team .team_members .team_member .image {
+  height: 128px;
+  width: 128px;
+  margin: auto;
+}
+.AboutPage .Team .team_members .team_member .image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.AboutPage .Team .team_members .team_member .text {
+  margin: 0.5em 0;
+}
+.AboutPage .Team .team_members .team_member .text h1 {
+  font-size: 1.15em;
+}
+.AboutPage .Team .team_members .team_member .text p {
+  color: #a0a0a0;
+}
+
 .Contact .container {
   display: grid;
   grid-template-columns: 1fr;

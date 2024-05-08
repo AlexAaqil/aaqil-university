@@ -1,0 +1,51 @@
+.AboutPage {
+    section {
+        margin: 0 0 3em;
+    }
+
+    .Hero {
+        .container {
+            padding: 4em 5%;
+
+            p {
+                line-height: 1.5;
+            }
+        }
+    }
+
+    .Team {
+        .team_members {
+            @include grid(3);
+            gap: 3em;
+            margin: 2em 0;
+
+            .team_member {
+                text-align: center;
+
+                .image {
+                    height: 128px;
+                    width: 128px;
+                    margin: auto;
+    
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+                }
+    
+                .text {
+                    margin: 0.5em 0;
+                    h1 {
+                        font-size: 1.15em;
+                    }
+    
+                    p {
+                        color: $greyed;
+                    }
+                }
+            }
+        }
+    }
+}
