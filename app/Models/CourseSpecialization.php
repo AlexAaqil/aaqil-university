@@ -5,20 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class course extends Model
+class CourseSpecialization extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'title',
         'slug',
-        'description',
-        'thumbnail',
-        'visibility',
+        'ordering',
+        'course_id',
     ];
 
-    public function specializations()
+    public function course()
     {
-        return $this->hasMany(CourseSpecialization::class, 'course_id');
+        return $this->belongsTo(Course::class, 'course_id');
     }
 }

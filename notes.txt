@@ -20,6 +20,16 @@ courses {
     visibility
 }
 
+course_specializations {
+    title
+    ordering
+}
+
+course_course_specialization {
+    course_id
+    course_specialization_id
+}
+
 lessons {
     title
     ordering

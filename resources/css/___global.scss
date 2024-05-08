@@ -13,3 +13,8 @@ body {
 .container {
     padding: 10px 5%;
 }
+
+a {
+    text-decoration: none;
+    color: $link_color;
+}

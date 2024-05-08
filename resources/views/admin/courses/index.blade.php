@@ -1,4 +1,6 @@
 <x-admin-layout class="Courses">
+    <x-courses-navbar />
+
     <x-admin-header 
         header_title="Courses"
         :total_count="count($courses)"

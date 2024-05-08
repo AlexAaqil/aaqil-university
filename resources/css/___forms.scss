@@ -63,7 +63,8 @@ form {
             }
 
             input,
-            textarea {
+            textarea,
+            select {
                 background: transparent;
                 color: $theme-4;
 
@@ -72,6 +73,12 @@ form {
                 &:focus-within {
                     background: transparent;
                     color: $theme-4;
+                }
+            }
+
+            select {
+                option {
+                    color: $theme-1;
                 }
             }
 
@@ -139,6 +146,19 @@ form {
                     }
                 }
             }
+
+            .custom_check_boxes {
+                display: grid;
+                grid-template-columns: auto auto;
+                justify-content: start;
+                align-items: end;
+                gap: 0.4em;
+
+                input[type="checkbox"] {
+                    width: 1em;
+                    height: 1em;
+                }
+            }
         }
 
         .form_image {
@@ -202,11 +222,6 @@ form {
 
     p {
         margin: 0.8em 0 0.5em;
-    }
-
-    a {
-        text-decoration: none;
-        color: $link_color;
     }
 }
 

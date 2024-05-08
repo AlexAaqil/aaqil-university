@@ -9,14 +9,19 @@
         <div class="container">
             @foreach($courses as $course)
                 <div class="course">
-                    <x-card-image 
-                        :subject="$course"
-                        field="thumbnail"
-                        assets_folder="storage/course_thumbnails"
-                    />
+                    <a href="{{ route('course_specializations', $course->slug) }}">
+                        <x-card-image 
+                            :subject="$course"
+                            field="thumbnail"
+                            assets_folder="storage/course_thumbnails"
+                        />
+                    </a>
 
                     <div class="text">
-                        <h1>{{ $course->title }}</h1>
+                        <h1>
+                            <a href="{{ route('course_specializations', $course->slug) }}">
+                                {{ $course->title }}</h1>
+                            </a>
                         <p>{{ $course->description }}</p>
                     </div>
                 </div>

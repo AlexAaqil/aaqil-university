@@ -6,6 +6,10 @@
   color: #ff3300;
 }
 
+.greyed {
+  color: #a0a0a0;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -20,6 +24,11 @@ body {
 
 .container {
   padding: 10px 5%;
+}
+
+a {
+  text-decoration: none;
+  color: lightblue;
 }
 
 form input,
@@ -78,16 +87,23 @@ form button {
   font-size: 0.95em;
 }
 .custom_form form .input_group input,
-.custom_form form .input_group textarea {
+.custom_form form .input_group textarea,
+.custom_form form .input_group select {
   background: transparent;
   color: #eeeeee;
 }
 .custom_form form .input_group input:focus, .custom_form form .input_group input:focus-visible, .custom_form form .input_group input:focus-within,
 .custom_form form .input_group textarea:focus,
 .custom_form form .input_group textarea:focus-visible,
-.custom_form form .input_group textarea:focus-within {
+.custom_form form .input_group textarea:focus-within,
+.custom_form form .input_group select:focus,
+.custom_form form .input_group select:focus-visible,
+.custom_form form .input_group select:focus-within {
   background: transparent;
   color: #eeeeee;
+}
+.custom_form form .input_group select option {
+  color: #222831;
 }
 .custom_form form .input_group .custom_radio_buttons {
   display: flex;
@@ -136,6 +152,17 @@ form button {
   background: #fff;
   border: 2px solid #d6d6d6;
   border-radius: 50%;
+}
+.custom_form form .input_group .custom_check_boxes {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: start;
+  align-items: end;
+  gap: 0.4em;
+}
+.custom_form form .input_group .custom_check_boxes input[type=checkbox] {
+  width: 1em;
+  height: 1em;
 }
 .custom_form form .form_image {
   margin: 0 0 1em;
@@ -191,10 +218,6 @@ form button {
 }
 .custom_form p {
   margin: 0.8em 0 0.5em;
-}
-.custom_form a {
-  text-decoration: none;
-  color: lightblue;
 }
 
 @media screen and (width >= 726px) {
@@ -815,11 +838,7 @@ aside .footer .logout form button i {
   margin: 0 0 0.5em;
 }
 .Admin .admin_content .header h1 {
-  font-size: 1.15em;
-}
-.Admin .admin_content .header h1 span {
-  font-size: 0.85em;
-  color: grey;
+  font-size: 1.1em;
 }
 .Admin .admin_content .header input {
   border: 1px solid rgb(41, 41, 41);
@@ -840,6 +859,7 @@ aside .footer .logout form button i {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
+  margin: 0 0 1em;
 }
 .Admin .admin_content .body table thead {
   background: #222831;
@@ -867,10 +887,6 @@ aside .footer .logout form button i {
 .Admin .admin_content .body table tbody tr td {
   padding: 4px 6px;
 }
-.Admin .admin_content .body table tbody tr td a {
-  text-decoration: none;
-  color: lightblue;
-}
 .Admin .admin_content .body table tbody tr td .td_span {
   font-size: 0.65em;
   font-weight: bold;
@@ -897,6 +913,13 @@ aside .footer .logout form button i {
   background: none;
   padding: 0;
   cursor: pointer;
+}
+.Admin .admin_content h1 span,
+.Admin .admin_content h2 span {
+  font-weight: 500;
+  font-size: 0.8em;
+  font-style: normal;
+  color: #a0a0a0;
 }
 
 @media screen and (width <= 726px) {
@@ -938,4 +961,33 @@ aside .footer .logout form button i {
 .CoursesPage .Courses .container .course .text h1 {
   font-size: 1.25em;
   margin: 0.5em 0;
+}
+
+.Course_specializations .body h2 {
+  font-size: 1em;
+  font-style: italic;
+  margin: 0 0 0.1em;
+}
+.Course_specializations .body ul {
+  margin: 0 0 1.2em;
+}
+.Course_specializations .body ul li {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5em;
+  gap: 0.5em;
+}
+@media screen and (width >= 726px) {
+  .Course_specializations .body ul li {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.Course_specializations .body ul li span a {
+  text-decoration: none;
+  color: #eeeeee;
+}
+.Course_specializations .body ul form button {
+  padding: 1px 2px;
+  color: rgb(250, 38, 38);
+  background: unset;
 }/*# sourceMappingURL=styles.css.map */

@@ -7,10 +7,12 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CourseSpecializationController;
 
 Route::get('/', [GeneralPagesController::class, 'home'])->name('home');
 Route::get('/about', [GeneralPagesController::class, 'about'])->name('about');
 Route::get('/courses', [GeneralPagesController::class, 'courses'])->name('courses');
+Route::get('/course/{slug}/specializations', [GeneralPagesController::class, 'course_specializations'])->name('course_specializations');
 Route::get('/contact', [GeneralPagesController::class, 'contact'])->name('contact');
 Route::post('/contact', [CommentController::class, 'store'])->name('comments.store');
 
@@ -33,7 +35,9 @@ Route::middleware(['auth', 'verified', 'admin'])
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
-    Route::resource('courses', CourseController::class);
+    Route::resource('courses', CourseController::class)->except('show');
+
+    Route::resource('course-specializations', CourseSpecializationController::class)->except('show');
 
     Route::resource('comments', CommentController::class)->only('index', 'edit', 'update', 'destroy');
 });
