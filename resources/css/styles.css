@@ -700,7 +700,7 @@ aside .footer .logout form button i {
 }
 .Contact .container .text p {
   font-size: 1.25em;
-  color: rgb(53, 53, 53);
+  color: #eeeeee;
 }
 @media screen and (width >= 726px) {
   .Contact .container .text p {
