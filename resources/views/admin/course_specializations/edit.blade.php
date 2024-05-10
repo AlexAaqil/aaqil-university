@@ -8,29 +8,29 @@
             @csrf
             @method('PATCH')
 
-            <div class="row_input_group">
-                <div class="input_group">
-                    <label for="title">Specialization Title</label>
-                    <input type="text" name="title" id="title" placeholder="Course Title" value="{{ old('title', $course_specialization->title) }}">
-                    <span class="inline_alert">{{ $errors->first('title') }}</span>
-                </div>
-    
-                <div class="input_group">
-                    <label for="ordering">Ordering</label>
-                    <input type="number" name="ordering" id="ordering" placeholder="Ordering" value="{{ old('ordering', $course_specialization->ordering) }}">
-                    <span class="inline_alert">{{ $errors->first('ordering') }}</span>
-                </div>
+            <div class="input_group">
+                <label for="title">Specialization Title</label>
+                <input type="text" name="title" id="title" placeholder="Course Title" value="{{ old('title', $course_specialization->title) }}">
+                <span class="inline_alert">{{ $errors->first('title') }}</span>
             </div>
 
-            <div class="input_group">
-                <label for="course_id">Course</label>
-                <select name="course_id" id="course_id">
-                    <option value="">Select Course</option>
-                    @foreach($courses as $course)
-                        <option value="{{ $course->id }}" {{ old('course_id', $course_specialization->course_id) == $course->id ? 'selected' : '' }}>{{ $course->title }}</option>
-                    @endforeach
-                </select>
-                <span class="inline_alert">{{ $errors->first('course_id') }}</span>
+            <div class="input_group courses_inputs">
+                <label>Select Courses:</label>
+                @foreach($courses as $course)
+                    <div class="row_input_group">
+                        <div class="custom_checkbox">
+                            <label for="course_{{ $course->id }}">
+                                <input type="checkbox" class="course-checkbox" id="course_{{ $course->id }}" name="courses[]" value="{{ $course->id }}" {{ $course_specialization->courses->contains($course->id) ? 'checked' : '' }}>
+                                {{ $course->title }}
+                            </label>
+                        </div>
+                        <div class="ordering-input">
+                            <label for="ordering_{{ $course->id }}">Ordering for {{ $course->title }}:</label>
+                            <input type="number" id="ordering_{{ $course->id }}" name="orderings[{{ $course->id }}]" min="1" value="{{ $course_specialization->courses->contains($course->id) ? $course_specialization->courses->find($course->id)->pivot->ordering : 500 }}">
+                        </div>
+                    </div>
+                @endforeach
+                <span class="inline_alert">{{ $errors->first('courses') }}</span>
             </div>
 
             <button type="submit">Update</button>

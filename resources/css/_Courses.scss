@@ -41,15 +41,12 @@
             margin: 0 0 1.2em;
 
             li {
-                @include grid(3);
+                display: grid;
+                grid-template-columns: 2em 1fr 1fr;
+                justify-content: start;
+                justify-items: start;
                 gap: 0.5em;
-
-                span {
-                    a {
-                        text-decoration: none;
-                        color: $theme-4;
-                    }
-                }
+                padding: 4px 0;
             }
 
             form {
@@ -58,6 +55,14 @@
                     color: $danger;
                     background: unset;
                 }
+            }
+        }
+    }
+
+    .custom_form {
+        .courses_inputs {
+            .row_input_group {
+                margin: 0.5em 0;
             }
         }
     }

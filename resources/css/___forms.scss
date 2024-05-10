@@ -147,16 +147,14 @@ form {
                 }
             }
 
-            .custom_check_boxes {
-                display: grid;
-                grid-template-columns: auto auto;
-                justify-content: start;
-                align-items: end;
-                gap: 0.4em;
-
+            .custom_checkbox {
+                display: flex;
+                gap: 0.5em;
+                
                 input[type="checkbox"] {
                     width: 1em;
                     height: 1em;
+                    margin: 0;
                 }
             }
         }

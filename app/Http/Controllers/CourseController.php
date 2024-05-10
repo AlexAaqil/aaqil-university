@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\course;
 use Illuminate\Http\Request;
+use App\Models\Course;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-
 
 class CourseController extends Controller
 {

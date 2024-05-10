@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CourseSpecialization extends Model
+class Specialization extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'title',
         'slug',
-        'ordering',
-        'course_id',
     ];
 
-    public function course()
+    public function courses()
     {
-        return $this->belongsTo(Course::class, 'course_id');
+        return $this->belongsToMany(Course::class)
+        ->withPivot(['ordering'])
+        ->orderBy('pivot_ordering');
     }
 }

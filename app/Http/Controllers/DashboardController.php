@@ -36,15 +36,15 @@ class DashboardController extends Controller
         $count_users = User::where('user_level', 1)->count();
         $count_admins = User::where('user_level', 2)->count();
         $count_comments = Comment::count();
-        $count_visible_courses = Course::where('visibility', 1)->count();
-        $count_courses = Course::count();
+        $count_courses = Course::where('visibility', 1)->count();
+        $count_invisible_courses = Course::where('visibility', 0)->count();
 
         return view('admin.dashboard', compact(
             'count_users',
             'count_admins',
             'count_comments',
-            'count_visible_courses',
             'count_courses',
+            'count_invisible_courses',
         ));
     }
 }

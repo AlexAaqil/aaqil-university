@@ -20,7 +20,7 @@
             </div>
             <div class="text">
                 <a href="">Courses</a>
-                <span>{{ $count_visible_courses }} <del>{{ $count_courses }}</del></span>
+                <span>{{ $count_courses }} <del>{{ $count_invisible_courses }}</del></span>
             </div>
         </div>
 

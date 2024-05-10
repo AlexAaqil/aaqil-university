@@ -22,37 +22,67 @@ courses {
 
 course_specializations {
     title
-    ordering
+    slug
 }
 
 course_course_specialization {
-    course_id
-    course_specialization_id
-}
-
-lessons {
-    title
-    ordering
-
     course_id (fk)
+    course_specialization_id (fk)
+    ordering
 }
 
 topics {
     title
+    slug
     ordering
 
-    lesson_id (fk)
+    course_specialization_id (fk)
 }
 
-content {
+lessons {
     title
-    content
+    slug
     ordering
 
     topic_id (fk)
 }
 
+sections {
+    title
+    slug
+    content
+    ordering
+
+    lesson_id (fk)
+}
+
 enrollments {
     user_id
     courses (array of courses ids)
+}
+
+
+--------------------
+Code Snippets
+--------------------
+
+// Example Usage
+$course = Course::find($courseId);
+$specializations = $course->specializations;
+foreach ($specializations as $specialization) {
+    echo $specialization->title . ' - ' . $specialization->pivot->ordering;
+}
+
+
+public function up(): void
+{
+    Schema::create('topics', function (Blueprint $table) {
+        $table->id();
+        $table->string('title')->unique();
+        $table->string('slug');
+        $table->unsignedSmallInteger('ordering')->default(500);
+
+        $table->foreignId('course_specialization_id')->nullable()->constrained('course_specializations')->onDelete('set null');
+        $table->timestamps();
+    });
 }

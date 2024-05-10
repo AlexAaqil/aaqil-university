@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class course extends Model
+class Course extends Model
 {
     use HasFactory;
 
@@ -19,6 +19,10 @@ class course extends Model
 
     public function specializations()
     {
-        return $this->hasMany(CourseSpecialization::class, 'course_id');
+        return $this->belongsToMany(Specialization::class)
+        ->withPivot(['ordering'])
+        ->orderBy('pivot_ordering');
     }
+
+
 }

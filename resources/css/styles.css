@@ -153,16 +153,14 @@ form button {
   border: 2px solid #d6d6d6;
   border-radius: 50%;
 }
-.custom_form form .input_group .custom_check_boxes {
-  display: grid;
-  grid-template-columns: auto auto;
-  justify-content: start;
-  align-items: end;
-  gap: 0.4em;
+.custom_form form .input_group .custom_checkbox {
+  display: flex;
+  gap: 0.5em;
 }
-.custom_form form .input_group .custom_check_boxes input[type=checkbox] {
+.custom_form form .input_group .custom_checkbox input[type=checkbox] {
   width: 1em;
   height: 1em;
+  margin: 0;
 }
 .custom_form form .form_image {
   margin: 0 0 1em;
@@ -249,10 +247,11 @@ nav {
 }
 nav a {
   text-decoration: none;
-  color: #eeeeee;
+  color: #a0a0a0;
 }
 nav .brand a h1 {
   font-size: 1.2em;
+  color: #eeeeee;
 }
 nav .nav_links {
   display: flex;
@@ -262,6 +261,7 @@ nav .nav_links {
 }
 nav .nav_links .active {
   font-weight: bold;
+  color: #eeeeee;
 }
 nav .nav_authentication {
   margin-left: 2em;
@@ -759,6 +759,7 @@ aside .footer .logout form button i {
 
 .profile_update {
   background: #f5f5f5;
+  color: #222831;
 }
 .profile_update .page_header,
 .profile_update .section {
@@ -782,6 +783,9 @@ aside .footer .logout form button i {
 }
 .profile_update .section .header {
   margin: 0 0 1em;
+}
+.profile_update .profile_information .body .custom_form input {
+  color: #222831;
 }
 
 @media screen and (width >= 726px) {
@@ -1019,21 +1023,17 @@ aside .footer .logout form button i {
 }
 .Course_specializations .body ul li {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 2em 1fr 1fr;
+  justify-content: start;
+  justify-items: start;
   gap: 0.5em;
-  gap: 0.5em;
-}
-@media screen and (width >= 726px) {
-  .Course_specializations .body ul li {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-.Course_specializations .body ul li span a {
-  text-decoration: none;
-  color: #eeeeee;
+  padding: 4px 0;
 }
 .Course_specializations .body ul form button {
   padding: 1px 2px;
   color: rgb(250, 38, 38);
   background: unset;
+}
+.Course_specializations .custom_form .courses_inputs .row_input_group {
+  margin: 0.5em 0;
 }/*# sourceMappingURL=styles.css.map */

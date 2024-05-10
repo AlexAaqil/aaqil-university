@@ -1,6 +1,4 @@
 <x-admin-layout class="Courses">
-    <x-courses-navbar />
-
     <x-admin-header 
         header_title="Courses"
         :total_count="count($courses)"
@@ -29,7 +27,11 @@
                                     {{ $id++ }}
                                 </a>
                             </td>
-                            <td>{{ $course->title }}</td>
+                            <td>
+                                <a href="{{ route('course-specializations.index', $course->slug) }}">
+                                    {{ $course->title }}
+                                </a>
+                            </td>
                             <td>{{ $course->slug }}</td>
                             <td>{!! $course->visibility == 1 ? "<span><i class='fas fa-check green'></i></span>" : "<span><i class='fas fa-times danger'></i></span>" !!}</td>
                             <td class="actions">

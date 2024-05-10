@@ -14,13 +14,14 @@ nav {
 
     a {
         text-decoration: none;
-        color: $theme-4;
+        color: $greyed;
     }
 
     .brand {
         a {
             h1 {
                 font-size: 1.2em;
+                color: $theme-4;
             }
         }
     }
@@ -33,6 +34,7 @@ nav {
 
         .active {
             font-weight: bold;
+            color: $theme-4;
         }
     }
 

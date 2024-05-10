@@ -7,7 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CourseController;
-use App\Http\Controllers\CourseSpecializationController;
+use App\Http\Controllers\SpecializationController;
 
 Route::get('/', [GeneralPagesController::class, 'home'])->name('home');
 Route::get('/about', [GeneralPagesController::class, 'about'])->name('about');
@@ -37,7 +37,8 @@ Route::middleware(['auth', 'verified', 'admin'])
 
     Route::resource('courses', CourseController::class)->except('show');
 
-    Route::resource('course-specializations', CourseSpecializationController::class)->except('show');
-
+    Route::get('/specializations/{course}', [SpecializationController::class, 'index'])->name('course-specializations.index');
+    Route::resource('course-specializations', SpecializationController::class)->except('index', 'show');
+    
     Route::resource('comments', CommentController::class)->only('index', 'edit', 'update', 'destroy');
 });

@@ -21,6 +21,7 @@
 
 .profile_update {
     background: #f5f5f5;
+    color: $theme-1;
 
     .page_header,
     .section {
@@ -48,6 +49,16 @@
 
         .header {
             margin: 0 0 1em;
+        }
+    }
+
+    .profile_information {
+        .body {
+            .custom_form {
+                input {
+                    color: $theme-1;
+                }
+            }
         }
     }
 }
