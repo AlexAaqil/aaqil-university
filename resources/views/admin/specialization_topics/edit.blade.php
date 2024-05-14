@@ -33,7 +33,7 @@
                 <span class="inline_alert">{{ $errors->first('specialization_id') }}</span>
             </div>            
 
-            <button type="submit">Save</button>
+            <button type="submit">Update</button>
         </form>
     </div>
 </x-admin-layout>

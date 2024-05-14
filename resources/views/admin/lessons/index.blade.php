@@ -1,33 +1,33 @@
 <x-admin-layout class="Course">
     <x-admin-header 
-        :header_title="$specialization->title . ' Topics'"
-        :total_count="count($specialization->topics)"
-        route="{{ route('topics.create') }}"
+        :header_title="$topic->title . ' Lessons'"
+        :total_count="count($topic->lessons)"
+        route="{{ route('lessons.create') }}"
     />
 
     <div class="body">
         <ul>
-            @if(count($specialization->topics) != 0)
+            @if(count($topic->lessons) != 0)
                 @php $id = 1 @endphp
-                @foreach($specialization->topics as $topic)
+                @foreach($topic->lessons as $lesson)
                     <li class="searchable">
                         <span>
-                            <a href="{{ route('topics.edit', $topic->id) }}">
-                                {{ $topic->ordering }}
+                            <a href="{{ route('lessons.edit', $lesson->id) }}">
+                                {{ $lesson->ordering }}
                             </a>
                         </span>
                         <span>
-                            <a href="{{ route('lessons.index', $topic->slug) }}">
-                                {{ $topic->title }}
+                            <a href="#">
+                                {{ $lesson->title }}
                             </a>
                         </span>
                         <span class="actions">
                             <div class="action">
-                                <form id="deleteForm_{{ $topic->id }}" action="{{ route('topics.destroy', $topic->id) }}" method="POST">
+                                <form id="deleteForm_{{ $lesson->id }}" action="{{ route('lessons.destroy', $lesson->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
-                                    <button type="button" onclick="deleteItem({{ $topic->id }}, 'specialization topic');">
+                                    <button type="button" onclick="deleteItem({{ $lesson->id }}, 'lesson');">
                                         <i class="fas fa-trash-alt delete"></i>
                                     </button>
                                 </form>
@@ -36,7 +36,7 @@
                     </li>
                 @endforeach
             @else
-                <span>No topics yet</span>
+                <span>No lessons yet</span>
             @endif
         </ul>
     </div>

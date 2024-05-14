@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Topic extends Model
+class Lesson extends Model
 {
     use HasFactory;
 
@@ -13,16 +13,11 @@ class Topic extends Model
         'title',
         'slug',
         'ordering',
-        'specialization_id',
+        'topic_id'
     ];
 
-    public function specialization()
+    public function topic()
     {
-        return $this->belongsTo(Specialization::class);
-    }
-
-    public function lessons()
-    {
-        return $this->hasMany(Lesson::class);
+        return $this->belongsTo(Topic::class);
     }
 }

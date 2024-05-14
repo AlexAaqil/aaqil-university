@@ -60,20 +60,3 @@ enrollments {
     user_id
     courses (array of courses ids)
 }
-
-
---------------------
-Code Snippets
---------------------
-public function up(): void
-{
-    Schema::create('topics', function (Blueprint $table) {
-        $table->id();
-        $table->string('title')->unique();
-        $table->string('slug');
-        $table->unsignedSmallInteger('ordering')->default(500);
-
-        $table->foreignId('course_specialization_id')->nullable()->constrained('course_specializations')->onDelete('set null');
-        $table->timestamps();
-    });
-}
