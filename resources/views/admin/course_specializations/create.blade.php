@@ -1,4 +1,4 @@
-<x-admin-layout class="Course_specializations">
+<x-admin-layout class="Course">
     <div class="custom_form">
         <div class="header">
             <h1>New Course Specialization</h1>

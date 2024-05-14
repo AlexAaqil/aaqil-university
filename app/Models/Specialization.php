@@ -20,4 +20,9 @@ class Specialization extends Model
         ->withPivot(['ordering'])
         ->orderBy('pivot_ordering');
     }
+
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
 }

@@ -1,4 +1,4 @@
-<x-admin-layout class="Course_specializations">
+<x-admin-layout class="Course">
     <x-admin-header 
         :header_title="$course->title . ' Specializations'"
         :total_count="count($course->specializations)"
@@ -16,7 +16,11 @@
                                 {{ $specialization->pivot->ordering }}
                             </a>
                         </span>
-                        <span>{{ $specialization->title }}</span>
+                        <span>
+                            <a href="{{ route('topics.index', $specialization->slug) }}">
+                                {{ $specialization->title }}
+                            </a>
+                        </span>
                         <span class="actions">
                             <div class="action">
                                 <form id="deleteForm_{{ $specialization->id }}" action="{{ route('course-specializations.destroy', ['course_specialization' => $specialization->id]) }}" method="POST">

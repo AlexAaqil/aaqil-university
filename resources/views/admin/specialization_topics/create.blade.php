@@ -1,16 +1,16 @@
-<x-admin-layout class="Course_specializations">
+<x-admin-layout class="Course">
     <div class="custom_form">
         <div class="header">
-            <h1>New Course Specialization</h1>
+            <h1>New Specialization Topic</h1>
         </div>
 
-        <form action="{{ route('course-specializations.store') }}" method="post">
+        <form action="{{ route('topics.store') }}" method="post">
             @csrf
 
             <div class="row_input_group">
                 <div class="input_group">
-                    <label for="title">Specialization Title</label>
-                    <input type="text" name="title" id="title" placeholder="Course Title" value="{{ old('title') }}">
+                    <label for="title">Topic Title</label>
+                    <input type="text" name="title" id="title" placeholder="Topic Title" value="{{ old('title') }}">
                     <span class="inline_alert">{{ $errors->first('title') }}</span>
                 </div>
     
@@ -22,14 +22,14 @@
             </div>
 
             <div class="input_group">
-                <label for="course_id">Course</label>
-                <select name="course_id" id="course_id">
-                    <option value="">Select Course</option>
-                    @foreach($courses as $course)
-                        <option value="{{ $course->id }}" {{ old('course_id') == $course->id ? 'selected' : '' }}>{{ $course->title }}</option>
+                <label for="specialization_id">Specialization</label>
+                <select name="specialization_id" id="specialization_id">
+                    <option value="">Select Specialization</option>
+                    @foreach($specializations as $specialization)
+                        <option value="{{ $specialization->id }}" {{ old('specialization_id') == $specialization->id ? 'selected' : '' }}>{{ $specialization->title }}</option>
                     @endforeach
                 </select>
-                <span class="inline_alert">{{ $errors->first('course_id') }}</span>
+                <span class="inline_alert">{{ $errors->first('specialization_id') }}</span>
             </div>            
 
             <button type="submit">Save</button>

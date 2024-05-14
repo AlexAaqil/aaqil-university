@@ -1013,15 +1013,16 @@ aside .footer .logout form button i {
   margin: 0.5em 0;
 }
 
-.Course_specializations .body h2 {
+.Admin .Course .body h2 {
   font-size: 1em;
   font-style: italic;
   margin: 0 0 0.1em;
 }
-.Course_specializations .body ul {
+.Admin .Course .body ul {
+  list-style: none;
   margin: 0 0 1.2em;
 }
-.Course_specializations .body ul li {
+.Admin .Course .body ul li {
   display: grid;
   grid-template-columns: 2em 1fr 1fr;
   justify-content: start;
@@ -1029,11 +1030,11 @@ aside .footer .logout form button i {
   gap: 0.5em;
   padding: 4px 0;
 }
-.Course_specializations .body ul form button {
+.Admin .Course .body ul form button {
   padding: 1px 2px;
   color: rgb(250, 38, 38);
   background: unset;
 }
-.Course_specializations .custom_form .courses_inputs .row_input_group {
+.Admin .Course .custom_form .courses_inputs .row_input_group {
   margin: 0.5em 0;
 }/*# sourceMappingURL=styles.css.map */

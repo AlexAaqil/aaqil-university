@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\SpecializationController;
+use App\Http\Controllers\TopicController;
 
 Route::get('/', [GeneralPagesController::class, 'home'])->name('home');
 Route::get('/about', [GeneralPagesController::class, 'about'])->name('about');
@@ -39,6 +40,9 @@ Route::middleware(['auth', 'verified', 'admin'])
 
     Route::get('/specializations/{course}', [SpecializationController::class, 'index'])->name('course-specializations.index');
     Route::resource('course-specializations', SpecializationController::class)->except('index', 'show');
+
+    Route::resource('topics', TopicController::class)->except('index', 'show');
+    Route::get('/topics/{specialization}', [TopicController::class, 'index'])->name('topics.index');
     
     Route::resource('comments', CommentController::class)->only('index', 'edit', 'update', 'destroy');
 });

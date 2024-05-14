@@ -20,12 +20,12 @@ courses {
     visibility
 }
 
-course_specializations {
+specializations {
     title
     slug
 }
 
-course_course_specialization {
+course_specialization {
     course_id (fk)
     course_specialization_id (fk)
     ordering
@@ -65,15 +65,6 @@ enrollments {
 --------------------
 Code Snippets
 --------------------
-
-// Example Usage
-$course = Course::find($courseId);
-$specializations = $course->specializations;
-foreach ($specializations as $specialization) {
-    echo $specialization->title . ' - ' . $specialization->pivot->ordering;
-}
-
-
 public function up(): void
 {
     Schema::create('topics', function (Blueprint $table) {

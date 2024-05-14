@@ -1,4 +1,4 @@
-<x-admin-layout class="Courses">
+<x-admin-layout class="Course">
     <div class="custom_form">
         <div class="header">
             <h1>Update Course</h1>
