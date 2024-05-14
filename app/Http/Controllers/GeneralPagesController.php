@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\User;
+use App\Models\Specialization;
 
 class GeneralPagesController extends Controller
 {
@@ -34,6 +35,13 @@ class GeneralPagesController extends Controller
         ->firstOrFail();
 
         return view("course_specializations", compact('course'));
+    }
+
+    public function specialization_topics($specialization)
+    {
+        $specialization = Specialization::where('slug', $specialization)->with('topics')->firstOrFail();
+
+        return view("specialization_topics", compact('specialization'));
     }
 
     public function contact()

@@ -1,17 +1,17 @@
 <x-general-layout class="Course">
     <section class="Hero">
         <div class="container">
-            <h1>{{ $course->title }} Specializations</h1>
+            <h1>{{ $specialization->title }} Topics</h1>
         </div>
     </div>
 
     <section class="Specializations">
         <div class="container">
             <ol>
-                @foreach($course->specializations as $specialization)
+                @foreach($specialization->topics as $topic)
                     <li>
-                        <a href="{{ route('specialization_topics', $specialization->slug) }}">
-                            {{ $specialization->title }}
+                        <a href="#">
+                            {{ $topic->title }}
                         </a>
                     </li>
                 @endforeach

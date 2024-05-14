@@ -14,6 +14,7 @@ Route::get('/', [GeneralPagesController::class, 'home'])->name('home');
 Route::get('/about', [GeneralPagesController::class, 'about'])->name('about');
 Route::get('/courses', [GeneralPagesController::class, 'courses'])->name('courses');
 Route::get('/course/{slug}/specializations', [GeneralPagesController::class, 'course_specializations'])->name('course_specializations');
+Route::get('/specialization/{specialization}/topics', [GeneralPagesController::class, 'specialization_topics'])->name('specialization_topics');
 Route::get('/contact', [GeneralPagesController::class, 'contact'])->name('contact');
 Route::post('/contact', [CommentController::class, 'store'])->name('comments.store');
 
