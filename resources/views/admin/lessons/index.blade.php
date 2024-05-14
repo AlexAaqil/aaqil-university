@@ -17,7 +17,7 @@
                             </a>
                         </span>
                         <span>
-                            <a href="#">
+                            <a href="{{ route('sections.index', $lesson->slug) }}">
                                 {{ $lesson->title }}
                             </a>
                         </span>

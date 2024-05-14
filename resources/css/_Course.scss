@@ -1,0 +1,96 @@
+.Course {
+    .Courses {
+        .container {
+            @include grid(4);
+            gap: 2.5em;
+
+            .course {
+                .thumbnail {
+                    height: 200px;
+                    width: 100%;
+
+                    img {
+                        border-radius: 8px;
+                        height: 100%;
+                        width: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .text {
+                    text-align: center;
+                    h1 {
+                        font-size: 1.25em;
+                        margin: 0.5em 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .section_content {
+        h1 {
+            font-size: 1.3em;
+            color: #fd7014;
+        }
+
+        h2 {
+            font-style: unset !important;
+            color: #ffa061;
+            margin: 0.5em 0 0 !important;
+        }
+
+        pre {
+            margin: 0.5em 0;
+            line-height: 1.3;
+            background: $theme-2;
+            padding: 8px 16px;
+        }
+    }
+}
+
+.Admin {
+    .Course {
+        .body {
+            h2 {
+                font-size: 1em;
+                font-style: italic;
+                margin: 0 0 0.1em;
+            }
+    
+            ul {
+                list-style: none;
+                margin: 0 0 1.2em;
+    
+                li {
+                    display: grid;
+                    grid-template-columns: 2em 1fr 1fr;
+                    justify-content: start;
+                    justify-items: start;
+                    gap: 0.5em;
+                    padding: 4px 0;
+                }
+    
+                form {
+                    button {
+                        padding: 1px 2px;
+                        color: $danger;
+                        background: unset;
+                    }
+                }
+            }
+        }
+    
+        .custom_form {
+            .courses_inputs {
+                .row_input_group {
+                    margin: 0.5em 0;
+                }
+            }
+
+            .ck-editor__main {
+                color: $theme-2;
+            }
+        }
+    }
+}

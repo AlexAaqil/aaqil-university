@@ -10,6 +10,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\SpecializationController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\SectionController;
 
 Route::get('/', [GeneralPagesController::class, 'home'])->name('home');
 Route::get('/about', [GeneralPagesController::class, 'about'])->name('about');
@@ -48,6 +49,9 @@ Route::middleware(['auth', 'verified', 'admin'])
 
     Route::resource('lessons', LessonController::class)->except('index', 'show');
     Route::get('/lessons/{topic}', [LessonController::class, 'index'])->name('lessons.index');
+
+    Route::resource('sections', SectionController::class)->except('index', 'show');
+    Route::get('/sections/{lesson}', [SectionController::class, 'index'])->name('sections.index');
     
     Route::resource('comments', CommentController::class)->only('index', 'edit', 'update', 'destroy');
 });

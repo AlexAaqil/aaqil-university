@@ -1,4 +1,4 @@
-<x-general-layout class="CoursesPage">
+<x-general-layout class="Course">
     <section class="Hero">
         <div class="container">
             <h1>Explore Our Courses</h1>

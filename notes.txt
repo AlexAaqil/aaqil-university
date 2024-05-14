@@ -48,8 +48,6 @@ lessons {
 }
 
 sections {
-    title
-    slug
     content
     ordering
 
