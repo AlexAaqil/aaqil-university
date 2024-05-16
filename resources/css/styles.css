@@ -1025,8 +1025,12 @@ aside .footer .logout form button i {
   text-align: center;
 }
 .Course .section_content h1 {
-  font-size: 1.4em;
+  font-size: 1.2em;
   color: #00fff5;
+  border-bottom: 1px solid #a0a0a0;
+  padding: 4px 0;
+  margin: 0 0 0.3em;
+  text-align: center;
 }
 .Course .section_content h2 {
   font-size: 1em;
@@ -1059,6 +1063,7 @@ aside .footer .logout form button i {
 }
 .Course .course_contents .contents {
   margin-left: calc(15% + 0.3em);
+  margin-right: 0.3em;
 }
 .Course .course_contents .contents .section_content {
   border: 1px solid grey;
@@ -1076,4 +1081,10 @@ aside .footer .logout form button i {
 }
 .Admin .Course .body ul li .actions {
   text-align: center;
+}
+.Admin .Course .body ul hr {
+  border: 1px solid #a0a0a0;
+}
+.Admin .Course .custom_form .ck-editor {
+  color: #222831;
 }/*# sourceMappingURL=styles.css.map */
