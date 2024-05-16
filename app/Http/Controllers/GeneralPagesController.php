@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\User;
 use App\Models\Specialization;
+use App\Models\Topic;
 
 class GeneralPagesController extends Controller
 {
@@ -26,7 +27,7 @@ class GeneralPagesController extends Controller
         return view("courses", compact('courses'));
     }
 
-    public function course_specializations($slug)
+    public function specializations($slug)
     {
         $course = Course::where('slug', $slug)
         ->with(['specializations' => function($query) {
@@ -34,14 +35,25 @@ class GeneralPagesController extends Controller
         }])
         ->firstOrFail();
 
-        return view("course_specializations", compact('course'));
+        return view("specializations", compact('course'));
     }
 
-    public function specialization_topics($specialization)
+    public function topics($specialization)
     {
         $specialization = Specialization::where('slug', $specialization)->with('topics')->firstOrFail();
 
-        return view("specialization_topics", compact('specialization'));
+        return view("topics", compact('specialization'));
+    }
+
+    public function lessons($topic)
+    {
+        $topic = Topic::where('slug', $topic)
+        ->with(['lessons' => function($query) {
+            $query->orderBy('ordering');
+        }])
+        ->firstOrFail();
+
+        return view("lessons", compact('topic'));
     }
 
     public function contact()

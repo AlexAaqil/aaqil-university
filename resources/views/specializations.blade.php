@@ -10,7 +10,7 @@
             <ol>
                 @foreach($course->specializations as $specialization)
                     <li>
-                        <a href="{{ route('specialization_topics', $specialization->slug) }}">
+                        <a href="{{ route('course.topics', $specialization->slug) }}">
                             {{ $specialization->title }}
                         </a>
                     </li>

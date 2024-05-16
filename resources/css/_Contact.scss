@@ -6,7 +6,7 @@
         .text {
             p {
                 @include font_size(1.25em, 2em);
-                color: $theme-4;
+                color: $text-color;
 
                 span {
                     display: grid;

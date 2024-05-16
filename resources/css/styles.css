@@ -19,11 +19,18 @@
 
 body {
   background: #222831;
-  color: #eeeeee;
+  color: #fff;
 }
 
 .container {
   padding: 10px 5%;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 a {
@@ -90,7 +97,7 @@ form button {
 .custom_form form .input_group textarea,
 .custom_form form .input_group select {
   background: transparent;
-  color: #eeeeee;
+  color: #fff;
 }
 .custom_form form .input_group input:focus, .custom_form form .input_group input:focus-visible, .custom_form form .input_group input:focus-within,
 .custom_form form .input_group textarea:focus,
@@ -100,7 +107,7 @@ form button {
 .custom_form form .input_group select:focus-visible,
 .custom_form form .input_group select:focus-within {
   background: transparent;
-  color: #eeeeee;
+  color: #fff;
 }
 .custom_form form .input_group select option {
   color: #222831;
@@ -194,28 +201,38 @@ form button {
   height: 30px;
   border: 1px solid #393e46;
 }
-.custom_form form button,
-.custom_form form .btn_danger,
-.custom_form form .btn_link {
+.custom_form p {
+  margin: 0.8em 0 0.5em;
+}
+
+button,
+.btn_danger,
+.btn_link {
   padding: 6px 12px;
   font-weight: bold;
   font-size: 1em;
   border-radius: 4px;
   color: #fff;
 }
-.custom_form form button {
+
+button {
   background: #000;
 }
-.custom_form form .btn_danger {
+
+.btn_danger {
   background: rgb(245, 2, 2);
 }
-.custom_form form .btn_link {
+
+.btn_delete {
+  background: none;
+  padding: 2px;
+  color: #ff3300;
+}
+
+.btn_link {
   text-decoration: none;
   color: #000;
   border: 1px solid #000;
-}
-.custom_form p {
-  margin: 0.8em 0 0.5em;
 }
 
 @media screen and (width >= 726px) {
@@ -251,7 +268,7 @@ nav a {
 }
 nav .brand a h1 {
   font-size: 1.2em;
-  color: #eeeeee;
+  color: #fff;
 }
 nav .nav_links {
   display: flex;
@@ -261,7 +278,7 @@ nav .nav_links {
 }
 nav .nav_links .active {
   font-weight: bold;
-  color: #eeeeee;
+  color: #fff;
 }
 nav .nav_authentication {
   margin-left: 2em;
@@ -352,7 +369,7 @@ nav .burger_menu {
 footer {
   padding: 16px 0 0;
   background: #393e46;
-  color: #eeeeee;
+  color: #fff;
 }
 footer .container a {
   text-decoration: none;
@@ -460,7 +477,7 @@ aside i {
 }
 aside a {
   text-decoration: none;
-  color: #eeeeee;
+  color: #fff;
 }
 aside .active {
   background: #393e46;
@@ -592,8 +609,8 @@ aside .footer .logout form button i {
 .HomePage .Hero .container .text .hero_btn a {
   text-decoration: none;
   text-transform: uppercase;
-  background: #fd7014;
-  color: #eeeeee;
+  background: #00adb5;
+  color: #fff;
   padding: 10px 12px;
   border-radius: 4px;
   font-size: 1em;
@@ -700,7 +717,7 @@ aside .footer .logout form button i {
 }
 .Contact .container .text p {
   font-size: 1.25em;
-  color: #eeeeee;
+  color: #fff;
 }
 @media screen and (width >= 726px) {
   .Contact .container .text p {
@@ -852,7 +869,7 @@ aside .footer .logout form button i {
 }
 .Admin .Dashboard .stats .stat .text a {
   text-decoration: none;
-  color: #eeeeee;
+  color: #fff;
   font-size: 0.9em;
 }
 .Admin .Dashboard .stats .stat .text span {
@@ -913,8 +930,8 @@ aside .footer .logout form button i {
 }
 .Admin .admin_content .body table thead {
   background: #222831;
-  color: #eeeeee;
-  border-bottom: 1px solid #eeeeee;
+  color: #fff;
+  border-bottom: 1px solid gray;
 }
 .Admin .admin_content .body table thead th {
   text-align: left;
@@ -940,7 +957,7 @@ aside .footer .logout form button i {
 .Admin .admin_content .body table tbody tr td .td_span {
   font-size: 0.65em;
   font-weight: bold;
-  background: #fd7014;
+  background: #00adb5;
   padding: 2px 6px;
   border-radius: 8px;
 }
@@ -983,76 +1000,80 @@ aside .footer .logout form button i {
     overflow: scroll;
   }
 }
-.Course .Courses .container {
+.Course ul,
+.Course ol {
+  list-style-position: inside;
+}
+.Course .courses_wrapper {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.5em;
-  gap: 2.5em;
+  gap: 2em;
 }
 @media screen and (width >= 726px) {
-  .Course .Courses .container {
+  .Course .courses_wrapper {
     grid-template-columns: repeat(4, 1fr);
   }
 }
-.Course .Courses .container .course .thumbnail {
+.Course .courses_wrapper .course a .thumbnail {
   height: 200px;
-  width: 100%;
 }
-.Course .Courses .container .course .thumbnail img {
+.Course .courses_wrapper .course a .thumbnail img {
   border-radius: 8px;
-  height: 100%;
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
-.Course .Courses .container .course .text {
+.Course .courses_wrapper .course .text {
   text-align: center;
 }
-.Course .Courses .container .course .text h1 {
-  font-size: 1.25em;
-  margin: 0.5em 0;
-}
 .Course .section_content h1 {
-  font-size: 1.3em;
-  color: #fd7014;
+  font-size: 1.4em;
+  color: #00fff5;
 }
 .Course .section_content h2 {
-  font-style: unset !important;
-  color: #ffa061;
-  margin: 0.5em 0 0 !important;
+  font-size: 1em;
+  color: #00fff5;
+  margin: 0.5em 0;
 }
 .Course .section_content pre {
-  margin: 0.5em 0;
-  line-height: 1.3;
   background: #393e46;
-  padding: 8px 16px;
+  padding: 8px;
+  border-radius: 8px;
+  margin: 0.3em 0;
+}
+.Course .section_content p {
+  line-height: 1.3;
+}
+.Course .section_content p.command {
+  border-left: 4px solid #00adb5;
+  padding: 2px 4px;
+  margin: 0.4em 0.5em;
+}
+.Course .section_content .path {
+  color: #fc91a3;
+}
+.Course .course_contents aside {
+  width: 15%;
+  border-right: 1px solid rgb(73, 73, 73);
+}
+.Course .course_contents aside .links {
+  display: grid;
+}
+.Course .course_contents .contents {
+  margin-left: calc(15% + 0.3em);
+}
+.Course .course_contents .contents .section_content {
+  border: 1px solid grey;
+  padding: 8px;
+  border-radius: 8px;
+  margin: 0 0 1em;
 }
 
-.Admin .Course .body h2 {
-  font-size: 1em;
-  font-style: italic;
-  margin: 0 0 0.1em;
-}
 .Admin .Course .body ul {
   list-style: none;
-  margin: 0 0 1.2em;
 }
 .Admin .Course .body ul li {
   display: grid;
-  grid-template-columns: 2em 1fr 1fr;
-  justify-content: start;
-  justify-items: start;
-  gap: 0.5em;
-  padding: 4px 0;
+  grid-template-columns: 50px auto 150px;
 }
-.Admin .Course .body ul form button {
-  padding: 1px 2px;
-  color: rgb(250, 38, 38);
-  background: unset;
-}
-.Admin .Course .custom_form .courses_inputs .row_input_group {
-  margin: 0.5em 0;
-}
-.Admin .Course .custom_form .ck-editor__main {
-  color: #393e46;
+.Admin .Course .body ul li .actions {
+  text-align: center;
 }/*# sourceMappingURL=styles.css.map */

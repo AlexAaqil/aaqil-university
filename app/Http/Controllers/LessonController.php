@@ -11,7 +11,11 @@ class LessonController extends Controller
 {
     public function index($topic)
     {
-        $topic = Topic::where('slug', $topic)->with('lessons')->firstOrFail();
+        $topic = Topic::where('slug', $topic)
+        ->with(['lessons' => function($query) {
+            $query->orderBy('ordering');
+        }])
+        ->firstOrFail();
 
         return view('admin.lessons.index', compact('topic'));
     }

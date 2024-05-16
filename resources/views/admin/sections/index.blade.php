@@ -25,7 +25,7 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <button type="button" onclick="deleteItem({{ $section->id }}, 'section');">
+                                    <button type="button" class="btn_delete" onclick="deleteItem({{ $section->id }}, 'section');">
                                         <i class="fas fa-trash-alt delete"></i>
                                     </button>
                                 </form>

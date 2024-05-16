@@ -6,10 +6,10 @@
     </div>
 
     <section class="Courses">
-        <div class="container">
+        <div class="container courses_wrapper">
             @foreach($courses as $course)
                 <div class="course">
-                    <a href="{{ route('course_specializations', $course->slug) }}">
+                    <a href="{{ route('course.specializations', $course->slug) }}">
                         <x-card-image 
                             :subject="$course"
                             field="thumbnail"
@@ -18,10 +18,9 @@
                     </a>
 
                     <div class="text">
-                        <h1>
-                            <a href="{{ route('course_specializations', $course->slug) }}">
-                                {{ $course->title }}</h1>
-                            </a>
+                        <a href="{{ route('course.specializations', $course->slug) }}">
+                            <h1>{{ $course->title }}</h1>
+                        </a>
                         <p>{{ $course->description }}</p>
                     </div>
                 </div>
