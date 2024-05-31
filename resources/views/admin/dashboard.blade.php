@@ -19,7 +19,7 @@
                 <i class="fas fa-comment"></i>
             </div>
             <div class="text">
-                <a href="">Courses</a>
+                <a href="{{ route('courses.index') }}">Courses</a>
                 <span>{{ $count_courses }} <del>{{ $count_invisible_courses }}</del></span>
             </div>
         </div>
