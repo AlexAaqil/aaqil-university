@@ -27,7 +27,7 @@
 
     .section_content {
         h1 {
-            font-size: 1.2em;
+            font-size: 1.25em;
             color: $theme-4;
             border-bottom: 1px solid $greyed;
             padding: 4px 0;
@@ -35,10 +35,19 @@
             text-align: center;
         }
 
-        h2 {
-            font-size: 1em;
+        h2,
+        h3 {
+            margin: 0.8em 0 0.2em;
             color: $theme-4;
-            margin: 0.5em 0;
+        }
+
+        h2 {
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1em;
         }
 
         pre {

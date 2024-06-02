@@ -39,7 +39,11 @@ class SectionController extends Controller
 
     public function edit(Section $section)
     {
-        $lessons = Lesson::orderBy('title')->get();
+        $specializationId = $section->lesson->topic->specialization_id;
+
+        $lessons = Lesson::whereHas('topic', function($query) use ($specializationId) {
+            $query->where('specialization_id', $specializationId);
+        })->orderBy('title')->get();
 
         return view('admin.sections.edit', compact('section', 'lessons'));
     }
