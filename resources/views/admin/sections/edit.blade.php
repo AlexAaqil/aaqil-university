@@ -8,7 +8,13 @@
             @csrf
             @method('PATCH')
 
-            <div class="row_input_group">
+            <div class="row_input_group_3">
+                <div class="input_group">
+                    <label for="title">Section Title</label>
+                    <input type="text" name="title" id="title" value="{{ old('title') }}">
+                    <span class="inline_alert">{{ $errors->first('title') }}</span>
+                </div>
+
                 <div class="input_group">
                     <label for="lesson_id">Lesson</label>
                     <select name="lesson_id" id="lesson_id">
