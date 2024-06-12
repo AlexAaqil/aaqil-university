@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('slug');
             $table->longText('content');
             $table->unsignedSmallInteger('ordering');
 
