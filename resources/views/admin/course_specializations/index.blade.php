@@ -17,7 +17,7 @@
                             </a>
                         </span>
                         <span>
-                            <a href="{{ route('topics.index', $specialization->slug) }}">
+                            <a href="{{ route('topics.index', $specialization->id) }}">
                                 {{ $specialization->title }}
                             </a>
                         </span>
