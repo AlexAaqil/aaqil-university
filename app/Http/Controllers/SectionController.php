@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Section;
 use App\Models\Lesson;
+use Illuminate\Support\Str;
 
 class SectionController extends Controller
 {
@@ -25,10 +26,13 @@ class SectionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'title' => 'required|string',
             'lesson_id' => 'required|numeric',
             'ordering' => 'required|numeric',
             'content' => 'required',
         ]);
+
+        $validated['slug'] = Str::slug($validated['title']);
 
         Section::create($validated);
 
@@ -51,10 +55,13 @@ class SectionController extends Controller
     public function update(Request $request, Section $section)
     {
         $validated = $request->validate([
+            'title' => 'required|string',
             'lesson_id' => 'required|numeric',
             'ordering' => 'required|numeric',
             'content' => 'required',
         ]);
+
+        $validated['slug'] = Str::slug($validated['title']);
 
         $section->update($validated);
 
