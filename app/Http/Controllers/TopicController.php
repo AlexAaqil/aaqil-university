@@ -5,22 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Models\Specialization;
+use App\Models\CourseSpecialization;
 use Illuminate\Support\Str;
 
 class TopicController extends Controller
 {
     public function index($specialization)
     {
-        $specialization = Specialization::where('slug', $specialization)->with('topics')->firstOrFail();
+        $specialization = Specialization::with('topics')->findOrFail($specialization);
         
         return view('admin.specialization_topics.index', compact('specialization'));
     }
 
-    public function create()
+    public function create($specialization)
     {
-        $specializations = Specialization::orderBy('title')->get();
+        $specialization = CourseSpecialization::with('specialization')->where('specialization_id', $specialization)->firstOrFail();
 
-        return view('admin.specialization_topics.create', compact('specializations'));
+        $specializations = Specialization::whereHas('courses', function($query) use ($specialization) {
+            $query->where('course_id', $specialization->course_id);
+        })->get();
+
+        return view('admin.specialization_topics.create', compact('specialization', 'specializations'));
     }
 
     public function store(Request $request)
