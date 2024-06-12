@@ -2,7 +2,7 @@
     <x-admin-header 
         :header_title="$specialization->title . ' Topics'"
         :total_count="count($specialization->topics)"
-        route="{{ route('topics.create') }}"
+        route="{{ route('topics.create', $specialization->id) }}"
     />
 
     <div class="body">
