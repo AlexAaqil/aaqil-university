@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Models\Specialization;
-use App\Models\CourseSpecialization;
 use Illuminate\Support\Str;
 
 class TopicController extends Controller
@@ -66,5 +65,10 @@ class TopicController extends Controller
         $topic->delete();
 
         return redirect()->route('topics.index', $topic->specialization->id)->with('success', ['message' => 'Specialization topic has been deleted']);
+    }
+
+    public function sort_topics(Request $request)
+    {
+        return $this->sort_items($request, Topic::class);
     }
 }

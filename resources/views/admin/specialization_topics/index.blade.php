@@ -6,11 +6,11 @@
     />
 
     <div class="body">
-        <ul>
+        <ul id="sortable">
             @if(count($specialization->topics) != 0)
                 @php $id = 1 @endphp
                 @foreach($specialization->topics as $topic)
-                    <li class="searchable">
+                    <li class="searchable sortable_item" id="{{ $topic->id }}">
                         <span>
                             <a href="{{ route('topics.edit', ['topic' => $topic->id, 'specialization' => $specialization->id]) }}">
                                 {{ $topic->ordering }}
@@ -41,7 +41,7 @@
         </ul>
     </div>
 
-    <x-slot name="javascript">
-        <script src="{{ asset('assets/js/sweetalert.js') }}"></script>
-    </x-slot>
+    <x-courses-js 
+        url="{{ url('admin/topics/sort-topics') }}"
+    />
 </x-admin-layout>
