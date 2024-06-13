@@ -8,21 +8,14 @@
             @csrf
             @method('PATCH')
 
-            <div class="row_input_group">
-                <input type="hidden" name="specialization_id" id="specialization_id" value="{{ $specialization->id }}" />
+            <input type="hidden" name="specialization_id" id="specialization_id" value="{{ $specialization->id }}" />
+            <input type="hidden" name="ordering" id="ordering" placeholder="Ordering" value="{{ $topic->ordering }}">
 
-                <div class="input_group">
-                    <label for="title">Topic Title</label>
-                    <input type="text" name="title" id="title" placeholder="Topic Title" value="{{ old('title', $topic->title) }}">
-                    <span class="inline_alert">{{ $errors->first('title') }}</span>
-                </div>
-    
-                <div class="input_group">
-                    <label for="ordering">Ordering</label>
-                    <input type="number" name="ordering" id="ordering" placeholder="Ordering" value="{{ old('ordering', $topic->ordering) }}">
-                    <span class="inline_alert">{{ $errors->first('ordering') }}</span>
-                </div>
-            </div>           
+            <div class="input_group">
+                <label for="title">Topic Title</label>
+                <input type="text" name="title" id="title" placeholder="Topic Title" value="{{ old('title', $topic->title) }}">
+                <span class="inline_alert">{{ $errors->first('title') }}</span>
+            </div>
 
             <button type="submit">Update</button>
         </form>
