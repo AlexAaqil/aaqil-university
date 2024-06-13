@@ -47,8 +47,9 @@ Route::middleware(['auth', 'verified', 'admin'])
     Route::get('/specializations/{course}', [SpecializationController::class, 'index'])->name('course-specializations.index');
     Route::resource('course-specializations', SpecializationController::class)->except('index', 'show');
 
-    Route::resource('topics', TopicController::class)->except('index', 'show', 'create');
     Route::get('/topics/create/{specialization}', [TopicController::class, 'create'])->name('topics.create');
+    Route::get('/topics/edit/{topic}/{specialization}', [TopicController::class, 'edit'])->name('topics.edit');
+    Route::resource('topics', TopicController::class)->except('index', 'show', 'create', 'edit');
     Route::get('/topics/{specialization}', [TopicController::class, 'index'])->name('topics.index');
 
     Route::resource('lessons', LessonController::class)->except('index', 'show');

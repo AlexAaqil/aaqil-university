@@ -19,13 +19,9 @@ class TopicController extends Controller
 
     public function create($specialization)
     {
-        $specialization = CourseSpecialization::with('specialization')->where('specialization_id', $specialization)->firstOrFail();
+        $specialization = Specialization::with('courses')->where('id', $specialization)->firstOrFail();
 
-        $specializations = Specialization::whereHas('courses', function($query) use ($specialization) {
-            $query->where('course_id', $specialization->course_id);
-        })->get();
-
-        return view('admin.specialization_topics.create', compact('specialization', 'specializations'));
+        return view('admin.specialization_topics.create', compact('specialization'));
     }
 
     public function store(Request $request)
@@ -33,23 +29,21 @@ class TopicController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255|unique:topics',
             'ordering' => 'required|numeric',
-            'specialization_id' => 'required|numeric',
+            'specialization_id' => 'numeric|exists:specializations,id',
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
 
         Topic::create($validated);
 
-        $specialization = Specialization::findOrFail($validated['specialization_id']);
-
-        return redirect()->route('topics.index', $specialization->slug)->with('success', ['message' => 'Specialization topic has been added']);
+        return redirect()->route('topics.index', $validated['specialization_id'])->with('success', ['message' => 'Specialization topic has been added']);
     }
 
-    public function edit(Topic $topic)
+    public function edit(Topic $topic, $specialization)
     {
-        $specializations = Specialization::orderBy('title')->get();
+        $specialization = Specialization::findOrFail($specialization);
 
-        return view('admin.specialization_topics.edit', compact('topic', 'specializations'));
+        return view('admin.specialization_topics.edit', compact('specialization', 'topic'));
     }
 
     public function update(Request $request, Topic $topic)
@@ -57,22 +51,20 @@ class TopicController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255|unique:topics,title,' . $topic->id,
             'ordering' => 'required|numeric',
-            'specialization_id' => 'required|numeric',
+            'specialization_id' => 'numeric|exists:specializations,id',
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
 
         $topic->update($validated);
 
-        $specialization = Specialization::findOrFail($validated['specialization_id']);
-
-        return redirect()->route('topics.index', $specialization->slug)->with('success', ['message' => 'Specialization Topic has been updated']);
+        return redirect()->route('topics.index', $validated['specialization_id'])->with('success', ['message' => 'Specialization Topic has been updated']);
     }
 
     public function destroy(Topic $topic)
     {
         $topic->delete();
 
-        return redirect()->route('topics.index', $topic->specialization->slug)->with('success', ['message' => 'Specialization topic has been deleted']);
+        return redirect()->route('topics.index', $topic->specialization->id)->with('success', ['message' => 'Specialization topic has been deleted']);
     }
 }
