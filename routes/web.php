@@ -53,8 +53,10 @@ Route::middleware(['auth', 'verified', 'admin'])
     Route::get('/topics/{specialization}', [TopicController::class, 'index'])->name('topics.index');
     Route::post('/topics/sort-topics', [TopicController::class, 'sort_topics'])->name('topics.sort');
 
-    Route::resource('lessons', LessonController::class)->except('index', 'show');
+    Route::get('/lessons/create/{topic}', [LessonController::class, 'create'])->name('lessons.create');
+    Route::resource('lessons', LessonController::class)->except('index', 'show', 'create');
     Route::get('/lessons/{topic}', [LessonController::class, 'index'])->name('lessons.index');
+    Route::post('/lessons/sort-lessons', [LessonController::class, 'sort_lessons'])->name('lessons.sort');
 
     Route::resource('sections', SectionController::class)->except('index', 'show');
     Route::get('/sections/{lesson}', [SectionController::class, 'index'])->name('sections.index');

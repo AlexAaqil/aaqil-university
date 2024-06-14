@@ -11,26 +11,22 @@ class LessonController extends Controller
 {
     public function index($topic)
     {
-        $topic = Topic::where('slug', $topic)
-        ->with(['lessons' => function($query) {
-            $query->orderBy('ordering');
-        }])
-        ->firstOrFail();
+        $topic = Topic::with('lessons')->findOrFail($topic);
 
         return view('admin.lessons.index', compact('topic'));
     }
 
-    public function create()
+    public function create($topic)
     {
-        $topics = Topic::orderBy('title')->get();
+        $topic = Topic::with('specialization')->where('id', $topic)->firstOrFail();
 
-        return view('admin.lessons.create', compact('topics'));
+        return view('admin.lessons.create', compact('topic'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255|unique:lessons,title',
             'ordering' => 'required|numeric',
             'topic_id' => 'required|numeric',
         ]);
@@ -39,9 +35,7 @@ class LessonController extends Controller
 
         Lesson::create($validated);
 
-        $topic = Topic::findOrFail($validated['topic_id']);
-
-        return redirect()->route('lessons.index', $topic->slug)->with('success', ['message' => 'Lesson has been added']);
+        return redirect()->route('lessons.index', $validated['topic_id'])->with('success', ['message' => 'Lesson has been added']);
     }
 
     public function edit(Lesson $lesson)
@@ -72,6 +66,11 @@ class LessonController extends Controller
     {
         $lesson->delete();
 
-        return redirect()->route('lessons.index', $lesson->topic->slug)->with('success', ['message' => 'Lesson has been deleted']);
+        return redirect()->route('lessons.index', $lesson->topic->id)->with('success', ['message' => 'Lesson has been deleted']);
+    }
+
+    public function sort_lessons(Request $request)
+    {
+        return $this->sort_items($request, Lesson::class);
     }
 }

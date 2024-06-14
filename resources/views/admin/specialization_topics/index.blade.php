@@ -17,7 +17,7 @@
                             </a>
                         </span>
                         <span>
-                            <a href="{{ route('lessons.index', $topic->slug) }}">
+                            <a href="{{ route('lessons.index', $topic->id) }}">
                                 {{ $topic->title }}
                             </a>
                         </span>
@@ -41,7 +41,5 @@
         </ul>
     </div>
 
-    <x-courses-js 
-        url="{{ url('admin/topics/sort-topics') }}"
-    />
+    <x-courses-js url="{{ route('topics.sort') }}" />
 </x-admin-layout>
