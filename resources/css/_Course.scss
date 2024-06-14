@@ -85,7 +85,7 @@
         }
 
         .contents {
-            margin-left: calc($aside_width + 0.3em);
+            margin-left: calc($aside_width + 0.5em);
             margin-right: 0.3em;
 
             .section_content {
@@ -116,6 +116,14 @@
                 hr {
                     border: 1px solid $greyed;
                 }
+            }
+        }
+
+        .course_contents {
+            $aside_width: 12%;
+
+            aside {
+                width: $aside_width;
             }
         }
 

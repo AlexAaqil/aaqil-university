@@ -30,6 +30,7 @@
                 @foreach($topic->lessons as $lesson)
                     @foreach($lesson->sections as $section)
                         <div id="section-{{ $section->id }}" class="section_content">
+                            <h1>{{ $section->title }}</h1>
                             {!! $section->content !!}
                         </div>
                     @endforeach

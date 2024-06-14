@@ -48,6 +48,7 @@ lessons {
 }
 
 sections {
+    title
     content
     ordering
 

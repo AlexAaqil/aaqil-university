@@ -1069,7 +1069,7 @@ aside .footer .logout form button i {
   display: grid;
 }
 .Course .course_contents .contents {
-  margin-left: calc(15% + 0.3em);
+  margin-left: calc(15% + 0.5em);
   margin-right: 0.3em;
 }
 .Course .course_contents .contents .section_content {
@@ -1091,6 +1091,9 @@ aside .footer .logout form button i {
 }
 .Admin .Course .body ul hr {
   border: 1px solid #a0a0a0;
+}
+.Admin .Course .course_contents aside {
+  width: 12%;
 }
 .Admin .Course .custom_form .ck-editor {
   color: #222831;

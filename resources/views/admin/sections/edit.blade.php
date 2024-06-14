@@ -11,7 +11,7 @@
             <div class="row_input_group_3">
                 <div class="input_group">
                     <label for="title">Section Title</label>
-                    <input type="text" name="title" id="title" value="{{ old('title') }}">
+                    <input type="text" name="title" id="title" value="{{ old('title', $section->title) }}">
                     <span class="inline_alert">{{ $errors->first('title') }}</span>
                 </div>
 
