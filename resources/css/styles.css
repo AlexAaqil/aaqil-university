@@ -1008,7 +1008,7 @@ aside .footer .logout form button i {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.5em;
-  gap: 2em;
+  gap: 3em 2em;
 }
 @media screen and (width >= 726px) {
   .Course .courses_wrapper {
@@ -1017,12 +1017,16 @@ aside .footer .logout form button i {
 }
 .Course .courses_wrapper .course a .thumbnail {
   height: 200px;
+  margin: 0 0 0.5em;
 }
 .Course .courses_wrapper .course a .thumbnail img {
   border-radius: 8px;
 }
 .Course .courses_wrapper .course .text {
   text-align: center;
+}
+.Course .courses_wrapper .course .text h1 {
+  margin: 0 0 0.5em;
 }
 .Course .section_content h1 {
   font-size: 1.25em;

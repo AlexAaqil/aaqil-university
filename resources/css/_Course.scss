@@ -6,12 +6,13 @@
 
     .courses_wrapper {
         @include grid(4);
-        gap: 2em;
+        gap: 3em 2em;
 
         .course {
             a {
                 .thumbnail {
                     height: 200px;
+                    margin: 0 0 0.5em;
 
                     img {
                         border-radius: 8px;
@@ -21,6 +22,10 @@
 
             .text {
                 text-align: center;
+
+                h1 {
+                    margin: 0 0 0.5em;
+                }
             }
         }
     }
