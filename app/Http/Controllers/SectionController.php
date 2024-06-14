@@ -11,16 +11,16 @@ class SectionController extends Controller
 {
     public function index($lesson)
     {
-        $lesson = Lesson::where('slug', $lesson)->with('sections')->firstOrFail();
+        $lesson = Lesson::with('sections')->findOrFail($lesson);
 
         return view('admin.sections.index', compact('lesson'));
     }
 
-    public function create()
+    public function create($lesson)
     {
-        $lessons = Lesson::orderBy('title')->get();
+        $lesson = Lesson::with('topic')->where('id', $lesson)->firstOrFail();
 
-        return view('admin.sections.create', compact('lessons'));
+        return view('admin.sections.create', compact('lesson'));
     }
 
     public function store(Request $request)
@@ -36,20 +36,14 @@ class SectionController extends Controller
 
         Section::create($validated);
 
-        $lesson = Lesson::findOrFail($validated['lesson_id']);
-
-        return redirect()->route('sections.index', $lesson->slug)->with('success', ['message' => 'Section has been added']);
+        return redirect()->route('sections.index', $validated['lesson_id'])->with('success', ['message' => 'Section has been added']);
     }
 
-    public function edit(Section $section)
+    public function edit(Section $section, $lesson)
     {
-        $specializationId = $section->lesson->topic->specialization_id;
+        $lesson = Lesson::findOrFail($lesson);
 
-        $lessons = Lesson::whereHas('topic', function($query) use ($specializationId) {
-            $query->where('specialization_id', $specializationId);
-        })->orderBy('title')->get();
-
-        return view('admin.sections.edit', compact('section', 'lessons'));
+        return view('admin.sections.edit', compact('lesson', 'section'));
     }
 
     public function update(Request $request, Section $section)
@@ -65,15 +59,13 @@ class SectionController extends Controller
 
         $section->update($validated);
 
-        $lesson = Lesson::findOrFail($validated['lesson_id']);
-
-        return redirect()->route('sections.index', $lesson->slug)->with('success', ['message' => 'Section has been updated']);
+        return redirect()->route('sections.index', $validated['lesson_id'])->with('success', ['message' => 'Section has been updated']);
     }
 
     public function destroy(Section $section)
     {
         $section->delete();
 
-        return redirect()->route('sections.index', $section->lesson->slug)->with('success', ['message' => 'Section has been deleted']);
+        return redirect()->route('sections.index', $section->lesson->id)->with('success', ['message' => 'Section has been deleted']);
     }
 }

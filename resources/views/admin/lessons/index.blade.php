@@ -18,7 +18,7 @@
                                 </a>
                             </span>
                             <span>
-                                <a href="{{ route('sections.index', $lesson->slug) }}">
+                                <a href="{{ route('sections.index', $lesson->id) }}">
                                     {{ $lesson->title }}
                                 </a>
                             </span>

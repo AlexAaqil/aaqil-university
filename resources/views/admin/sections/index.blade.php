@@ -2,7 +2,7 @@
     <x-admin-header 
         :header_title="$lesson->title . ' Sections'"
         :total_count="count($lesson->sections)"
-        route="{{ route('sections.create') }}"
+        route="{{ route('sections.create', $lesson->id) }}"
     />
 
     <div class="body">
@@ -12,11 +12,12 @@
                 @foreach($lesson->sections as $section)
                     <li class="searchable">
                         <span>
-                            <a href="{{ route('sections.edit', $section->id) }}">
+                            <a href="{{ route('sections.edit', ['section' => $section->id, 'lesson' => $lesson->id]) }}">
                                 {{ $section->ordering }}
                             </a>
                         </span>
                         <span class="section_content">
+                            <h1>{{ $section->title }}</h1>
                             {!! $section->content !!}
                         </span>
                         <span class="actions">

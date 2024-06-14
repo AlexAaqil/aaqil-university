@@ -59,7 +59,9 @@ Route::middleware(['auth', 'verified', 'admin'])
     Route::get('/lessons/{topic}', [LessonController::class, 'index'])->name('lessons.index');
     Route::post('/lessons/sort-lessons', [LessonController::class, 'sort_lessons'])->name('lessons.sort');
 
-    Route::resource('sections', SectionController::class)->except('index', 'show');
+    Route::get('/sections/create/{lesson}', [SectionController::class, 'create'])->name('sections.create');
+    Route::get('/sections/edit/{section}/{lesson}', [SectionController::class, 'edit'])->name('sections.edit');
+    Route::resource('sections', SectionController::class)->except('index', 'show', 'create', 'edit');
     Route::get('/sections/{lesson}', [SectionController::class, 'index'])->name('sections.index');
     
     Route::resource('comments', CommentController::class)->only('index', 'edit', 'update', 'destroy');
