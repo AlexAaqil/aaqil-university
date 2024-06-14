@@ -19,7 +19,7 @@
                             </a>
                         @else
                             <a href="#">
-                                {{ $lesson->title }} (No Sections)
+                                {{ $lesson->title }} (empty)
                             </a>
                         @endif
                     @endforeach
