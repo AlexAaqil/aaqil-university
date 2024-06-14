@@ -38,11 +38,11 @@ class LessonController extends Controller
         return redirect()->route('lessons.index', $validated['topic_id'])->with('success', ['message' => 'Lesson has been added']);
     }
 
-    public function edit(Lesson $lesson)
+    public function edit(Lesson $lesson, $topic)
     {
-        $topics = Topic::orderBy('title')->get();
+        $topic = Topic::findOrFail($topic);
 
-        return view('admin.lessons.edit', compact('lesson', 'topics'));
+        return view('admin.lessons.edit', compact('lesson', 'topic'));
     }
 
     public function update(Request $request, Lesson $lesson)
@@ -57,9 +57,7 @@ class LessonController extends Controller
 
         $lesson->update($validated);
 
-        $topic = Topic::findOrFail($validated['topic_id']);
-
-        return redirect()->route('lessons.index', $topic->slug)->with('success', ['message' => 'Lesson has been updated']);
+        return redirect()->route('lessons.index', $validated['topic_id'])->with('success', ['message' => 'Lesson has been updated']);
     }
 
     public function destroy(Lesson $lesson)

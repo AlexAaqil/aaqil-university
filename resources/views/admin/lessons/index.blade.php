@@ -13,7 +13,7 @@
                     @foreach($topic->lessons as $lesson)
                         <li class="searchable sortable_item" id="{{ $lesson->id }}">
                             <span>
-                                <a href="{{ route('lessons.edit', $lesson->id) }}">
+                                <a href="{{ route('lessons.edit', ['lesson' => $lesson->id, 'topic' => $topic->id]) }}">
                                     {{ $lesson->ordering }}
                                 </a>
                             </span>
