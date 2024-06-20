@@ -27,5 +27,18 @@
         </form>
     </div>
 
-    <x-ckeditor />
+    <div class="actions">
+        <div class="action">
+            <form id="deleteForm_{{ $section->id }}" action="{{ route('sections.destroy', $section->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+
+                <button type="button" class="btn_delete" onclick="deleteItem({{ $section->id }}, 'section');">
+                    <i class="fas fa-trash-alt delete"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <x-ckeditor-sweetalert />
 </x-admin-layout>

@@ -7,7 +7,7 @@
 
     <div class="body">
         <div class="contents">
-            <ul id="sortable">
+            <ul class="custom_list" id="sortable">
                 @if(count($topic->lessons) != 0)
                     @php $id = 1 @endphp
                     @foreach($topic->lessons as $lesson)

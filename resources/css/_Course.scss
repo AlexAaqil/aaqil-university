@@ -1,7 +1,7 @@
 .Course {
     ul,
     ol {
-        list-style-position: inside;
+        padding: 0.3em 1.2em;
     }
 
     .courses_wrapper {
@@ -134,7 +134,8 @@
 .Admin {
     .Course {
         .body {
-            ul {
+            .custom_list {
+                padding: 0 1em;
                 list-style: none;
 
                 li {
@@ -143,6 +144,11 @@
 
                     .actions {
                         text-align: center;
+                        button {
+                            padding: 2px;
+                            background: transparent;
+                            color: $danger;
+                        }
                     }
                 }
 

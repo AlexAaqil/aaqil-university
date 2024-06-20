@@ -1002,7 +1002,7 @@ aside .footer .logout form button i {
 }
 .Course ul,
 .Course ol {
-  list-style-position: inside;
+  padding: 0.3em 1.2em;
 }
 .Course .courses_wrapper {
   display: grid;
@@ -1104,17 +1104,23 @@ aside .footer .logout form button i {
   margin: 0 0 1em;
 }
 
-.Admin .Course .body ul {
+.Admin .Course .body .custom_list {
+  padding: 0 1em;
   list-style: none;
 }
-.Admin .Course .body ul li {
+.Admin .Course .body .custom_list li {
   display: grid;
   grid-template-columns: 50px auto 150px;
 }
-.Admin .Course .body ul li .actions {
+.Admin .Course .body .custom_list li .actions {
   text-align: center;
 }
-.Admin .Course .body ul hr {
+.Admin .Course .body .custom_list li .actions button {
+  padding: 2px;
+  background: transparent;
+  color: rgb(250, 38, 38);
+}
+.Admin .Course .body .custom_list hr {
   border: 1px solid #a0a0a0;
 }
 .Admin .Course .course_contents aside {

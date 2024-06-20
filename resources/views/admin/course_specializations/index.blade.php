@@ -6,7 +6,7 @@
     />
 
     <div class="body">
-        <ul>
+        <ul class="custom_list">
             @if(count($course->specializations) != 0)
                 @php $id = 1 @endphp
                 @foreach($course->specializations as $specialization)
