@@ -59,3 +59,273 @@ enrollments {
     user_id
     courses (array of courses ids)
 }
+
+scripts {
+    title
+    content
+    ordering
+    is_published (boolean)
+    category
+}
+
+_______________________________________________________________
+SCRIPTS
+
+migration:
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateScriptsTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('scripts', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->text('content');
+            $table->integer('ordering')->nullable();
+            $table->boolean('is_published')->default(false);
+            $table->json('category'); // JSON type for category
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('scripts');
+    }
+}
+
+
+
+model:
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Script extends Model
+{
+    use HasFactory;
+
+    protected $fillable = ['title', 'content', 'ordering', 'is_published', 'category'];
+
+    protected $casts = [
+        'category' => 'array', // Cast the category attribute to an array
+    ];
+}
+
+
+
+controller
+namespace App\Http\Controllers;
+
+use App\Models\Script;
+use Illuminate\Http\Request;
+
+class ScriptController extends Controller
+{
+    public function index()
+    {
+        $scripts = Script::all();
+        return view('scripts.index', compact('scripts'));
+    }
+
+    public function create()
+    {
+        return view('scripts.create');
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required',
+            'ordering' => 'nullable|integer',
+            'is_published' => 'required|boolean',
+            'category' => 'required|array', // Validate category as an array
+        ]);
+
+        Script::create($data);
+
+        return redirect()->route('scripts.index');
+    }
+
+    public function edit(Script $script)
+    {
+        return view('scripts.edit', compact('script'));
+    }
+
+    public function update(Request $request, Script $script)
+    {
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required',
+            'ordering' => 'nullable|integer',
+            'is_published' => 'required|boolean',
+            'category' => 'required|array', // Validate category as an array
+        ]);
+
+        $script->update($data);
+
+        return redirect()->route('scripts.index');
+    }
+
+    public function destroy(Script $script)
+    {
+        $script->delete();
+
+        return redirect()->route('scripts.index');
+    }
+}
+
+
+
+index view:
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <h1>Scripts</h1>
+        <a href="{{ route('scripts.create') }}" class="btn btn-primary">Create Script</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Ordering</th>
+                    <th>Is Published</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($scripts as $script)
+                    <tr>
+                        <td>{{ $script->title }}</td>
+                        <td>{{ $script->content }}</td>
+                        <td>{{ $script->ordering }}</td>
+                        <td>{{ $script->is_published ? 'Yes' : 'No' }}</td>
+                        <td>{{ json_encode($script->category) }}</td>
+                        <td>
+                            <a href="{{ route('scripts.edit', $script) }}" class="btn btn-warning">Edit</a>
+                            <form action="{{ route('scripts.destroy', $script) }}" method="POST" style="display:inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+@endsection
+
+
+
+create view:
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <h1>Create Script</h1>
+        <form action="{{ route('scripts.store') }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" name="title" class="form-control" id="title" required>
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea name="content" class="form-control" id="content" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="ordering">Ordering</label>
+                <input type="number" name="ordering" class="form-control" id="ordering">
+            </div>
+            <div class="form-group">
+                <label for="is_published">Is Published</label>
+                <select name="is_published" class="form-control" id="is_published" required>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="category">Category</label>
+                <input type="text" name="category[]" class="form-control" id="category" placeholder="Category name">
+                <button type="button" class="btn btn-secondary" onclick="addCategoryField()">Add Another Category</button>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+
+    <script>
+        function addCategoryField() {
+            const categoryDiv = document.createElement('div');
+            categoryDiv.className = 'form-group';
+            categoryDiv.innerHTML = '<input type="text" name="category[]" class="form-control" placeholder="Category name">';
+            document.querySelector('form').insertBefore(categoryDiv, document.querySelector('button[type="submit"]'));
+        }
+    </script>
+@endsection
+
+
+
+edit view:
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <h1>Edit Script</h1>
+        <form action="{{ route('scripts.update', $script) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" name="title" class="form-control" id="title" value="{{ $script->title }}" required>
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea name="content" class="form-control" id="content" required>{{ $script->content }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="ordering">Ordering</label>
+                <input type="number" name="ordering" class="form-control" id="ordering" value="{{ $script->ordering }}">
+            </div>
+            <div class="form-group">
+                <label for="is_published">Is Published</label>
+                <select name="is_published" class="form-control" id="is_published" required>
+                    <option value="1" {{ $script->is_published ? 'selected' : '' }}>Yes</option>
+                    <option value="0" {{ !$script->is_published ? 'selected' : '' }}>No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="category">Category</label>
+                @foreach ($script->category as $category)
+                    <input type="text" name="category[]" class="form-control" value="{{ $category }}" placeholder="Category name">
+                @endforeach
+                <button type="button" class="btn btn-secondary" onclick="addCategoryField()">Add Another Category</button>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+
+    <script>
+        function addCategoryField() {
+            const categoryDiv = document.createElement('div');
+            categoryDiv.className = 'form-group';
+            categoryDiv.innerHTML = '<input type="text" name="category[]" class="form-control" placeholder="Category name">';
+            document.querySelector('form').insertBefore(categoryDiv, document.querySelector('button[type="submit"]'));
+        }
+    </script>
+@endsection
+
+
+
+
+routes:
+use App\Http\Controllers\ScriptController;
+
+Route::resource('scripts', ScriptController::class);
