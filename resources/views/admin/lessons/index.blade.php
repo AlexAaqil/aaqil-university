@@ -1,4 +1,9 @@
 <x-admin-layout class="Course">
+    <div class="related_pages">
+        <a href="{{ route('topics.index', $topic->specialization->id) }}">Topic</a>
+        <span>Lessons</span>
+    </div>
+
     <x-admin-header 
         :header_title="$topic->title . ' Lessons'"
         :total_count="count($topic->lessons)"
