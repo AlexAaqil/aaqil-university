@@ -6,12 +6,12 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/app.css',
+                'resources/css/guest-layout.css',
 
                 'resources/js/app.js'
             ],
             refresh: true,
         }),
-        // tailwindcss(),
+        tailwindcss(),
     ],
 });
