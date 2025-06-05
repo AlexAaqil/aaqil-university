@@ -1,7 +1,7 @@
 .CoursesPage {
 	.Courses {
 		@apply py-4;
-		
+
 		.container {
 			.courses_list {
 				@apply mt-8 grid grid-cols-1 md:grid-cols-3 gap-8;
@@ -21,7 +21,8 @@
 				}
 			}
 
-			.specializations_list {
+			.specializations_list,
+			.topics_list {
 				@apply mt-8 space-y-2 list-decimal;
 
 				li {
@@ -33,3 +34,90 @@
 		}
 	}
 }
+
+section.Lessons {
+	@apply py-1 md:py-1 px-2;
+
+	.lessons_container {
+		@apply flex gap-4 min-h-screen;
+
+		.lessons_aside {
+			@apply w-1/5 border-r border-gray-300 sticky top-[10dvh] self-start;
+
+			.links {
+				@apply grid;
+			}
+		}
+
+		.lessons_contents {
+			@apply w-4/5;
+		}
+	}
+
+	.section_content {
+		@apply border border-gray-300 px-4 pb-4 rounded-lg mb-12;
+
+		h1 {
+			@apply text-xl text-center font-bold border-b-1 border-gray-300 py-4 mb-4;
+		}
+
+		h2 {
+			@apply text-xl text-center font-semibold py-4 mb-4;
+		}
+
+		h3 {
+			@apply text-xl font-semibold py-4 mb-4;
+		}
+
+		pre {
+			@apply bg-gray-200 p-4 rounded-lg my-4 overflow-x-auto;
+			white-space: pre-wrap;
+			word-wrap: break-word;
+
+			code {
+				white-space: pre-wrap;
+				word-wrap: break-word;
+			}
+		}
+
+		ul {
+			@apply list-disc list-inside;
+		}
+
+		ol {
+			@apply list-decimal list-inside;
+		}
+
+		p {
+			line-height: 1.5;
+		}
+
+		p.command {
+			@apply border-l-4 border-green-400 px-2 py-1 my-2 bg-gray-200;
+		}
+
+		.path {
+			@apply text-gray-600;
+		}
+
+		table {
+			@apply w-full border border-gray-300 text-sm;
+
+			tr,
+			td {
+				@apply border border-gray-300 px-2 py-1;
+			}
+
+			tr {
+				&:first-of-type {
+					@apply font-bold;
+				}
+			}
+
+			td {
+				@apply py-2;
+			}
+		}
+	}
+}
+
