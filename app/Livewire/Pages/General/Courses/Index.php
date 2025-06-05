@@ -3,11 +3,14 @@
 namespace App\Livewire\Pages\General\Courses;
 
 use Livewire\Component;
+use App\Models\Course;
 
 class Index extends Component
 {
     public function render()
     {
-        return view('livewire.pages.general.courses.index');
+        $courses = Course::all();
+
+        return view('livewire.pages.general.courses.index', compact('courses'))->layout('layouts.guest');
     }
 }
