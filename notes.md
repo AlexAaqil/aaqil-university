@@ -7,9 +7,9 @@ users {
     string('email')->unique();
     string('phone_number')->nullable();
     string('secondary_phone_number')->nullable();
-    unsignedTinyInteger('user_level')->default(4);
-    unsignedTinyInteger('user_status')->default(1);
-    string('image')->nullable();
+    unsignedTinyInteger('role')->default(4);
+    unsignedTinyInteger('status')->default(1);
+    string('avatar')->nullable();
     string('password');
     timestamp('email_verified_at')->nullable();
 
@@ -99,22 +99,37 @@ enrollments {
     $table->foreignId('course_id')->constrained()->onDelete('cascade');
     $table->timestamps();
 }
+
+content_scripts {
+    id();
+    string('title')->unique();
+    text('content');
+    unsignedInteger('sort_order')->nullable();
+    boolean(is_published)->default(false);
+    unsignedTinyInteger('category');
+    timestamps();
+}
 ```
 
 # ENUMS
 ```
 enum UserStatus: int
 {    
-    case INACTIVE = 0;
-    case ACTIVE = 1;
-    case BANNED = 2;
+    INACTIVE = 0;
+    ACTIVE = 1;
+    BANNED = 2;
 }
 
 enum UserLevel: int
 {    
-    case SUPERADMIN = 0;
-    case ADMIN = 1;
-    case OWNER = 2;
-    case USER = 3;
+    SUPERADMIN = 0;
+    ADMIN = 1;
+    OWNER = 2;
+    USER = 3;
+}
+
+enum content_scripts_categories {
+    CYBER_SECURITY = 0;
+    WEB_DEVELOPMENT = 0;
 }
 ```
