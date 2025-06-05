@@ -3,15 +3,15 @@
         <div class="content">
             <div class="branding">
                 <h3>{{ config('app.name') }}</h3>
-                <p>Experience East Africa like never before</p>
+                <p>Learning that sets you up for the real world.</p>
                 <div class="info">
                     <p>
                         <x-svgs.location class="w-5 h-5 mr-2" />
-                        Nairobi, Kenya
+                        Kiambu, Kenya
                     </p>
                     <p>
                         <x-svgs.email class="w-5 h-5 mr-2" />
-                        info@qingjiasafaris.com
+                        info@aaqiluniversity.com
                     </p>
                 </div>
             </div>
@@ -19,19 +19,19 @@
             <div class="quick_links">
                 <h3>Quick Links</h3>
                 <div class="links">
+                    <a href="{{ Route::has('home-page') ? route('home-page') : '#' }}">Home</a>
                     <a href="{{ Route::has('about-page') ? route('about-page') : '#' }}">About</a>
-                    <a href="{{ Route::has('about-page') ? route('about-page') : '#' }}">Packages</a>
-                    <a href="{{ Route::has('about-page') ? route('about-page') : '#' }}">Tours</a>
-                    <a href="{{ Route::has('contact-page') ? route('about-page') : '#' }}">Contact</a>
+                    <a href="{{ Route::has('courses') ? route('courses') : '#' }}">Courses</a>
+                    <a href="{{ Route::has('contact-page') ? route('contact-page') : '#' }}">Contact</a>
                 </div>
             </div>
 
             <div class="quick_links">
-                <h3>Packages</h3>
+                <h3>Resources</h3>
                 <div class="links">
-                    <a href="{{ Route::has('about-page') ? route('about-page') : '#' }}">Luxury Tours</a>
-                    <a href="{{ Route::has('about-page') ? route('about-page') : '#' }}">Mid-range Tours</a>
-                    <a href="{{ Route::has('about-page') ? route('about-page') : '#' }}">Budget Tours</a>
+                    <a href="{{ Route::has('about-page') ? route('about-page') : '#' }}">Admission Letter</a>
+                    <a href="{{ Route::has('about-page') ? route('about-page') : '#' }}">Fees Structure</a>
+                    <a href="{{ Route::has('about-page') ? route('about-page') : '#' }}">Accreditation</a>
                 </div>
             </div>
 
