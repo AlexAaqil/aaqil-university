@@ -7,6 +7,7 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/guest-layout.css',
+                'resources/css/app-layout.css',
 
                 'resources/js/app.js'
             ],

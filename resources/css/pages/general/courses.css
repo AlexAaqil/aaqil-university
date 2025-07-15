@@ -13,10 +13,6 @@
 						.title {
 							@apply font-semibold text-lg;
 						}
-
-						.description {
-							@apply text-gray-600;
-						}
 					}
 				}
 			}
@@ -70,7 +66,7 @@ section.Lessons {
 		}
 
 		pre {
-			@apply bg-gray-200 p-4 rounded-lg my-4 overflow-x-auto;
+			@apply bg-gray-700 text-white p-4 rounded-lg my-4 overflow-x-auto;
 			white-space: pre-wrap;
 			word-wrap: break-word;
 

@@ -1,0 +1,14 @@
+@import "./tailwind-utilities.css";
+
+body {
+    @apply bg-gray-900 text-white;
+
+    .image,
+    img {
+        @apply rounded-lg;
+    }
+
+    img {
+        @apply w-full h-full object-cover;
+    }
+}

@@ -17,7 +17,7 @@
 
             <h2>Why choose us?</h2>
             <p>We just strive to function as a catalyst and challenge you to grow as both a developer and a human. We care about the details and will encourage you to think, plan and dream.</p>
-            
+
 
             <h2>Benefits</h2>
             <div class="benefits">

@@ -1,5 +1,5 @@
 .HomePage {
-    @apply min-h-screen bg-white;
+    @apply min-h-screen bg-white text-gray-900;
 
     section {
         &:not(:first-of-type) {
