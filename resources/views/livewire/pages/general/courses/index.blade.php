@@ -6,7 +6,7 @@
             </div>
 
             <div class="courses_list">
-                @foreach($courses as $course)
+                @forelse($courses as $course)
                 <div class="course">
                     <div class="image">
                         <img src="{{ $course->thumbnail_url }}" alt="{{ $course->title }}">
@@ -17,7 +17,9 @@
                         <p class="description">{{ $course->description }}</p>
                     </div>
                 </div>
-                @endforeach
+                @empty
+                    <p>There are no available courses at the moment.</p>
+                @endforelse
             </div>
         </div>
     </section>
