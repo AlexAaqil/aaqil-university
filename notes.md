@@ -61,6 +61,7 @@ specializations {
     uuid('uuid')->unique();
     string('title')->unique();
     string('slug')->unique();
+    timestamps();
 }
 
 #[pivot]
@@ -69,7 +70,6 @@ course_specialization {
     foreignId('course_id')->index()->constrained('courses')->cascadeOnDelete();
     foreignId('specialization_id')->index()->constrained('specializations')->cascadeOnDelete();
     unsignedInteger('sort_order')->nullable()->index();
-
     unique(['course_id', 'specialization_id']);
 }
 
