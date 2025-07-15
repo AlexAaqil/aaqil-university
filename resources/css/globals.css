@@ -1,7 +1,7 @@
 @import "./tailwind-utilities.css";
 
 body {
-    @apply bg-gray-900 text-white;
+    @apply bg-white text-gray-900;
 
     .image,
     img {
@@ -12,3 +12,8 @@ body {
         @apply w-full h-full object-cover;
     }
 }
+
+@import "./components/buttons.css";
+@import "./components/cards.css";
+@import "./components/forms.css";
+@import "./components/tables.css";
