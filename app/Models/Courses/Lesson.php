@@ -3,23 +3,18 @@
 namespace App\Models\Courses;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Lesson extends Model
 {
-    protected $fillable = [
-        'title',
-        'slug',
-        'ordering',
-        'topic_id'
-    ];
+    protected $guarded = [];
 
-    public function topic()
+    protected static function booted(): void
     {
-        return $this->belongsTo(Topic::class);
-    }
-
-    public function sections()
-    {
-        return $this->hasMany(Section::class);
+        static::creating(function (Lesson $lesson) {
+            if (empty($lesson->uuid)) {
+                $lesson->uuid = (string) Str::uuid();
+            }
+        });
     }
 }

@@ -3,15 +3,20 @@
 namespace App\Models\Courses;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Topic extends Model
 {
-    protected $fillable = [
-        'title',
-        'slug',
-        'ordering',
-        'specialization_id',
-    ];
+    protected $guarded = [];
+
+    protected static function booted(): void
+    {
+        static::creating(function (Topic $topic) {
+            if (empty($topic->uuid)) {
+                $topic->uuid = (string) Str::uuid();
+            }
+        });
+    }
 
     public function specialization()
     {

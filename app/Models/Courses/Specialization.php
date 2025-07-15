@@ -3,13 +3,20 @@
 namespace App\Models\Courses;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Specialization extends Model
 {
-    protected $fillable = [
-        'title',
-        'slug',
-    ];
+    protected $guarded = [];
+
+    protected static function booted(): void
+    {
+        static::creating(function (Specialization $specialization) {
+            if (empty($specialization->uuid)) {
+                $specialization->uuid = (string) Str::uuid();
+            }
+        });
+    }
 
     public function courses()
     {
