@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('course_specialization', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('course_id')->index()->constrained('courses')->cascadeOnDelete();
             $table->foreignId('specialization_id')->index()->constrained('specializations')->cascadeOnDelete();
             $table->unsignedInteger('sort_order')->nullable()->index();

@@ -13,8 +13,13 @@ class Course extends Model
     protected static function booted(): void
     {
         static::creating(function (Course $course) {
-            if (empty($course->uuid)) {
-                $course->uuid = (string) Str::uuid();
+            $course->uuid = (string) Str::uuid();
+            $course->slug = Str::slug($course->title);
+        });
+
+        static::updating(function ($course) {
+            if ($course->isDirty('title')) {
+                $course->slug = Str::slug($course->title);
             }
         });
 
@@ -25,11 +30,36 @@ class Course extends Model
         });
     }
 
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'uuid' => 'string',
+            'is_published' => 'boolean',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
+    }
+
     public function specializations()
     {
         return $this->belongsToMany(Specialization::class)
             ->withPivot(['sort_order'])
             ->orderBy('pivot_sort_order');
+    }
+
+    public function isPublished(): bool
+    {
+        return $this->is_published === true;
+    }
+
+    public function getIsPublishedLabelAttribute()
+    {
+        return $this->is_published ? 'Published' : 'Unpublished';
     }
 
     public function getThumbnailUrlAttribute()

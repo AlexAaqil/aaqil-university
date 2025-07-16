@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedInteger('sort_order')->nullable()->index();
             $table->boolean('is_locked')->default(false)->index(); // to help gate behind premium/progress
 
-            $table->foreignId('specialization_id')->constrained('specializations')->cascadeOnDelete()->index();
+            $table->foreignId('specialization_id')->index()->constrained('specializations')->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedSmallInteger('estimated_duration_minutes')->nullable();
             $table->json('resource_links')->nullable();
 
-            $table->foreignId('topic_id')->constrained('topics')->cascadeOnDelete()->index();
+            $table->foreignId('topic_id')->index()->constrained('topics')->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -16,6 +16,8 @@ use App\Livewire\Pages\Dashboard\Index as Dashboard;
 use App\Livewire\Pages\Users\Index as Users;
 use App\Livewire\Pages\Users\Form as CreateUser;
 use App\Livewire\Pages\Users\Form as EditUser;
+use App\Livewire\Pages\Courses\Courses\Index as CoursesIndex;
+use App\Http\Controllers\Courses\CourseController;
 
 Route::get('/', HomePage::class)->name('home-page');
 Route::get('about', About::class)->name('about-page');
@@ -38,6 +40,10 @@ Route::middleware(['admin_only'])->group(function () {
 
         Route::get('messages', ContactMessages::class)->name('contact-messages.index');
         Route::get('messages/{message}/edit', EditContactMessages::class)->name('contact-messages.edit');
+
+        Route::get('courses', CoursesIndex::class)->name('courses.index');
+        Route::get('courses/create', [CourseController::class, 'create'])->name('courses.create');
+        Route::post('courses', [CourseController::class, 'store'])->name('courses.store');
     });
 });
 

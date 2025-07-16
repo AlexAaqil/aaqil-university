@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('content');
             $table->unsignedInteger('sort_order')->nullable()->index();
 
-            $table->foreignId('lesson_id')->constrained('lessons')->cascadeOnDelete()->index();
+            $table->foreignId('lesson_id')->index()->constrained('lessons')->cascadeOnDelete();
             $table->timestamps();
         });
     }

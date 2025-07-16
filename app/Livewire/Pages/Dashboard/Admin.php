@@ -5,12 +5,7 @@ namespace App\Livewire\Pages\Dashboard;
 use Livewire\Component;
 use App\Models\User;
 use App\Models\ContactMessage;
-use App\Models\Blogs\Blog;
-use App\Models\Blogs\BlogCategory;
-use App\Models\DeliveryLocations\DeliveryRegion;
-use App\Models\DeliveryLocations\DeliveryArea;
-use App\Models\Products\Product;
-use App\Models\Products\ProductCategory;
+use App\Models\Courses\Course;
 use App\Enums\USER_ROLES;
 use Carbon\Carbon;
 
@@ -25,6 +20,8 @@ class Admin extends Component
         $count_messages = ContactMessage::count();
         $count_unread_messages = ContactMessage::where('is_read', false)->count();
 
+        $count_courses = Course::count();
+
         return view('livewire.pages.dashboard.admin', compact(
             'count_super_admins',
             'count_admins',
@@ -32,6 +29,8 @@ class Admin extends Component
 
             'count_messages',
             'count_unread_messages',
+
+            'count_courses',
         ));
     }
 }

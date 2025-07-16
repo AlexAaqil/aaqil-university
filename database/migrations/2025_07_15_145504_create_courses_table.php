@@ -16,9 +16,9 @@ return new class extends Migration
             $table->uuid('uuid')->unique();
             $table->string('title')->unique();
             $table->string('slug')->unique();
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('image')->nullable();
-            $table->boolean('is_published')->default(true)->index;
+            $table->boolean('is_published')->default(true)->index();
             $table->unsignedTinyInteger('difficulty_level')->nullable()->index();
             $table->unsignedSmallInteger('estimated_duration_minutes')->nullable();
             $table->string('intro_video_url')->nullable();
