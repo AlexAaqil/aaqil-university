@@ -15,7 +15,16 @@ class Topic extends Model
             if (empty($topic->uuid)) {
                 $topic->uuid = (string) Str::uuid();
             }
+
+            if (empty($topic->slug)) {
+                $topic->slug = Str::slug($topic->title);
+            }
         });
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'uuid';
     }
 
     public function specialization()
@@ -25,6 +34,6 @@ class Topic extends Model
 
     public function lessons()
     {
-        return $this->hasMany(Lesson::class)->orderBy('ordering');
+        return $this->hasMany(Lesson::class)->orderBy('sort_order');
     }
 }

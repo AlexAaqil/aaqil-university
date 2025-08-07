@@ -30,7 +30,7 @@
             </div>
 
             <div class="button">
-                <a href="{{ Route::Has('courses.create') ? route('courses.create') : '#' }}" class="btn">New Course</a>
+                <a href="{{ Route::has('courses.create') ? route('courses.create') : '#' }}" class="btn">New Course</a>
             </div>
         </div>
 
@@ -39,12 +39,18 @@
                 <div class="course card" wire:key="user-{{ $course->id }}">
                     <div class="details">
                         <div class="image">
-                            <img src="" alt="">
+                            @if ($course->image_url)
+                                <img src="{{ $course->image_url }}" alt="{{ $course->slug }}" class="rounded-lg w-20 h-20 object-cover">
+                            @else
+                                <span class="bg-red-200 text-xl text-gray-700 rounded-lg w-20 h-20 flex items-center justify-center font-semibold uppercase">{{ substr($course->title, 0, 1) }}</span>
+                            @endif
                         </div>
 
                         <div class="info">
                             <h3>{{ $course->title }}</h3>
-                            <p>{{ $course->description }}</p>
+                            <a href="{{ Route::has('course-specializations.index') ? route('course-specializations.index', $course->slug) : '#' }}">
+                                <p>{{ $course->specializations_count }} {{ Str::plural('specialization', $course->specializations_count) }}</p>
+                            </a>
                         </div>
                     </div>
 
@@ -59,12 +65,12 @@
                         </div>
 
                         <div class="crud">
-                            <a href="{{ Route::has('courses.edit') ? route('courses.edit', ['uuid' => $course->uuid]) : '#' }}" wire:navigate class="edit">
+                            <a href="{{ Route::has('courses.edit') ? route('courses.edit', $course->uuid) : '#' }}" class="edit">
                                 <x-svgs.edit />
                             </a>
 
                             <button x-data x-on:click.prevent="$wire.set('delete_course_id', {{ $course->id }}); $dispatch('open-modal', 'confirm-course-deletion')" class="delete">
-                                <x-svgs.edit />
+                                <x-svgs.trash />
                             </button>
                         </div>
                     </div>

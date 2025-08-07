@@ -33,10 +33,6 @@ class Index extends Component
         $this->resetPage();
     }
 
-    protected $listeners = [
-        'confirm-user-deletion' => 'confirmUserDeletion',
-    ];
-
     public function togglePublished($course_id)
     {
         $course = Course::findOrFail($course_id);
@@ -46,9 +42,32 @@ class Index extends Component
         $this->dispatch('notify', type: 'success', message: 'status updated successfully');
     }
 
+    protected $listeners = [
+        'confirm-course-deletion' => 'confirmCourseDeletion',
+    ];
+
+    public function confirmCourseDeletion($data)
+    {
+        $this->delete_course_id = $data['course_id'];
+        $this->dispatch('open-modal', 'confirm-course-deletion');
+    }
+
+    public function deleteCourse()
+    {
+        if ($this->delete_course_id) {
+            $course = Course::findOrFail($this->delete_course_id);
+            $course->delete();
+
+            $this->delete_course_id = null;
+            $this->dispatch('close-modal', 'confirm-course-deletion');
+            $this->dispatch('notify', type: 'success', message: 'course deleted successfully');
+        }
+    }
+
     public function render()
     {
         $courses = Course::query()
+            ->withCount('specializations')
             ->when($this->search && $this->search_performed, function ($query) {
                 $query->where(function($q) {
                     $q->where('title', 'like', '%' . $this->search . '%');

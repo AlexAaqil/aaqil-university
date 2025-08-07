@@ -25,15 +25,13 @@
                 <div class="inputs">
                     <label for="image">Course Image</label>
                     <input type="file" name="image" id="image" accept=".png, .jpg, .jpeg, .webp" />
-                    <span class="inline_alert">{{ $errors->first('image') }}</span>
+                    <x-form-input-error field="image" />
                 </div>
 
                 <div class="inputs">
-                    <div class="inputs">
-                        <label for="description">Description</label>
-                        <input type="text" name="description" id="description" placeholder="Short description of the course" value="{{ old('description') }}">
-                        <span class="inline_alert">{{ $errors->first('description') }}</span>
-                    </div>
+                    <label for="description">Description</label>
+                    <input type="text" name="description" id="description" placeholder="Short description of the course" value="{{ old('description') }}">
+                    <x-form-input-error field="description" />
                 </div>
 
                 <button type="submit">Save</button>

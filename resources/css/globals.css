@@ -11,6 +11,40 @@ body {
     img {
         @apply w-full h-full object-cover;
     }
+
+    .ckedited_content {
+        h1 {
+            @apply text-2xl font-bold text-center mb-2;
+        }
+
+        p {
+            @apply leading-[1.5];
+        }
+
+        pre {
+            @apply bg-slate-200 py-4 px-2 rounded-lg my-4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+
+            code {
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+        }
+
+        ul,
+        li {
+            @apply list-inside;
+        }
+
+        ul {
+            @apply list-disc;
+        }
+
+        ol {
+            @apply list-decimal;
+        }
+    }
 }
 
 @import "./components/buttons.css";

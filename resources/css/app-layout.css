@@ -40,7 +40,7 @@
     }
 
     .custom_form {
-        @apply px-4;
+        @apply max-w-4xl mx-auto py-4 px-4;
 
         .header {
             @apply flex items-center gap-2 bg-gray-800 text-white rounded-t-lg py-2 px-4;

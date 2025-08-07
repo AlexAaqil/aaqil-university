@@ -45,6 +45,11 @@ class Course extends Model
         ];
     }
 
+    public function getRouteKeyName(): string
+    {
+        return 'uuid';
+    }
+
     public function specializations()
     {
         return $this->belongsToMany(Specialization::class)
@@ -62,10 +67,14 @@ class Course extends Model
         return $this->is_published ? 'Published' : 'Unpublished';
     }
 
-    public function getThumbnailUrlAttribute()
+    public function getImageUrlAttribute()
     {
-        return $this->image && Storage::exists($this->image)
-        ? Storage::url($this->image)
-        : asset('assets/images/default-image.jpg');
+        $image = $this->attributes['image'] ?? null;
+
+        if ($image && Storage::disk('public')->exists("courses/images/{$image}")) {
+            return Storage::url("courses/images/{$image}");
+        }
+
+        return null;
     }
 }
