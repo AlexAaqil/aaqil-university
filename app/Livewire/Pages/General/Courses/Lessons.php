@@ -3,7 +3,7 @@
 namespace App\Livewire\Pages\General\Courses;
 
 use Livewire\Component;
-use App\Models\Topic;
+use App\Models\Courses\Topic;
 
 class Lessons extends Component
 {
@@ -13,9 +13,9 @@ class Lessons extends Component
     public function mount($topic)
     {
         $this->topic = Topic::where('slug', $topic)->with(['lessons' => function($query) {
-            $query->orderBy('ordering');
+            $query->orderBy('sort_order');
         }])->firstOrFail();;
-        $this->lessons = $this->topic->lessons()->orderBy('ordering')->get();
+        $this->lessons = $this->topic->lessons()->orderBy('sort_order')->get();
     }
 
     public function render()

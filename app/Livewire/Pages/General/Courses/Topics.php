@@ -3,7 +3,7 @@
 namespace App\Livewire\Pages\General\Courses;
 
 use Livewire\Component;
-use App\Models\Specialization;
+use App\Models\Courses\Specialization;
 
 class Topics extends Component
 {
