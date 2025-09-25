@@ -1,12 +1,11 @@
 {
   "resources/css/app-layout.css": {
-    "file": "assets/app-layout-l0sNRNKZ.js",
-    "name": "app-layout",
+    "file": "assets/app-layout-X5JyLHhD.css",
     "src": "resources/css/app-layout.css",
     "isEntry": true
   },
   "resources/css/guest-layout.css": {
-    "file": "assets/guest-layout-Ca6k3Utu.css",
+    "file": "assets/guest-layout-IzKJNvCT.css",
     "src": "resources/css/guest-layout.css",
     "isEntry": true
   },
