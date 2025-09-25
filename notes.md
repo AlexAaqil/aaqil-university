@@ -1,3 +1,12 @@
+# TODOs
+- course specializations edit page.
+- course specializations unselect checkboxes on the add page.
+
+fill content for
+- Web Development
+
+
+
 # DB Design
 ```
 users {
