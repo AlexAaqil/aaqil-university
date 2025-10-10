@@ -31,10 +31,14 @@ class SpecializationRequest extends FormRequest
                 'max:80',
                 Rule::unique('specializations', 'title')->ignore(optional($specialization)->id),
             ],
-            'courses' => 'required|array|min:1',
-            'courses.*' => 'exists:courses,id',
-            'sort_order' => 'nullable|array',
-            'sort_order.*' => 'nullable|numeric|min:1',
+            'description' => 'nullable|string|max:2000',
+            'image' => 'nullable|string|max:255',
+            'is_published' => 'nullable|boolean',
+            'sort_order' => 'nullable|integer|min:1',
+            'course_id' => [
+                'required',
+                'exists:courses,id',
+            ],
         ];
     }
 }

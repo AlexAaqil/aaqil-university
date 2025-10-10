@@ -21,7 +21,7 @@ class CourseController extends Controller
     {
         $validated_data = $request->validated();
 
-        $validated_data['created_by'] = Auth::id();
+        $validated_data['user_id'] = Auth::id();
 
         if($request->hasFile('image')) {
             $image = $request->file('image');

@@ -16,6 +16,12 @@ return new class extends Migration
             $table->uuid('uuid')->unique();
             $table->string('title')->unique();
             $table->string('slug')->unique();
+            $table->text('description')->nullable();
+            $table->string('image')->nullable();
+            $table->boolean('is_published')->default(true)->index();
+            $table->unsignedInteger('sort_order')->nullable()->index();
+
+            $table->foreignId('course_id')->constrained('courses')->cascadeOnDelete();
             $table->timestamps();
         });
     }

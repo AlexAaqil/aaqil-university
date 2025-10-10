@@ -22,17 +22,15 @@ class SpecializationController extends Controller
     {
         $validated = $request->validated();
 
-        $specialization = Specialization::create([
+        $course = Course::findOrFail($validated['course_id']);
+
+        $specialization = $course->specializations()->create([
             'title' => $validated['title'],
+            'description' => $validated['description'] ?? null,
+            'image' => $validated['image'] ?? null,
+            'is_published' => $validated['is_published'] ?? true,
+            'sort_order' => $validated['sort_order'] ?? null,
         ]);
-
-        foreach ($validated['courses'] as $courseId) {
-            $specialization->courses()->attach($courseId, [
-                'sort_order' => $validated['sort_order'][$courseId] ?? null,
-            ]);
-        }
-
-        $course = Course::findOrFail($validated['courses'][0]);
 
         return redirect()
             ->route('course-specializations.index', $course->slug)
@@ -58,16 +56,12 @@ class SpecializationController extends Controller
 
         $specialization->update([
             'title' => $validated['title'],
+            'description' => $validated['description'] ?? null,
+            'image' => $validated['image'] ?? null,
+            'is_published' => $validated['is_published'] ?? true,
+            'sort_order' => $validated['sort_order'] ?? null,
+            'course_id' => $validated['course_id'],
         ]);
-
-        $syncData = [];
-        foreach ($validated['courses'] as $courseId) {
-            $syncData[$courseId] = [
-                'sort_order' => $validated['sort_order'][$courseId] ?? null,
-            ];
-        }
-
-        $specialization->courses()->sync($syncData);
 
         return redirect()
             ->route('course-specializations.index', $validated['courses'][0])

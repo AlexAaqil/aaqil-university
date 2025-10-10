@@ -22,11 +22,9 @@ class Specialization extends Model
         });
     }
 
-    public function courses()
+    public function course()
     {
-        return $this->belongsToMany(Course::class)
-        ->withPivot(['sort_order'])
-        ->orderBy('pivot_sort_order');
+        return $this->belongsTo(Course::class);
     }
 
     public function topics()

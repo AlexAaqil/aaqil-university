@@ -52,9 +52,7 @@ class Course extends Model
 
     public function specializations()
     {
-        return $this->belongsToMany(Specialization::class)
-            ->withPivot(['sort_order'])
-            ->orderBy('pivot_sort_order');
+        return $this->hasMany(Specialization::class);
     }
 
     public function isPublished(): bool

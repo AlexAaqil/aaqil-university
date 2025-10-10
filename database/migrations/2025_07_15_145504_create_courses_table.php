@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('intro_video_url')->nullable();
             $table->json('tags')->nullable(); // to make the content searchable such as python, frontend.
 
-            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete()->index();
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });
     }
