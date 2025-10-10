@@ -70,24 +70,21 @@ specializations {
     uuid('uuid')->unique();
     string('title')->unique();
     string('slug')->unique();
-    timestamps();
-}
-
-#[pivot]
-course_specialization {
-    id();
-    foreignId('course_id')->index()->constrained('courses')->cascadeOnDelete();
-    foreignId('specialization_id')->index()->constrained('specializations')->cascadeOnDelete();
+    text('description')->nullable();
+    string('image')->nullable();
+    boolean('is_published')->default(true)->index();
     unsignedInteger('sort_order')->nullable()->index();
-    unique(['course_id', 'specialization_id']);
+
+    foreignId('course_id')->constrained('courses')->cascadeOnDelete()->index();
+    timestamps();
 }
 
 topics {
     id();
     uuid('uuid')->unique();
     string('title');
-    string('description')->nullable();
     string('slug')->unique();
+    string('description')->nullable();
     unsignedInteger('sort_order')->nullable()->index();
     boolean('is_locked')->default(false)->index(); // to help gate behind premium/progress
 
@@ -125,7 +122,6 @@ quizzes {
     $table->string('title');
 
     $table->foreignId('lesson_id')->nullable()->constrained()->cascadeOnDelete()->index();
-    $table->foreignId('topic_id')->nullable()->constrained()->cascadeOnDelete()->index();
     $table->timestamps();
 }
 
@@ -144,6 +140,7 @@ enrollments {
 
     $table->foreignId('user_id')->constrained()->cascadeOnDelete()->index();
     $table->foreignId('course_id')->constrained()->cascadeOnDelete()->index();
+    unique(['user_id', 'course_id']);
     $table->timestamps();
 }
 
