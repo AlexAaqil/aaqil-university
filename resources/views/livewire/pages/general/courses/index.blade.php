@@ -13,7 +13,7 @@
                     </div>
 
                     <div class="text">
-                        <a href="{{ Route::has('course.specializations') ? route('course.specializations', $course->slug) : '#' }}" class="title">{{ $course->title }}</a>
+                        <a href="{{ Route::has('course.specializations') ? route('course.specializations', $course->slug) : '#' }}" class="title" wire:navigate>{{ $course->title }}</a>
                         <p class="description">{{ $course->description }}</p>
                     </div>
                 </div>

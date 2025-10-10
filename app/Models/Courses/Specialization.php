@@ -17,7 +17,16 @@ class Specialization extends Model
             }
 
             if (empty($specialization->slug)) {
-                $specialization->slug = Str::slug($specialization->title);
+                $base_slug = Str::slug($specialization->title);
+                $slug = $base_slug;
+
+                $count = 1;
+                while (static::where('course_id', $specialization->course_id)->where('slug', $slug)->exists()) {
+                    $slug = "{$base_slug}-{$count}";
+                    $count++;
+                }
+
+                $specialization->slug = $slug;
             }
         });
     }

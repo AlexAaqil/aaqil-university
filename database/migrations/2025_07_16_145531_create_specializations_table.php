@@ -14,14 +14,16 @@ return new class extends Migration
         Schema::create('specializations', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->string('title')->unique();
-            $table->string('slug')->unique();
+            $table->string('title');
+            $table->string('slug');
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->boolean('is_published')->default(true)->index();
             $table->unsignedInteger('sort_order')->nullable()->index();
 
             $table->foreignId('course_id')->constrained('courses')->cascadeOnDelete();
+            $table->unique(['course_id', 'title']);
+            $table->unique(['course_id', 'slug']);
             $table->timestamps();
         });
     }

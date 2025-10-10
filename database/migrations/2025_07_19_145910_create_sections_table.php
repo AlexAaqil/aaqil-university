@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->text('content');
             $table->unsignedInteger('sort_order')->nullable()->index();
 
             $table->foreignId('lesson_id')->index()->constrained('lessons')->cascadeOnDelete();
+            $table->unique(['lesson_id', 'title']);
+            $table->unique(['lesson_id', 'slug']);
             $table->timestamps();
         });
     }

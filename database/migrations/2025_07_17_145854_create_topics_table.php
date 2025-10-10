@@ -15,12 +15,14 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('title');
+            $table->string('slug');
             $table->string('description')->nullable();
-            $table->string('slug')->unique();
             $table->unsignedInteger('sort_order')->nullable()->index();
             $table->boolean('is_locked')->default(false)->index(); // to help gate behind premium/progress
 
             $table->foreignId('specialization_id')->index()->constrained('specializations')->cascadeOnDelete();
+            $table->unique(['specialization_id', 'title']);
+            $table->unique(['specialization_id', 'slug']);
             $table->timestamps();
         });
     }

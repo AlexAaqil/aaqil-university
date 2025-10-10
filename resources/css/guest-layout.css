@@ -18,6 +18,10 @@
             }
         }
     }
+
+    .breadcrumbs {
+        @apply justify-center mb-2;
+    }
 }
 
 @import './partials/navbar.css';

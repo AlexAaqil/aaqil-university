@@ -15,12 +15,14 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->unsignedInteger('sort_order')->nullable()->index();
             $table->unsignedSmallInteger('estimated_duration_minutes')->nullable();
             $table->json('resource_links')->nullable();
 
             $table->foreignId('topic_id')->index()->constrained('topics')->cascadeOnDelete();
+            $table->unique(['topic_id', 'title']);
+            $table->unique(['topic_id', 'slug']);
             $table->timestamps();
         });
     }

@@ -68,14 +68,16 @@ courses {
 specializations {
     id();
     uuid('uuid')->unique();
-    string('title')->unique();
-    string('slug')->unique();
+    string('title');
+    string('slug');
     text('description')->nullable();
     string('image')->nullable();
     boolean('is_published')->default(true)->index();
     unsignedInteger('sort_order')->nullable()->index();
 
     foreignId('course_id')->constrained('courses')->cascadeOnDelete()->index();
+    unique(['course_id', 'title']);
+    unique(['course_id', 'slug']);
     timestamps();
 }
 
@@ -83,12 +85,14 @@ topics {
     id();
     uuid('uuid')->unique();
     string('title');
-    string('slug')->unique();
+    string('slug');
     string('description')->nullable();
     unsignedInteger('sort_order')->nullable()->index();
     boolean('is_locked')->default(false)->index(); // to help gate behind premium/progress
 
     foreignId('specialization_id')->constrained('specializations')->cascadeOnDelete()->index();
+    unique(['specialization_id', 'title']);
+    unique(['specialization_id', 'slug']);
     timestamps();
 }
 
@@ -96,12 +100,14 @@ lessons {
     id();
     uuid('uuid')->unique();
     string('title');
-    string('slug')->unique();
+    string('slug');
     unsignedInteger('sort_order')->nullable()->index();
     unsignedSmallInteger('estimated_duration_minutes')->nullable();
     json('resource_links')->nullable();
 
     foreignId('topic_id')->constrained('topics')->cascadeOnDelete()->index();
+    unique(['topic_id', 'title']);
+    unique(['topic_id', 'slug']);
     timestamps();
 }
 
@@ -109,11 +115,13 @@ sections {
     id();
     uuid('uuid')->unique();
     string('title');
-    string('slug')->unique();
+    string('slug');
     text('content');
     unsignedInteger('sort_order')->nullable()->index();
 
     foreignId('lesson_id')->constrained('lessons')->cascadeOnDelete()->index();
+    unique(['lesson_id', 'title']);
+    unique(['lesson_id', 'slug']);
     timestamps();
 }
 

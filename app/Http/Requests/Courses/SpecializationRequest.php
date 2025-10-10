@@ -29,7 +29,9 @@ class SpecializationRequest extends FormRequest
                 'required',
                 'string',
                 'max:80',
-                Rule::unique('specializations', 'title')->ignore(optional($specialization)->id),
+                Rule::unique('specializations', 'title')
+                    ->where(fn ($query) => $query->where('course_id', $this->input('course_id')))
+                    ->ignore(optional($specialization)->id),
             ],
             'description' => 'nullable|string|max:2000',
             'image' => 'nullable|string|max:255',

@@ -4,9 +4,7 @@
             <aside class="lessons_aside">
                 <div class="header">
                     <span>
-                        <a href="{{ route('courses') }}">
-                            <i class="fas fa-home"></i>
-                        </a>
+                        <a href="{{ Route::has('course.topics') ? route('course.topics', $topic->specialization->slug) : '#' }}" wire:navigate>Topics</a>
                     </span>
                     <h1>{{ $topic->title }}</h1>
                 </div>
