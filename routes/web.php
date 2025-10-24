@@ -32,9 +32,9 @@ Route::get('about', About::class)->name('about-page');
 Route::get('contact', ContactPage::class)->name('contact-page');
 
 Route::get('courses', Courses::class)->name('courses');
-Route::get('course-specializations/{slug}', Specializations::class)->name('course.specializations');
-Route::get('specialization-topics/{specialization}', Topics::class)->name('course.topics');
-Route::get('topic-lessons/{topic}', Lessons::class)->name('course.lessons');
+Route::get('courses/{slug}/specializations', Specializations::class)->name('course.specializations');
+Route::get('courses/{course}/{specialization}/topics', Topics::class)->name('course.topics');
+Route::get('courses/{course}/{specialization}/{topic}/lessons', Lessons::class)->name('course.lessons');
 
 Route::middleware(['authenticated_user'])->group(function () {
     Route::get('dashboard', Dashboard::class)->name('dashboard');
@@ -49,35 +49,35 @@ Route::middleware(['admin_only'])->group(function () {
         Route::get('messages', ContactMessages::class)->name('contact-messages.index');
         Route::get('messages/{message}/edit', EditContactMessages::class)->name('contact-messages.edit');
 
-        Route::get('courses', CoursesIndex::class)->name('courses.index');
-        Route::get('courses/create', [CourseController::class, 'create'])->name('courses.create');
-        Route::post('courses', [CourseController::class, 'store'])->name('courses.store');
-        Route::get('courses/{course}/edit', [CourseController::class, 'edit'])->name('courses.edit');
-        Route::patch('courses/{course}', [CourseController::class, 'update'])->name('courses.update');
+        Route::get('courses', CoursesIndex::class)->name('admin.courses.index');
+        Route::get('create', [CourseController::class, 'create'])->name('admin.courses.create');
+        Route::post('courses', [CourseController::class, 'store'])->name('admin.courses.store');
+        Route::get('{course}/edit', [CourseController::class, 'edit'])->name('courses.edit');
+        Route::patch('{course}', [CourseController::class, 'update'])->name('courses.update');
 
-        Route::get('course-specializations/{course}', CourseSpecializationsIndex::class)->name('course-specializations.index');
-        Route::get('course-specializations/create/{course}', [SpecializationController::class, 'create'])->name('course-specializations.create');
-        Route::post('course-specializations', [SpecializationController::class, 'store'])->name('course-specializations.store');
-        Route::get('course-specializations/{course}/edit', [SpecializationController::class, 'edit'])->name('course-specializations.edit');
-        Route::patch('course-specializations/{course}', [SpecializationController::class, 'update'])->name('course-specializations.update');
+        Route::get('courses/{course}/specializations', CourseSpecializationsIndex::class)->name('admin.course.specializations.index');
+        Route::get('courses/{course}/specializations/create', [SpecializationController::class, 'create'])->name('admin.course.specializations.create');
+        Route::post('courses/{course}/specializations', [SpecializationController::class, 'store'])->name('admin.course.specializations.store');
+        Route::get('courses/{course}/specializations/edit', [SpecializationController::class, 'edit'])->name('admin.course.specializations.edit');
+        Route::patch('courses/{course}/specializations', [SpecializationController::class, 'update'])->name('admin.course.specializations.update');
 
-        Route::get('specialization-topics/{specialization}', TopicsIndex::class)->name('specialization-topics.index');
-        Route::get('specialization-topics/create/{specialization}', [TopicController::class, 'create'])->name('specialization-topics.create');
-        Route::post('specialization-topics', [TopicController::class, 'store'])->name('specialization-topics.store');
-        Route::get('specialization-topics/{topic}/{specialization}/edit', [TopicController::class, 'edit'])->name('specialization-topics.edit');
-        Route::patch('specialization-topics/{topic}/{specialization}', [TopicController::class, 'update'])->name('specialization-topics.update');
+        Route::get('courses/{course}/{specialization}/topics', TopicsIndex::class)->name('admin.specialization.topics.index');
+        Route::get('courses/{course}/{specialization}/topics/create', [TopicController::class, 'create'])->name('admin.specialization.topics.create');
+        Route::post('courses/{course}/{specialization}/topics', [TopicController::class, 'store'])->name('admin.specialization.topics.store');
+        Route::get('courses/{course}/{specialization}/topics/edit', [TopicController::class, 'edit'])->name('admin.specialization.topics.edit');
+        Route::patch('courses/{course}/{specialization}/topics', [TopicController::class, 'update'])->name('admin.specialization.topics.update');
 
-        Route::get('topic-lessons/{topic}', LessonsIndex::class)->name('topic-lessons.index');
-        Route::get('topic-lessons/create/{topic}', [LessonController::class, 'create'])->name('topic-lessons.create');
-        Route::post('topic-lessons', [LessonController::class, 'store'])->name('topic-lessons.store');
-        Route::get('topic-lessons/{lesson}/{topic}/edit', [LessonController::class, 'edit'])->name('topic-lessons.edit');
-        Route::patch('topic-lessons/{lesson}/{topic}', [LessonController::class, 'update'])->name('topic-lessons.update');
+        Route::get('courses/{course}/{specialization}/{topic}/lessons', LessonsIndex::class)->name('admin.topic.lessons.index');
+        Route::get('courses/{course}/{specialization}/{topic}/lessons/create', [LessonController::class, 'create'])->name('admin.topic.lessons.create');
+        Route::post('courses/{course}/{specialization}/{topic}/lessons', [LessonController::class, 'store'])->name('admin.topic.lessons.store');
+        Route::get('courses/{course}/{specialization}/{topic}/lessons/edit', [LessonController::class, 'edit'])->name('admin.topic.lessons.edit');
+        Route::patch('courses/{course}/{specialization}/{topic}/lessons', [LessonController::class, 'update'])->name('admin.topic.lessons.update');
 
-        Route::get('lesson-sections/{lesson}', SectionsIndex::class)->name('lesson-sections.index');
-        Route::get('lesson-sections/create/{lesson}', [SectionController::class, 'create'])->name('lesson-sections.create');
-        Route::post('lesson-sections', [SectionController::class, 'store'])->name('lesson-sections.store');
-        Route::get('lesson-sections/{section}/{lesson}/edit', [SectionController::class, 'edit'])->name('lesson-sections.edit');
-        Route::patch('lesson-sections/{section}/{lesson}', [SectionController::class, 'update'])->name('lesson-sections.update');
+        Route::get('courses/{course}/{specialization}/{topic}/{lesson}/sections', SectionsIndex::class)->name('admin.lesson.sections.index');
+        Route::get('courses/{course}/{specialization}/{topic}/{lesson}/sections/create', [SectionController::class, 'create'])->name('admin.lesson.sections.create');
+        Route::post('courses/{course}/{specialization}/{topic}/{lesson}/sections', [SectionController::class, 'store'])->name('admin.lesson.sections.store');
+        Route::get('courses/{course}/{specialization}/{topic}/{lesson}/sections/edit', [SectionController::class, 'edit'])->name('admin.lesson.sections.edit');
+        Route::patch('courses/{course}/{specialization}/{topic}/{lesson}/sections', [SectionController::class, 'update'])->name('admin.lesson.sections.update');
     });
 });
 

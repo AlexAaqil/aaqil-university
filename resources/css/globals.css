@@ -60,6 +60,13 @@ body {
     }
 
     span {
+        &:not(:last-of-type) {
+            &::after {
+                content: '/';
+                @apply mx-2 text-gray-500;
+            }
+        }
+
         @apply text-gray-700;
     }
 }

@@ -1,5 +1,12 @@
 <div class="Courses">
     <div class="container">
+        <div class="breadcrumbs">
+            <a href="{{ Route::has('admin.courses.index') ? route('admin.courses.index') : '#' }}">Courses</a>
+            <a href="{{ Route::has('admin.course.specializations.index') ? route('admin.course.specializations.index', $specialization->course->slug) : '#' }}">{{ $specialization->course->title }}</a>
+            <span>{{ $specialization->title }}</span>
+            <span>Topics</span>
+        </div>
+
         <div class="header">
             <div class="info">
                 <h2>Topics for {{ $specialization->title }}</h2>
@@ -47,7 +54,7 @@
 
                         <div class="info">
                             <h3>{{ $topic->title }}</h3>
-                            <a href="{{ Route::has('topic-lessons.index') ? route('topic-lessons.index', $topic->slug) : '#' }}" wire:navigate>
+                            <a href="{{ Route::has('admin.topic.lessons.index') ? route('admin.topic.lessons.index', [$topic->specialization->course->slug, $topic->specialization->slug, $topic->slug]) : '#' }}" wire:navigate>
                                 <p>{{ $topic->lessons_count }} {{ Str::plural('lesson', $topic->lessons_count) }}</p>
                             </a>
                         </div>

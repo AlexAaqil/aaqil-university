@@ -37,6 +37,14 @@
 	}
 }
 
+.Lessons {
+	.lessons_aside {
+		.header {
+			@apply flex gap-1;
+		}
+	}
+}
+
 section.Lessons {
 	@apply py-1 md:py-1 px-2;
 

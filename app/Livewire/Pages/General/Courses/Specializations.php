@@ -12,7 +12,11 @@ class Specializations extends Component
 
     public function mount($slug)
     {
-        $this->course = Course::where('slug', $slug)->with('specializations')->firstOrFail();
+        $this->course = Course::where('slug', $slug)
+            ->with(['specializations' => function ($query) {
+                $query->orderBy('sort_order')->orderBy('title');
+            }])
+            ->firstOrFail();
         $this->specializations = $this->course->specializations;
     }
 

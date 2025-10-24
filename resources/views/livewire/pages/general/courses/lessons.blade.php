@@ -4,7 +4,7 @@
             <aside class="lessons_aside">
                 <div class="header">
                     <span>
-                        <a href="{{ Route::has('course.topics') ? route('course.topics', $topic->specialization->slug) : '#' }}" wire:navigate>Topics</a>
+                        <a href="{{ Route::has('course.topics') ? route('course.topics', [$topic->specialization->course->slug, $topic->specialization->slug]) : '#' }}" wire:navigate>&lArr;</a>
                     </span>
                     <h1>{{ $topic->title }}</h1>
                 </div>

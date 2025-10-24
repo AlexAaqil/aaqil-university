@@ -1,5 +1,14 @@
 <div class="Courses LessonSections">
     <div class="container">
+        <div class="breadcrumbs">
+            <a href="{{ Route::has('admin.courses.index') ? route('admin.courses.index') : '#' }}">Courses</a>
+            <a href="{{ Route::has('admin.course.specializations.index') ? route('admin.course.specializations.index', $lesson->topic->specialization->course->slug) : '#' }}">{{ $lesson->topic->specialization->course->title }}</a>
+            <a href="{{ Route::has('admin.specialization.topics.index') ? route('admin.specialization.topics.index', [$lesson->topic->specialization->course->slug, $lesson->topic->specialization->slug]) : '#' }}">{{ $lesson->topic->specialization->title }}</a>
+            <a href="{{ Route::has('admin.topic.lessons.index') ? route('admin.topic.lessons.index', [$lesson->topic->specialization->course->slug, $lesson->topic->specialization->slug, $lesson->topic->slug]) : '#' }}">{{ $lesson->topic->title }}</a>
+            <a href="{{ Route::has('admin.topic.lessons.index') ? route('admin.topic.lessons.index', [$lesson->topic->specialization->course->slug, $lesson->topic->specialization->slug, $lesson->topic->slug]) : '#' }}">Lessons</a>
+            <span>{{ $lesson->title }}</span>
+        </div>
+
         <div class="header">
             <div class="info">
                 <h2>Sections for {{ $lesson->title }}</h2>

@@ -19,7 +19,7 @@
             <div class="main_links">
                 <a href="{{ Route::has('dashboard') ? route('dashboard') : '#' }}">Dashboard</a>
                 <a href="{{ Route::has('users.index') ? route('users.index') : '#' }}" wire:navigate>Users</a>
-                <a href="{{ Route::has('courses.index') ? route('courses.index') : '#' }}" wire:navigate>Courses</a>
+                <a href="{{ Route::has('admin.courses.index') ? route('admin.courses.index') : '#' }}" wire:navigate>Courses</a>
                 <a href="{{ Route::has('contact-messages.index') ? route('contact-messages.index') : '#' }}" wire:navigate>Messages</a>
 
                 @auth
