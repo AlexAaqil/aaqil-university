@@ -50,10 +50,10 @@ Route::middleware(['admin_only'])->group(function () {
         Route::get('messages/{message}/edit', EditContactMessages::class)->name('contact-messages.edit');
 
         Route::get('courses', CoursesIndex::class)->name('admin.courses.index');
-        Route::get('create', [CourseController::class, 'create'])->name('admin.courses.create');
+        Route::get('courses/create', [CourseController::class, 'create'])->name('admin.courses.create');
         Route::post('courses', [CourseController::class, 'store'])->name('admin.courses.store');
-        Route::get('{course}/edit', [CourseController::class, 'edit'])->name('courses.edit');
-        Route::patch('{course}', [CourseController::class, 'update'])->name('courses.update');
+        Route::get('courses/{course}/edit', [CourseController::class, 'edit'])->name('admin.courses.edit');
+        Route::patch('courses/{course}', [CourseController::class, 'update'])->name('admin.courses.update');
 
         Route::get('courses/{course}/specializations', CourseSpecializationsIndex::class)->name('admin.course.specializations.index');
         Route::get('courses/{course}/specializations/create', [SpecializationController::class, 'create'])->name('admin.course.specializations.create');

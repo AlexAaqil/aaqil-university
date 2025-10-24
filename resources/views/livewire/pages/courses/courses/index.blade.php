@@ -30,7 +30,7 @@
             </div>
 
             <div class="button">
-                <a href="{{ Route::has('courses.create') ? route('courses.create') : '#' }}" class="btn">New Course</a>
+                <a href="{{ Route::has('admin.courses.create') ? route('admin.courses.create') : '#' }}" class="btn">New Course</a>
             </div>
         </div>
 
@@ -65,7 +65,7 @@
                         </div>
 
                         <div class="crud">
-                            <a href="{{ Route::has('courses.edit') ? route('courses.edit', $course->uuid) : '#' }}" class="edit">
+                            <a href="{{ Route::has('admin.courses.edit') ? route('admin.courses.edit', $course->uuid) : '#' }}" class="edit">
                                 <x-svgs.edit />
                             </a>
 

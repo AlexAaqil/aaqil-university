@@ -36,7 +36,7 @@
             </div>
 
             <div class="button">
-                <a href="{{ Route::has('specialization-topics.create') ? route('specialization-topics.create', $specialization->id) : '#' }}" class="btn">New Topic</a>
+                <a href="{{ Route::has('admin.specialization.topics.create') ? route('admin.specialization.topics.create', [$specialization->course->slug, $specialization->slug]) : '#' }}" class="btn">New Topic</a>
             </div>
         </div>
 
@@ -85,7 +85,7 @@
 
     <x-modal name="confirm-topic-deletion" :show="$delete_topic_id !== null" focusable>
         <div class="custom_form">
-            <form wire:submit="$deleteTopic" @submit="$dispatch('close-modal', 'confirm-topic-deletion')" class="p-6">
+            <form wire:submit="deleteTopic" @submit="$dispatch('close-modal', 'confirm-topic-deletion')" class="p-6">
                 <h2 class="text-lg font-semibold text-gray-900">Confirm Deletion</h2>
 
                 <p class="mt-2 mb-4 text-sm text-gray-600">Are you sure you want to permanently delete this topic?</p>

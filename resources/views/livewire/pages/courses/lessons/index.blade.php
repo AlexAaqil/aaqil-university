@@ -37,7 +37,7 @@
             </div>
 
             <div class="button">
-                <a href="{{ Route::has('topic-lessons.create') ? route('topic-lessons.create', $topic->slug) : '#' }}" class="btn">New Lesson</a>
+                <a href="{{ Route::has('admin.topic.lessons.create') ? route('admin.topic.lessons.create', [$topic->specialization->course->slug, $topic->specialization->slug, $topic->slug]) : '#' }}" class="btn">New Lesson</a>
             </div>
         </div>
 
@@ -86,7 +86,7 @@
 
     <x-modal name="confirm-lesson-deletion" :show="$delete_lesson_id !== null" focusable>
         <div class="custom_form">
-            <form wire:submit="$deleteLesson" @submit="$dispatch('close-modal', 'confirm-lesson-deletion')" class="p-6">
+            <form wire:submit="deleteLesson" @submit="$dispatch('close-modal', 'confirm-lesson-deletion')" class="p-6">
                 <h2 class="text-lg font-semibold text-gray-900">Confirm Deletion</h2>
 
                 <p class="mt-2 mb-4 text-sm text-gray-600">Are you sure you want to permanently delete this lesson?</p>

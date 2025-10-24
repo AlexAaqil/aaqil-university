@@ -4,17 +4,19 @@ namespace App\Http\Controllers\courses;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Courses\Course;
 use App\Models\Courses\Specialization;
 use App\Models\Courses\Topic;
 use App\Http\Requests\Courses\TopicRequest;
 
 class TopicController extends Controller
 {
-    public function create($specialization)
+    public function create($course, $specialization)
     {
-        $specialization = Specialization::findOrFail($specialization);
+        $course = Course::where('slug', $course)->firstOrFail();
+        $specialization = Specialization::where('slug', $specialization)->where('course_id', $course->id)->firstOrFail();
 
-        return view('pages.courses.topics.create', compact('specialization'));
+        return view('pages.courses.topics.create', compact('course', 'specialization'));
     }
 
     public function store(TopicRequest $request)
@@ -25,7 +27,7 @@ class TopicController extends Controller
 
         $specialization = Specialization::findOrFail($topic->specialization_id);
 
-        return redirect()->route('specialization-topics.index', $specialization->slug)
+        return redirect()->route('admin.specialization.topics.index', [$specialization->course->slug, $specialization->slug])
             ->with('success', 'Topic created successfully.');
     }
 
@@ -44,7 +46,7 @@ class TopicController extends Controller
 
         $specialization = Specialization::where('slug', $specialization)->firstOrFail();
 
-        return redirect()->route('specialization-topics.index', $specialization->slug)
+        return redirect()->route('admin.specialization.topics.index', $specialization->slug)
             ->with('success', 'Topic updated successfully.');
     }
 }

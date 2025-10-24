@@ -2,13 +2,13 @@
     <div class="Course SpecializationTopics">
         <div class="custom_form">
             <div class="header">
-                <a href="{{ Route::has('specialization-topics.index') ? route('specialization-topics.index', $specialization->slug) : '#' }}">
+                <a href="{{ Route::has('admin.specialization.topics.index') ? route('admin.specialization.topics.index', [$specialization->course->slug, $specialization->slug]) : '#' }}">
                     <x-svgs.arrow-left class="w-5 h-5" />
                 </a>
                 <h1>New {{ $specialization->title }} Topic</h1>
             </div>
 
-            <form action="{{ route('specialization-topics.store', $specialization) }}" method="post">
+            <form action="{{ route('admin.specialization.topics.store', [$specialization->course, $specialization]) }}" method="post">
                 @csrf
 
                 <input type="hidden" name="specialization_id" id="specialization_id" value="{{ $specialization->id }}" />

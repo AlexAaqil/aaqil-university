@@ -33,7 +33,7 @@ class SpecializationController extends Controller
         ]);
 
         return redirect()
-            ->route('course-specializations.index', $course->slug)
+            ->route('admin.course.specializations.index', $course->slug)
             ->with('success', 'Specialization created successfully.');
     }
 
@@ -64,7 +64,7 @@ class SpecializationController extends Controller
         ]);
 
         return redirect()
-            ->route('course-specializations.index', $validated['courses'][0])
+            ->route('admin.course.specializations.index', $validated['courses'][0])
             ->with('success', 'Specialization updated successfully.');
     }
 }

@@ -2,10 +2,13 @@
     <div class="Courses">
         <div class="custom_form max-w-2xl mx-auto py-4">
             <div class="header">
+                <a href="{{ route('admin.courses.index') }}">
+                    <x-svgs.arrow-left class="w-5 h-5" />
+                </a>
                 <h1>Update Course</h1>
             </div>
 
-            <form action="{{ route('courses.update', $course->uuid) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.courses.update', $course->uuid) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
 

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Courses;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class LessonRequest extends FormRequest
 {
@@ -22,7 +23,13 @@ class LessonRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('lessons')
+                ->where('topic_id', $this->input('topic_id')),
+            ],
             'topic_id' => 'required|numeric|exists:topics,id',
             'sort_order' => 'nullable|numeric',
         ];

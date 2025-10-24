@@ -9,7 +9,10 @@ class Index extends Component
 {
     public function render()
     {
-        $courses = Course::all();
+        $courses = Course::query()
+            ->withCount('specializations')
+            ->orderBy('title')
+            ->get();
 
         return view('livewire.pages.general.courses.index', compact('courses'))->layout('layouts.guest');
     }

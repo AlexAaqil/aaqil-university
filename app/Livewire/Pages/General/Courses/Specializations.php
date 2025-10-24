@@ -8,20 +8,24 @@ use App\Models\Courses\Course;
 class Specializations extends Component
 {
     public $course;
-    public $specializations;
 
     public function mount($slug)
     {
-        $this->course = Course::where('slug', $slug)
-            ->with(['specializations' => function ($query) {
-                $query->orderBy('sort_order')->orderBy('title');
-            }])
-            ->firstOrFail();
-        $this->specializations = $this->course->specializations;
+        $this->course = Course::where('slug', $slug)->firstOrFail();
+    }
+
+    public function getSpecializationsProperty()
+    {
+        return $this->course
+            ->specializations()
+            ->withCount('topics')
+            ->orderBy('sort_order')
+            ->orderBy('title')
+            ->get();
     }
 
     public function render()
     {
-        return view('livewire.pages.general.courses.specializations')->layout('layouts.guest');
+        return view('livewire.pages.general.courses.specializations', ['specializations' => $this->specializations])->layout('layouts.guest');
     }
 }

@@ -40,7 +40,7 @@ class CourseController extends Controller
 
         session()->flash('notify', ['type' => 'success', 'message' => 'Course added successfully']);
 
-        return redirect()->route('courses.index');
+        return redirect()->route('admin.courses.index');
     }
 
     public function edit(Course $course)
@@ -89,6 +89,6 @@ class CourseController extends Controller
 
         session()->flash('notify', ['type' => 'success', 'message' => 'course updated successfully']);
 
-        return redirect()->route('courses.index');
+        return redirect()->route('admin.courses.index');
     }
 }

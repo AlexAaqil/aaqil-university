@@ -2,7 +2,7 @@
     <div class="container">
         <div class="breadcrumbs">
             <a href="{{ Route::has('admin.courses.index') ? route('admin.courses.index') : '#' }}">Courses</a>
-            <span>Web Development</span>
+            <span>{{ $course->title }}</span>
             <span>Specializations</span>
         </div>
 
@@ -35,7 +35,7 @@
             </div>
 
             <div class="button">
-                <a href="{{ Route::has('course-specializations.create') ? route('course-specializations.create', $course->id) : '#' }}" class="btn">New Specialization</a>
+                <a href="{{ Route::has('admin.course.specializations.create') ? route('admin.course.specializations.create', $course->id) : '#' }}" class="btn">New Specialization</a>
             </div>
         </div>
 

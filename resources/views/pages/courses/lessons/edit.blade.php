@@ -2,7 +2,7 @@
     <div class="Courses TopicLessons">
         <div class="custom_form">
             <div class="header">
-                <a href="{{ Route::has('topic-lessons.index') ? route('topic-lessons.index', $topic->slug) : '#' }}">
+                <a href="{{ Route::has('admin.topic.lessons.index') ? route('admin.topic.lessons.index', $topic->slug) : '#' }}">
                     <x-svgs.arrow-left class="w-5 h-5" />
                 </a>
                 <h1>Update {{ $topic->title }} Lesson</h1>

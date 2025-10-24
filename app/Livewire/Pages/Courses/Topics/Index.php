@@ -36,9 +36,15 @@ class Index extends Component
         $this->resetPage();
     }
 
-    public function mount($specialization)
+    public function mount($course, $specialization)
     {
         $this->specialization = Specialization::where('slug', $specialization)
+            ->whereHas('course', function ($query) use ($course) {
+                $query->where('slug', $course);
+            })
+            ->with(['course', 'topics' => function ($query) {
+                $query->orderBy('title');
+            }])
             ->withCount('topics')
             ->firstOrFail();
     }
