@@ -61,7 +61,7 @@
 
                     <div class="actions">
                         <div class="crud">
-                            <a href="{{ Route::has('courses.edit') ? route('courses.edit', $specialization->uuid) : '#' }}" class="edit">
+                            <a href="{{ Route::has('admin.course.specializations.edit') ? route('admin.course.specializations.edit', [$specialization->course, $specialization]) : '#' }}" class="edit">
                                 <x-svgs.edit />
                             </a>
 

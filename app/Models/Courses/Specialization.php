@@ -4,6 +4,7 @@ namespace App\Models\Courses;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class Specialization extends Model
 {
@@ -39,5 +40,16 @@ class Specialization extends Model
     public function topics()
     {
         return $this->hasMany(Topic::class)->orderBy('sort_order');
+    }
+
+    public function getImageUrlAttribute()
+    {
+        $image = $this->attributes['image'] ?? null;
+
+        if ($image && Storage::disk('public')->exists("courses/specializations/{$image}")) {
+            return Storage::url("courses/specializations/{$image}");
+        }
+
+        return null;
     }
 }

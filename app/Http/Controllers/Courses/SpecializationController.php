@@ -3,68 +3,81 @@
 namespace App\Http\Controllers\Courses;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Courses\Course;
 use App\Models\Courses\Specialization;
 use App\Http\Requests\Courses\SpecializationRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class SpecializationController extends Controller
 {
-    public function create($course)
+    public function create(Course $course)
     {
-        $course = Course::findOrFail($course);
         $courses = Course::orderBy('title')->get();
 
         return view('pages.courses.specializations.create', compact('course', 'courses'));
     }
 
-    public function store(SpecializationRequest $request)
+    public function store(SpecializationRequest $request, Course $course)
     {
-        $validated = $request->validated();
-
-        $course = Course::findOrFail($validated['course_id']);
+        $validated_data = $request->validated();
 
         $specialization = $course->specializations()->create([
-            'title' => $validated['title'],
-            'description' => $validated['description'] ?? null,
-            'image' => $validated['image'] ?? null,
-            'is_published' => $validated['is_published'] ?? true,
-            'sort_order' => $validated['sort_order'] ?? null,
+            'title' => $validated_data['title'],
+            'description' => $validated_data['description'] ?? null,
+            'image' => $validated_data['image'] ?? null,
+            'is_published' => $validated_data['is_published'] ?? true,
+            'sort_order' => $validated_data['sort_order'] ?? null,
         ]);
 
         return redirect()
-            ->route('admin.course.specializations.index', $course->slug)
+            ->route('admin.course.specializations.index', $course)
             ->with('success', 'Specialization created successfully.');
     }
 
-    public function edit($id)
+    public function edit(Course $course, Specialization $specialization)
     {
-        $specialization = Specialization::with('courses')->findOrFail($id);
+        if ($specialization->course_id !== $course->id) {
+            abort(404);
+        }
+
         $courses = Course::orderBy('title')->get();
 
-        // get sort orders from pivot
-        $courseSortOrders = $specialization->courses->pluck('pivot.sort_order', 'id')->toArray();
-
-        return view('pages.courses.specializations.edit', compact('specialization', 'courses', 'courseSortOrders'));
+        return view('pages.courses.specializations.edit', compact('course', 'specialization', 'courses'));
     }
 
-    public function update(SpecializationRequest $request, $id)
+    public function update(SpecializationRequest $request, Course $course, Specialization $specialization)
     {
-        $validated = $request->validated();
+        if ($specialization->course_id !== $course->id) {
+            abort(404);
+        }
 
-        $specialization = Specialization::findOrFail($id);
+        $validated_data = $request->validated();
 
-        $specialization->update([
-            'title' => $validated['title'],
-            'description' => $validated['description'] ?? null,
-            'image' => $validated['image'] ?? null,
-            'is_published' => $validated['is_published'] ?? true,
-            'sort_order' => $validated['sort_order'] ?? null,
-            'course_id' => $validated['course_id'],
-        ]);
+        if ($request->has('remove_image') && $specialization->image) {
+            if (Storage::disk('public')->exists('courses/specializations/' . $specialization->image)) {
+                Storage::disk('public')->delete('courses/specializations/' . $specialization->image);
+            }
+            $validated_data['image'] = null;
+        } elseif ($request->hasFile('image')) {
+            if ($specialization->image && Storage::disk('public')->exists('courses/specializations/' . $specialization->image)) {
+                Storage::disk('public')->delete('courses/specializations/' . $specialization->image);
+            }
+
+            $image = $request->file('image');
+            $image_name = time() . '_' . Str::slug($validated_data['title']) . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('courses/specializations/', $image_name, 'public');
+            $validated_data['image'] = $image_name;
+        } else {
+            $validated_data['image'] = $specialization->image;
+        }
+
+        $specialization->update($validated_data);
+
+        $updated_course = Course::find($validated_data['course_id']);
 
         return redirect()
-            ->route('admin.course.specializations.index', $validated['courses'][0])
+            ->route('admin.course.specializations.index', $updated_course->slug)
             ->with('success', 'Specialization updated successfully.');
     }
 }

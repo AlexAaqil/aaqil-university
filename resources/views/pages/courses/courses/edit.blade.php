@@ -19,8 +19,9 @@
                 </div>
 
                 <div class="inputs">
+                    <input type="hidden" name="is_published" value="0">
                     <label for="is_published">
-                        <input type="checkbox" name="is_published" id="is_published" value="1" {{ old('is_published', true) ? 'checked' : '' }}>
+                        <input type="checkbox" name="is_published" id="is_published" value="1" {{ old('is_published', $course->is_published ?? true) ? 'checked' : '' }}>
                         Publish
                     </label>
                     <x-form-input-error field="is_published" />

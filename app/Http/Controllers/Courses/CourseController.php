@@ -60,8 +60,8 @@ class CourseController extends Controller
         // Check if image is being replaced
         if ($request->hasFile('image')) {
             // Delete old image
-            if ($course->image && Storage::disk('public')->exists('courses/images/'.$course->getRawOriginal('image'))) {
-                Storage::disk('public')->delete('courses/images/'.$course->getRawOriginal('image'));
+            if ($course->image && Storage::disk('public')->exists('courses/courses/'.$course->getRawOriginal('image'))) {
+                Storage::disk('public')->delete('courses/courses/'.$course->getRawOriginal('image'));
             }
 
             // Generate new image name with updated slug
@@ -76,8 +76,8 @@ class CourseController extends Controller
             $extension = pathinfo($old_image_name, PATHINFO_EXTENSION);
             $new_image_name = "{$new_slug}-{$date}-{$random}.{$extension}";
 
-            $old_path = "courses/images/{$old_image_name}";
-            $new_path = "courses/images/{$new_image_name}";
+            $old_path = "courses/courses/{$old_image_name}";
+            $new_path = "courses/courses/{$new_image_name}";
 
             if (Storage::disk('public')->exists($old_path)) {
                 Storage::disk('public')->move($old_path, $new_path);

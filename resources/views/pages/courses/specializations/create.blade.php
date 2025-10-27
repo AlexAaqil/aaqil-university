@@ -11,10 +11,8 @@
             <form action="{{ route('admin.course.specializations.store', $course) }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                {{-- Hidden Course Reference --}}
                 <input type="hidden" name="course_id" value="{{ $course->id }}">
 
-                {{-- Title --}}
                 <div class="inputs">
                     <label for="title">Specialization Title</label>
                     <input type="text" name="title" id="title" placeholder="e.g. Advanced Web Development"
@@ -22,28 +20,24 @@
                     <x-form-input-error field="title" />
                 </div>
 
-                {{-- Description --}}
                 <div class="inputs">
                     <label for="description">Description (optional)</label>
                     <textarea name="description" id="description" rows="4" placeholder="Briefly describe this specialization...">{{ old('description') }}</textarea>
                     <x-form-input-error field="description" />
                 </div>
 
-                {{-- Image --}}
                 <div class="inputs">
                     <label for="image">Image (optional)</label>
                     <input type="file" name="image" id="image" accept="image/*">
                     <x-form-input-error field="image" />
                 </div>
 
-                {{-- Sort Order --}}
                 <div class="inputs">
                     <label for="sort_order">Sort Order (optional)</label>
                     <input type="number" name="sort_order" id="sort_order" min="1" value="{{ old('sort_order') }}">
                     <x-form-input-error field="sort_order" />
                 </div>
 
-                {{-- Published --}}
                 <div class="inputs flex items-center space-x-2">
                     <input type="checkbox" name="is_published" id="is_published" value="1"
                            {{ old('is_published', true) ? 'checked' : '' }}>
@@ -51,7 +45,6 @@
                     <x-form-input-error field="is_published" />
                 </div>
 
-                {{-- Submit --}}
                 <div class="mt-6">
                     <button type="submit" class="btn btn-primary">
                         Save Specialization
@@ -60,12 +53,4 @@
             </form>
         </div>
     </div>
-
-    <x-slot name="javascript">
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                // No dynamic course logic needed anymore since each specialization belongs to one course
-            });
-        </script>
-    </x-slot>
 </x-app-layout>

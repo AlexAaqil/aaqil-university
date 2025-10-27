@@ -33,6 +33,7 @@ class CourseRequest extends FormRequest
             ],
             'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'is_published' => 'sometimes|boolean',
         ];
     }
 
