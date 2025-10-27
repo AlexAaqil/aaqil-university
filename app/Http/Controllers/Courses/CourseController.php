@@ -32,7 +32,7 @@ class CourseController extends Controller
             $extension = $image->getClientOriginalExtension();
 
             $image_name = "{$slug}-{$date}-{$random}.{$extension}";
-            $image->storeAs('courses/images', $image_name, 'public');
+            $image->storeAs('courses/courses', $image_name, 'public');
             $validated_data['image'] = $image_name;
         }
 
@@ -68,7 +68,7 @@ class CourseController extends Controller
             $image = $request->file('image');
             $extension = $image->getClientOriginalExtension();
             $image_name = "{$new_slug}-{$date}-{$random}.{$extension}";
-            $image->storeAs('courses/images', $image_name, 'public');
+            $image->storeAs('courses/courses', $image_name, 'public');
             $validated_data['image'] = $image_name;
         } elseif ($old_slug !== $new_slug && $course->image) {
             // If title changed and no new image was uploaded, rename existing image

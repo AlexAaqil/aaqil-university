@@ -1,7 +1,7 @@
 <div class="Courses">
     <div class="container">
         <div class="breadcrumbs">
-            <a href="{{ Route::has('admin.courses.index') ? route('admin.courses.index') : '#' }}">Courses</a>
+            <a href="{{ Route::has('admin.courses.index') ? route('admin.courses.index') : '#' }}" wire:navigate>Courses</a>
             <span>{{ $course->title }}</span>
             <span>Specializations</span>
         </div>
@@ -53,7 +53,7 @@
 
                         <div class="info">
                             <h3>{{ $specialization->title }}</h3>
-                            <a href="{{ Route::has('admin.specialization.topics.index') ? route('admin.specialization.topics.index', [$specialization->course->slug, $specialization->slug]) : '#' }}">
+                            <a href="{{ Route::has('admin.specialization.topics.index') ? route('admin.specialization.topics.index', [$specialization->course->slug, $specialization->slug]) : '#' }}" wire:navigate>
                                 <p>{{ $specialization->topics_count }} {{ Str::plural('topic', $specialization->topics_count) }}</p>
                             </a>
                         </div>

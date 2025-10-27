@@ -1,8 +1,8 @@
 <div class="Courses">
     <div class="container">
         <div class="breadcrumbs">
-            <a href="{{ Route::has('admin.courses.index') ? route('admin.courses.index') : '#' }}">Courses</a>
-            <a href="{{ Route::has('admin.course.specializations.index') ? route('admin.course.specializations.index', $specialization->course->slug) : '#' }}">{{ $specialization->course->title }}</a>
+            <a href="{{ Route::has('admin.courses.index') ? route('admin.courses.index') : '#' }}" wire:navigate>Courses</a>
+            <a href="{{ Route::has('admin.course.specializations.index') ? route('admin.course.specializations.index', $specialization->course->slug) : '#' }}" wire:navigate>{{ $specialization->course->title }}</a>
             <span>{{ $specialization->title }}</span>
             <span>Topics</span>
         </div>
@@ -62,7 +62,7 @@
 
                     <div class="actions">
                         <div class="crud">
-                            <a href="{{ Route::has('specialization-topics.edit') ? route('specialization-topics.edit', [$topic->uuid, $specialization->slug]) : '#' }}" class="edit">
+                            <a href="{{ Route::has('specialization-topics.edit') ? route('specialization-topics.edit', [$topic->uuid, $specialization->slug]) : '#' }}" class="edit" wire:navigate>
                                 <x-svgs.edit />
                             </a>
 

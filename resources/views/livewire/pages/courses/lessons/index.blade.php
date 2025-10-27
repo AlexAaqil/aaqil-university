@@ -1,9 +1,9 @@
 <div class="Courses">
     <div class="container">
         <div class="breadcrumbs">
-            <a href="{{ Route::has('admin.courses.index') ? route('admin.courses.index') : '#' }}">Courses</a>
-            <a href="{{ Route::has('admin.course.specializations.index') ? route('admin.course.specializations.index', $topic->specialization->course->slug) : '#' }}">{{ $topic->specialization->course->title }}</a>
-            <a href="{{ Route::has('admin.specialization.topics.index') ? route('admin.specialization.topics.index', [$topic->specialization->course->slug, $topic->specialization->slug]) : '#' }}">{{ $topic->specialization->title }}</a>
+            <a href="{{ Route::has('admin.courses.index') ? route('admin.courses.index') : '#' }}" wire:navigate>Courses</a>
+            <a href="{{ Route::has('admin.course.specializations.index') ? route('admin.course.specializations.index', $topic->specialization->course->slug) : '#' }}" wire:navigate>{{ $topic->specialization->course->title }}</a>
+            <a href="{{ Route::has('admin.specialization.topics.index') ? route('admin.specialization.topics.index', [$topic->specialization->course->slug, $topic->specialization->slug]) : '#' }}" wire:navigate>{{ $topic->specialization->title }}</a>
             <span>{{ $topic->title }}</span>
             <span>Lessons</span>
         </div>
@@ -55,7 +55,7 @@
 
                         <div class="info">
                             <h3>{{ $lesson->title }}</h3>
-                            <a href="{{ Route::has('admin.lesson.sections.index') ? route('admin.lesson.sections.index', [$lesson->topic->specialization->course->slug, $lesson->topic->specialization->slug, $lesson->topic->slug, $lesson->slug]) : '#' }}">
+                            <a href="{{ Route::has('admin.lesson.sections.index') ? route('admin.lesson.sections.index', [$lesson->topic->specialization->course->slug, $lesson->topic->specialization->slug, $lesson->topic->slug, $lesson->slug]) : '#' }}" wire:navigate>
                                 <p>{{ $lesson->sections_count }} {{ Str::plural('section', $lesson->sections_count) }}</p>
                             </a>
                         </div>

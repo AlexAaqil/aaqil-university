@@ -69,8 +69,8 @@ class Course extends Model
     {
         $image = $this->attributes['image'] ?? null;
 
-        if ($image && Storage::disk('public')->exists("courses/images/{$image}")) {
-            return Storage::url("courses/images/{$image}");
+        if ($image && Storage::disk('public')->exists("courses/courses/{$image}")) {
+            return Storage::url("courses/courses/{$image}");
         }
 
         return null;

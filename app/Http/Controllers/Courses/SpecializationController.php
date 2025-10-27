@@ -65,7 +65,7 @@ class SpecializationController extends Controller
             }
 
             $image = $request->file('image');
-            $image_name = time() . '_' . Str::slug($validated_data['title']) . '.' . $image->getClientOriginalExtension();
+            $image_name = Str::slug($validated_data['title']). '-' . time() . Str::random(5) . '.' . $image->getClientOriginalExtension();
             $image->storeAs('courses/specializations/', $image_name, 'public');
             $validated_data['image'] = $image_name;
         } else {

@@ -48,7 +48,7 @@
 
                         <div class="info">
                             <h3>{{ $course->title }}</h3>
-                            <a href="{{ Route::has('admin.course.specializations.index') ? route('admin.course.specializations.index', $course->slug) : '#' }}">
+                            <a href="{{ Route::has('admin.course.specializations.index') ? route('admin.course.specializations.index', $course->slug) : '#' }}" wire:navigate>
                                 <p>{{ $course->specializations_count }} {{ Str::plural('specialization', $course->specializations_count) }}</p>
                             </a>
                         </div>
