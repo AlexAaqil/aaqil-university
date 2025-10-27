@@ -33,9 +33,11 @@
                         <div class="mb-4">
                             <p class="text-sm text-gray-600 mb-2">Current Image:</p>
                             <div class="flex items-center space-x-4">
-                                <img src="{{ asset('storage/courses/specializations/' . $specialization->image) }}" 
-                                     alt="{{ $specialization->title }}" 
-                                     class="w-32 h-32 object-cover rounded-lg border">
+                                <div class="image w-[100px] h-[100px]">
+                                    <img src="{{ asset('storage/courses/specializations/' . $specialization->image) }}" 
+                                         alt="{{ $specialization->title }}" 
+                                         class="border">
+                                </div>
                                 <div>
                                     <label class="flex items-center space-x-2 text-sm text-red-600 cursor-pointer">
                                         <input type="checkbox" name="remove_image" value="1">
@@ -58,7 +60,7 @@
 
                     <div id="imagePreview" class="mt-3 hidden">
                         <p class="text-sm text-gray-600 mb-2">New image preview:</p>
-                        <div class="image w-[50px] h-[50px]">
+                        <div class="image w-[100px] h-[100px]">
                             <img id="preview" class="border">
                         </div>
                     </div>
