@@ -5,6 +5,8 @@
 /public/storage
 /storage/*.key
 /storage/pail
+!/storage/app/public/courses
+!/storage/app/public/users
 /vendor
 .env
 .env.backup
