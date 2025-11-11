@@ -67,8 +67,16 @@ class LessonController extends Controller
 
         $lesson->update($validated_data);
 
-        $topic = Topic::where('slug', $topic)->firstOrFail();
+        // Resolve the topic scoped to the given specialization and course slugs so we
+        // always redirect to the lessons list for the correct parent.
+        $specializationModel = \App\Models\Courses\Specialization::where('slug', $specialization)
+            ->whereHas('course', function ($q) use ($course) {
+                $q->where('slug', $course);
+            })
+            ->firstOrFail();
 
-        return redirect()->route('admin.topic.lessons.index', $topic->slug)->with('success', 'Lesson updated successfully.');
+        $topicModel = $specializationModel->topics()->where('slug', $topic)->with(['specialization.course'])->firstOrFail();
+
+        return redirect()->route('admin.topic.lessons.index', [$topicModel->specialization->course->slug, $topicModel->specialization->slug, $topicModel->slug])->with('success', 'Lesson updated successfully.');
     }
 }

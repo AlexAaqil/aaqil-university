@@ -2,13 +2,13 @@
     <div class="Courses LessonSections">
         <div class="custom_form">
             <div class="header">
-                <a href="{{ Route::has('lesson-sections.index') ? route('lesson-sections.index', $lesson->slug) : '#' }}">
+                <a href="{{ Route::has('admin.lesson.sections.index') ? route('admin.lesson.sections.index', [$lesson->topic->specialization->course->slug, $lesson->topic->specialization->slug, $lesson->topic->slug, $lesson->slug]) : '#' }}">
                     <x-svgs.arrow-left class="w-5 h-5" />
                 </a>
                 <h1>New {{ $lesson->title }} Section</h1>
             </div>
 
-            <form action="{{ route('lesson-sections.store', $lesson) }}" method="post">
+            <form action="{{ route('admin.lesson.sections.store', [$lesson->topic->specialization->course->slug, $lesson->topic->specialization->slug, $lesson->topic->slug, $lesson->slug]) }}" method="post">
                 @csrf
 
                 <input type="hidden" name="sort_order" id="sort_order" value="500">

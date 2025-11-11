@@ -35,7 +35,7 @@
             </div>
 
             <div class="button">
-                <a href="{{ Route::has('admin.course.specializations.create') ? route('admin.course.specializations.create', $course->id) : '#' }}" class="btn">New Specialization</a>
+                <a href="{{ Route::has('admin.course.specializations.create') ? route('admin.course.specializations.create', $course->slug) : '#' }}" class="btn">New Specialization</a>
             </div>
         </div>
 
@@ -60,12 +60,23 @@
                     </div>
 
                     <div class="actions">
+                        <div class="others">
+                            <span wire:click="togglePublished({{ $specialization->id }})"
+                                wire:loading.attr="disabled"
+                                wire:target="togglePublished"
+                                class="{{ $specialization->isPublished() ? 'border border-green-500 bg-green-100 text-green-900 text-xs p-1' : 'border border-red-500 bg-red-100 text-red-900 text-xs p-1' }}">
+                                {{ $specialization->is_published_label }}
+                            </span>
+
+                            <span>Sorting: {{ $specialization->sort_order }}</span>
+                        </div>
+
                         <div class="crud">
-                            <a href="{{ Route::has('admin.course.specializations.edit') ? route('admin.course.specializations.edit', [$specialization->course, $specialization]) : '#' }}" class="edit">
+                            <a href="{{ Route::has('admin.course.specializations.edit') ? route('admin.course.specializations.edit', [$specialization->course->slug, $specialization->slug]) : '#' }}" class="edit">
                                 <x-svgs.edit />
                             </a>
 
-                            <button x-data x-on:click.prevent="$wire.set('delete_course_id', {{ $specialization->id }}); $dispatch('open-modal', 'confirm-specialization-deletion')" class="delete">
+                            <button x-data x-on:click.prevent="$wire.set('delete_specialization_id', {{ $specialization->id }}); $dispatch('open-modal', 'confirm-specialization-deletion')" class="delete">
                                 <x-svgs.trash />
                             </button>
                         </div>

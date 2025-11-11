@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Courses\Topic;
 use App\Models\Courses\Lesson;
+use App\Models\Courses\Specialization;
 
 class Index extends Component
 {
@@ -36,9 +37,19 @@ class Index extends Component
         $this->resetPage();
     }
 
-    public function mount($topic)
+    public function mount($course, $specialization, $topic)
     {
-        $this->topic = Topic::where('slug', $topic)
+        // Resolve the specialization by slug and ensure it belongs to the given course slug,
+        // then find the topic by slug scoped to that specialization. This prevents collisions
+        // when multiple specializations have topics with the same slug.
+        $specialization = Specialization::where('slug', $specialization)
+            ->whereHas('course', function ($q) use ($course) {
+                $q->where('slug', $course);
+            })
+            ->firstOrFail();
+
+        $this->topic = $specialization->topics()
+            ->where('slug', $topic)
             ->withCount('lessons')
             ->firstOrFail();
     }

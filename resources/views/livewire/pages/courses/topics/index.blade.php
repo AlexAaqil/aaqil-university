@@ -62,7 +62,7 @@
 
                     <div class="actions">
                         <div class="crud">
-                            <a href="{{ Route::has('specialization-topics.edit') ? route('specialization-topics.edit', [$topic->uuid, $specialization->slug]) : '#' }}" class="edit" wire:navigate>
+                            <a href="{{ Route::has('admin.specialization.topics.edit') ? route('admin.specialization.topics.edit', [$specialization->course->slug, $specialization->slug, $topic->slug]) : '#' }}" class="edit" wire:navigate>
                                 <x-svgs.edit />
                             </a>
 

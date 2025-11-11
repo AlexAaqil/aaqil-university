@@ -24,26 +24,23 @@ class Course extends Model
         });
 
         static::deleting(function (Course $course) {
-            if ($course->image && Storage::disk('public')->exists('courses/images/' . $course->image)) {
-                Storage::disk('public')->delete('courses/images/' . $course->image);
+            if ($course->image && Storage::disk('public')->exists('courses/courses/' . $course->image)) {
+                Storage::disk('public')->delete('courses/courses/' . $course->image);
             }
         });
     }
 
     /**
-     * Get the attributes that should be cast.
+     * Attribute casting.
      *
-     * @return array<string, string>
+     * @var array<string,string>
      */
-    protected function casts(): array
-    {
-        return [
-            'uuid' => 'string',
-            'is_published' => 'boolean',
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime',
-        ];
-    }
+    protected $casts = [
+        'uuid' => 'string',
+        'is_published' => 'boolean',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 
     public function getRouteKeyName(): string
     {
@@ -57,12 +54,12 @@ class Course extends Model
 
     public function isPublished(): bool
     {
-        return $this->is_published === true;
+        return (bool) $this->is_published;
     }
 
     public function getIsPublishedLabelAttribute()
     {
-        return $this->is_published ? 'Published' : 'Unpublished';
+        return $this->is_published ? 'Published' : 'Draft';
     }
 
     public function getImageUrlAttribute()

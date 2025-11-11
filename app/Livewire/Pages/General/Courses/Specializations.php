@@ -9,9 +9,9 @@ class Specializations extends Component
 {
     public $course;
 
-    public function mount($slug)
+    public function mount($course)
     {
-        $this->course = Course::where('slug', $slug)->firstOrFail();
+        $this->course = Course::where('slug', $course)->firstOrFail();
     }
 
     public function getSpecializationsProperty()

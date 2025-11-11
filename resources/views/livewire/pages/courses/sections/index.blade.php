@@ -38,17 +38,21 @@
             </div>
 
             <div class="button">
-                <a href="{{ Route::has('lesson-sections.create') ? route('lesson-sections.create', $lesson->id) : '#' }}" class="btn">New Section</a>
+                <a href="{{ Route::has('admin.lesson.sections.create') ? route('admin.lesson.sections.create', [$lesson->topic->specialization->course->slug, $lesson->topic->specialization->slug, $lesson->topic->slug, $lesson->slug]) : '#' }}" class="btn">New Section</a>
             </div>
         </div>
 
         <div class="sections">
             @forelse($sections as $section)
                 <div class="section_content ckedited_content">
-                    <h1>
-                        <a href="{{ Route::has('lesson-sections.edit') ? route('lesson-sections.edit', ['section' => $section->uuid, 'lesson' => $lesson->slug]) : '#' }}">
+                    <h1 class="flex justify-between items-center">
+                        <a href="{{ Route::has('admin.lesson.sections.edit') ? route('admin.lesson.sections.edit', [$lesson->topic->specialization->course->slug, $lesson->topic->specialization->slug, $lesson->topic->slug, $lesson->slug, $section->slug]) : '#' }}">
                             {{ $section->title }}
                         </a>
+
+                        <button x-data x-on:click.prevent="$wire.set('delete_section_id', {{ $section->id }}); $dispatch('open-modal', 'confirm-section-deletion')" class="delete text-red-600">
+                                <x-svgs.trash />
+                        </button>
                     </h1>
                     {!! $section->content !!}
                 </div>
@@ -59,4 +63,23 @@
             @endforelse
         </div>
     </div>
+
+    <x-modal name="confirm-section-deletion" :show="$delete_section_id !== null" focusable>
+        <div class="custom_form">
+            <form wire:submit="deleteSection" @submit="$dispatch('close-modal', 'confirm-section-deletion')" class="p-6">
+                <h2 class="text-lg font-semibold text-gray-900">Confirm Deletion</h2>
+
+                <p class="mt-2 mb-4 text-sm text-gray-600">Are you sure you want to permanently delete this section?</p>
+
+                <div class="mt-6 flex justify-start">
+                    <button type="button" class="mr-2" x-on:click="$dispatch('close-modal', 'confirm-section-deletion')">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn_danger">
+                        Delete Section
+                    </button>
+                </div>
+            </form>
+        </div>
+    </x-modal>
 </div>

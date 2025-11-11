@@ -8,7 +8,7 @@
                 <h1>New {{ $course->title }} Specialization</h1>
             </div>
 
-            <form action="{{ route('admin.course.specializations.store', $course) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.course.specializations.store', $course->slug) }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <input type="hidden" name="course_id" value="{{ $course->id }}">
@@ -39,8 +39,9 @@
                 </div>
 
                 <div class="inputs flex items-center space-x-2">
+                    <input type="hidden" name="is_published" value="0">
                     <input type="checkbox" name="is_published" id="is_published" value="1"
-                           {{ old('is_published', true) ? 'checked' : '' }}>
+                        {{ old('is_published', true) ? 'checked' : '' }}>
                     <label for="is_published">Published</label>
                     <x-form-input-error field="is_published" />
                 </div>

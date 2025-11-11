@@ -67,7 +67,7 @@ class Index extends Component
         $this->dispatch('open-modal', 'confirm-specialization-deletion');
     }
 
-    public function deleteCourse()
+    public function deleteSpecialization()
     {
         if ($this->delete_specialization_id) {
             $specialization = Specialization::findOrFail($this->delete_specialization_id);
@@ -79,9 +79,18 @@ class Index extends Component
         }
     }
 
+    public function togglePublished($specialization_id)
+    {
+        $specialization = Specialization::findOrFail($specialization_id);
+        $specialization->is_published = !$specialization->is_published;
+        $specialization->save();
+
+        $this->dispatch('notify', type: 'success', message: 'status updated successfully');
+    }
+
     public function render()
     {
-        $specializations = $this->specializations;
+        $specializations = $this->getSpecializationsProperty();
 
         return view('livewire.pages.courses.specializations.index', compact('specializations'));
     }

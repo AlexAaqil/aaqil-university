@@ -63,7 +63,11 @@
             }
 
             .others {
-                @apply flex gap-2;
+                @apply flex gap-2 items-center;
+
+                span {
+                    @apply p-1 text-xs border rounded-[4px];
+                }
             }
 
             .crud {

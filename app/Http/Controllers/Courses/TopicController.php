@@ -31,22 +31,35 @@ class TopicController extends Controller
             ->with('success', 'Topic created successfully.');
     }
 
-    public function edit(Topic $topic, $specialization)
+    public function edit($course, $specialization, Topic $topic)
     {
-        $specialization = Specialization::where('slug', $specialization)->firstOrFail();
+        $specialization = Specialization::where('slug', $specialization)
+            ->whereHas('course', function ($q) use ($course) {
+                $q->where('slug', $course);
+            })
+            ->firstOrFail();
+
+        // Ensure the topic belongs to this specialization
+        if ($topic->specialization_id !== $specialization->id) {
+            abort(404);
+        }
 
         return view('pages.courses.topics.edit', compact('topic', 'specialization'));
     }
 
-    public function update(TopicRequest $request, Topic $topic, $specialization)
+    public function update(TopicRequest $request, $course, $specialization, Topic $topic)
     {
         $validated_data = $request->validated();
 
         $topic->update($validated_data);
 
-        $specialization = Specialization::where('slug', $specialization)->firstOrFail();
+        $specialization = Specialization::where('slug', $specialization)
+            ->whereHas('course', function ($q) use ($course) {
+                $q->where('slug', $course);
+            })
+            ->firstOrFail();
 
-        return redirect()->route('admin.specialization.topics.index', $specialization->slug)
+        return redirect()->route('admin.specialization.topics.index', [$specialization->course->slug, $specialization->slug])
             ->with('success', 'Topic updated successfully.');
     }
 }

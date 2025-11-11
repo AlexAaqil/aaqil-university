@@ -8,7 +8,7 @@
                 <h1>New {{ $specialization->title }} Topic</h1>
             </div>
 
-            <form action="{{ route('admin.specialization.topics.store', [$specialization->course, $specialization]) }}" method="post">
+            <form action="{{ route('admin.specialization.topics.store', [$specialization->course->slug, $specialization->slug]) }}" method="post">
                 @csrf
 
                 <input type="hidden" name="specialization_id" id="specialization_id" value="{{ $specialization->id }}" />

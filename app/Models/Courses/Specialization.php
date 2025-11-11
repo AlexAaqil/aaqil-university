@@ -10,6 +10,15 @@ class Specialization extends Model
 {
     protected $guarded = [];
 
+    /**
+     * Attribute casting.
+     *
+     * @var array<string,string>
+     */
+    protected $casts = [
+        'is_published' => 'boolean',
+    ];
+
     protected static function booted(): void
     {
         static::creating(function (Specialization $specialization) {
@@ -40,6 +49,16 @@ class Specialization extends Model
     public function topics()
     {
         return $this->hasMany(Topic::class)->orderBy('sort_order');
+    }
+
+    public function isPublished(): bool
+    {
+        return (bool) $this->is_published;
+    }
+
+    public function getIsPublishedLabelAttribute()
+    {
+        return $this->is_published ? 'Published' : 'Draft';
     }
 
     public function getImageUrlAttribute()

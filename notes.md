@@ -1,6 +1,7 @@
 # TODOs
-- course specializations edit page.
-- course specializations unselect checkboxes on the add page.
+~~- specializations unselect checkboxes on the add page.~~
+~~- specializations edit page.~~
+~~- specializations published status colors.~~
 
 fill content for
 - Web Development
