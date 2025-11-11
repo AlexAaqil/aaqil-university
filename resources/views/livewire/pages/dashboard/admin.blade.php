@@ -15,8 +15,8 @@
                 </div>
 
                 <div class="stat">
-                    <p>xxx</p>
-                    <p>Courses</p>
+                    <p>{{ $count_courses }}</p>
+                    <p>Courses &middot; {{ $count_published_courses }} Published / {{ $count_draft_courses }} Draft</p>
                 </div>
 
                 <div class="stat">
