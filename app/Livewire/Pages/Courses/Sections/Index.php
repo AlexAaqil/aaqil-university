@@ -33,11 +33,56 @@ class Index extends Component
         $this->resetPage();
     }
 
-    public function mount($lesson)
+    public function mount($course, $specialization, $topic, $lesson)
     {
-        $this->lesson = Lesson::where('slug', $lesson)
-            ->withCount('sections')
-            ->firstOrFail();
+        // The route may provide either a lesson slug string or a bound Lesson model.
+        // Handle both cases and always scope/verify the lesson belongs to the
+        // requested topic/specialization/course to avoid collisions across
+        // specializations with identical slugs.
+        if ($lesson instanceof Lesson) {
+            // Ensure the mounted Lesson belongs to the supplied parents.
+            $lesson->load(['topic.specialization.course']);
+
+            $matches = (
+                $lesson->topic->slug === $topic &&
+                $lesson->topic->specialization->slug === $specialization &&
+                $lesson->topic->specialization->course->slug === $course
+            );
+
+            if (! $matches) {
+                // If the bound lesson doesn't match the requested parents, try to
+                // find the correct lesson by slug scoped to the parents.
+                $this->lesson = Lesson::where('slug', $lesson->slug)
+                    ->whereHas('topic', function ($q) use ($topic, $specialization, $course) {
+                        $q->where('slug', $topic)
+                          ->whereHas('specialization', function ($q2) use ($specialization, $course) {
+                              $q2->where('slug', $specialization)
+                                 ->whereHas('course', function ($q3) use ($course) {
+                                     $q3->where('slug', $course);
+                                 });
+                          });
+                    })
+                    ->withCount('sections')
+                    ->firstOrFail();
+            } else {
+                $this->lesson = $lesson->loadCount('sections');
+            }
+        } else {
+            // Scope the lesson lookup to the given topic/specialization/course so that
+            // lessons with identical slugs in other specializations do not collide.
+            $this->lesson = Lesson::where('slug', $lesson)
+                ->whereHas('topic', function ($q) use ($topic, $specialization, $course) {
+                    $q->where('slug', $topic)
+                      ->whereHas('specialization', function ($q2) use ($specialization, $course) {
+                          $q2->where('slug', $specialization)
+                             ->whereHas('course', function ($q3) use ($course) {
+                                 $q3->where('slug', $course);
+                             });
+                      });
+                })
+                ->withCount('sections')
+                ->firstOrFail();
+        }
     }
 
     public function getSectionsProperty()

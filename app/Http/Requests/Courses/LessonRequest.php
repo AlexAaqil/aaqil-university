@@ -22,13 +22,17 @@ class LessonRequest extends FormRequest
      */
     public function rules(): array
     {
+        $lessonId = optional($this->route('lesson'))->id;
+
         return [
             'title' => [
                 'required',
                 'string',
                 'max:255',
-                Rule::unique('lessons')
-                ->where('topic_id', $this->input('topic_id')),
+                // Validate uniqueness of title within the same topic, ignore current lesson on update.
+                Rule::unique('lessons', 'title')
+                    ->where('topic_id', $this->input('topic_id'))
+                    ->ignore($lessonId),
             ],
             'topic_id' => 'required|numeric|exists:topics,id',
             'sort_order' => 'nullable|numeric',

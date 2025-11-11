@@ -8,7 +8,7 @@
                 <h1>Update {{ $topic->title }} Lesson</h1>
             </div>
 
-            <form action="{{ route('admin.topic.lessons.update', [$topic->specialization->course->slug, $topic->specialization->slug, $topic->slug, $lesson->uuid]) }}" method="post">
+            <form action="{{ route('admin.topic.lessons.update', [$topic->specialization->course->slug, $topic->specialization->slug, $topic->slug, $lesson->slug]) }}" method="post">
                 @csrf
                 @method('PATCH')
 

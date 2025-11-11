@@ -17,10 +17,52 @@ class Section extends Model
             }
 
             if (empty($section->slug)) {
-                $section->slug = Str::slug($section->title);
+                // Ensure slug is unique per lesson on create.
+                $base_slug = Str::slug($section->title);
+                $slug = $base_slug;
+
+                $count = 1;
+                while (static::where('lesson_id', $section->lesson_id)
+                    ->where('slug', $slug)
+                    ->exists()) {
+                    $slug = "{$base_slug}-{$count}";
+                    $count++;
+                }
+
+                $section->slug = $slug;
+            }
+        });
+
+        static::updating(function (Section $section) {
+            if ($section->isDirty('title') || $section->isDirty('lesson_id')) {
+                $base_slug = Str::slug($section->title);
+                $slug = $base_slug;
+
+                $count = 1;
+                while (static::where('lesson_id', $section->lesson_id)
+                    ->where('slug', $slug)
+                    ->where('id', '!=', $section->id)
+                    ->exists()) {
+                    $slug = "{$base_slug}-{$count}";
+                    $count++;
+                }
+
+                $section->slug = $slug;
             }
         });
     }
+
+    /**
+     * Attribute casting.
+     *
+     * @var array<string,string>
+     */
+    protected $casts = [
+        'uuid' => 'string',
+        'is_published' => 'boolean',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 
     /**
      * Get the route key for the model.

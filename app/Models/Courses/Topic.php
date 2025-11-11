@@ -17,10 +17,52 @@ class Topic extends Model
             }
 
             if (empty($topic->slug)) {
-                $topic->slug = Str::slug($topic->title);
+                // Ensure slug is unique per specialization on create.
+                $base_slug = Str::slug($topic->title);
+                $slug = $base_slug;
+
+                $count = 1;
+                while (static::where('specialization_id', $topic->specialization_id)
+                    ->where('slug', $slug)
+                    ->exists()) {
+                    $slug = "{$base_slug}-{$count}";
+                    $count++;
+                }
+
+                $topic->slug = $slug;
+            }
+        });
+
+        static::updating(function (Topic $topic) {
+            if ($topic->isDirty('title') || $topic->isDirty('specialization_id')) {
+                $base_slug = Str::slug($topic->title);
+                $slug = $base_slug;
+
+                $count = 1;
+                while (static::where('specialization_id', $topic->specialization_id)
+                    ->where('slug', $slug)
+                    ->where('id', '!=', $topic->id)
+                    ->exists()) {
+                    $slug = "{$base_slug}-{$count}";
+                    $count++;
+                }
+
+                $topic->slug = $slug;
             }
         });
     }
+
+    /**
+     * Attribute casting.
+     *
+     * @var array<string,string>
+     */
+    protected $casts = [
+        'uuid' => 'string',
+        'is_published' => 'boolean',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 
     public function getRouteKeyName(): string
     {

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Courses;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SectionRequest extends FormRequest
 {
@@ -21,9 +22,18 @@ class SectionRequest extends FormRequest
      */
     public function rules(): array
     {
+        $sectionId = optional($this->route('section'))->id;
+
         return [
-            'title' => 'required|string',
-            'lesson_id' => 'required|numeric',
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('sections', 'title')
+                    ->where('lesson_id', $this->input('lesson_id'))
+                    ->ignore($sectionId),
+            ],
+            'lesson_id' => 'required|numeric|exists:lessons,id',
             'sort_order' => 'nullable|numeric',
             'content' => 'required|string',
         ];

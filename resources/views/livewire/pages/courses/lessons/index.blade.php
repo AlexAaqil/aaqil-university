@@ -63,7 +63,7 @@
 
                     <div class="actions">
                         <div class="crud">
-                            <a href="{{ Route::has('admin.topic.lessons.edit') ? route('admin.topic.lessons.edit', [$lesson->topic->specialization->course->slug, $lesson->topic->specialization->slug, $lesson->topic->slug, $lesson->uuid]) : '#' }}" class="edit">
+                            <a href="{{ Route::has('admin.topic.lessons.edit') ? route('admin.topic.lessons.edit', [$lesson->topic->specialization->course->slug, $lesson->topic->specialization->slug, $lesson->topic->slug, $lesson->slug]) : '#' }}" class="edit">
                                 <x-svgs.edit />
                             </a>
 
