@@ -39,6 +39,12 @@ class Specialization extends Model
                 $specialization->slug = $slug;
             }
         });
+
+        static::deleting(function (Specialization $specialization) {
+            if ($specialization->image && Storage::disk('public')->exists('courses/specializations/' . $specialization->image)) {
+                Storage::disk('public')->delete('courses/specializations/' . $specialization->image);
+            }
+        });
     }
 
     public function course()
