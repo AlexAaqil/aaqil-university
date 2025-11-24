@@ -1,7 +1,7 @@
 @import "./tailwind-utilities.css";
 
 body {
-    @apply bg-white text-gray-900;
+    @apply bg-[#222831] text-white ;
 
     .image,
     img {

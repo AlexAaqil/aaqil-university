@@ -12,13 +12,18 @@
                 @csrf
                 @method('PATCH')
 
-                <input type="hidden" name="sort_order" id="sort_order" value="{{ $lesson->ordering }}">
                 <input type="hidden" name="topic_id" id="topic_id" value="{{ $topic->id }}">
 
                 <div class="inputs">
                     <label for="title">Lesson Title</label>
                     <input type="text" name="title" id="title" placeholder="Lesson Title" value="{{ old('title', $lesson->title) }}">
                     <x-form-input-error field="title" />
+                </div>
+
+                <div class="inputs">
+                    <label for="sort_order">Sort Order</label>
+                    <input type="number" name="sort_order" id="sort_order" placeholder="Ordering" value="{{ $lesson->sort_order }}">
+                    <x-form-input-error field="sort_order" />
                 </div>
 
                 <button type="submit">Update</button>

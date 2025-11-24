@@ -16,7 +16,7 @@
 
                 <div class="inputs">
                     <label for="title">Section Title</label>
-                    <input type="text" name="title" id="title" placeholder="Section Title" value="{{ old('title') }}">
+                    <input type="text" name="title" id="title" placeholder="Section Title" value="{{ old('title') }}" autofocus>
                     <x-form-input-error field="title" />
                 </div>
 

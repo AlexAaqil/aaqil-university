@@ -19,6 +19,10 @@
 					}
 				}
 			}
+
+			.courses_list {
+				@apply lg:grid-cols-3;
+			}
 		}
 	}
 }
@@ -51,6 +55,10 @@ section.Lessons {
 	}
 
 	.section_content {
+		* {
+			color: white!important;
+		}
+
 		@apply border border-gray-300 px-4 pb-4 rounded-lg mb-12;
 
 		h1 {
@@ -89,11 +97,11 @@ section.Lessons {
 		}
 
 		p.command {
-			@apply border-l-4 border-green-400 px-2 py-1 my-2 bg-gray-200;
+			@apply border-l-4 border-green-400 px-2 py-1 my-2 bg-gray-200 text-white;
 		}
 
 		.path {
-			@apply text-gray-600;
+			@apply text-gray-300;
 		}
 
 		table {

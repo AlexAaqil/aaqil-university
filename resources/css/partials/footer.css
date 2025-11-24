@@ -1,11 +1,11 @@
 footer {
-    @apply bg-gray-900 text-white py-12;
+    @apply bg-[#222831] text-white py-12;
 
     .container {
         @apply px-4 md:px-16 mx-auto;
 
         .content {
-            @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8;
+            @apply grid grid-cols-1 lg:grid-cols-5 gap-8;
 
             h3 {
                 @apply text-xl font-bold mb-4;

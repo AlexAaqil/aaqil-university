@@ -61,6 +61,10 @@
                     </div>
 
                     <div class="actions">
+                        <div class="others">
+                            <span>Sorting: {{ $topic->sort_order }}</span>
+                        </div>
+
                         <div class="crud">
                             <a href="{{ Route::has('admin.specialization.topics.edit') ? route('admin.specialization.topics.edit', [$specialization->course->slug, $specialization->slug, $topic->slug]) : '#' }}" class="edit" wire:navigate>
                                 <x-svgs.edit />

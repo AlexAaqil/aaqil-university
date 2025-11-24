@@ -62,6 +62,7 @@ class Index extends Component
             ->when($this->search, function ($query) {
                 $query->where('title', 'like', '%' . $this->search . '%');
             })
+            ->orderBy('sort_order')
             ->orderBy('title')
             ->paginate(12)
             ->withQueryString();

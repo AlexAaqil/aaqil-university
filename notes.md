@@ -2,6 +2,7 @@
 ~~- specializations unselect checkboxes on the add page.~~
 ~~- specializations edit page.~~
 ~~- specializations published status colors.~~
+- fields for customizing topics sort order.
 
 fill content for
 - Web Development

@@ -16,7 +16,7 @@
                 <div class="inputs">
                     <label for="title">Specialization Title</label>
                     <input type="text" name="title" id="title" placeholder="e.g. Advanced Web Development"
-                           value="{{ old('title') }}" required>
+                           value="{{ old('title') }}" autofocus>
                     <x-form-input-error field="title" />
                 </div>
 

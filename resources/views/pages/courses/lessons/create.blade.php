@@ -11,13 +11,18 @@
             <form action="{{ route('admin.topic.lessons.store', [$topic->specialization->course->slug, $topic->specialization->slug, $topic->slug]) }}" method="post">
                 @csrf
 
-                <input type="hidden" name="sort_order" id="sort_order" value="100">
                 <input type="hidden" name="topic_id" id="topic_id" value="{{ $topic->id }}">
 
                 <div class="inputs">
                     <label for="title">Lesson Title</label>
-                    <input type="text" name="title" id="title" placeholder="Topic Title" value="{{ old('title') }}">
+                    <input type="text" name="title" id="title" placeholder="Topic Title" value="{{ old('title') }}" autofocus>
                     <x-form-input-error field="title" />
+                </div>
+
+                <div class="inputs">
+                    <label for="sort_order">Sort Order</label>
+                    <input type="number" name="sort_order" id="sort_order" placeholder="Ordering" value="{{ old('sort_order', 100) }}">
+                    <x-form-input-error field="sort_order" />
                 </div>
 
                 <button type="submit">Save</button>

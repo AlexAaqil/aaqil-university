@@ -35,7 +35,7 @@ class LessonRequest extends FormRequest
                     ->ignore($lessonId),
             ],
             'topic_id' => 'required|numeric|exists:topics,id',
-            'sort_order' => 'nullable|numeric',
+            'sort_order' => 'nullable|numeric|min:1',
         ];
     }
 }

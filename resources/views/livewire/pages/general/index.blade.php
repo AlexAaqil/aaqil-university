@@ -2,7 +2,8 @@
     <section class="Hero">
         <div class="container">
             <div class="text">
-                <h1>Learning that sets you up for the real world</h1>
+                <h1>Transform Your Future with Real-World Tech Education</h1>
+                <p>Master in-demand development skills through project-based learning and industry-aligned curriculum</p>
                 <div class="hero_btn">
                     <a href="{{ Route::has('courses') ? route('courses') : '#' }}">Start Learning</a>
                 </div>
@@ -16,7 +17,7 @@
 
     <section class="About">
         <div class="container">
-            <p>Aaqil university is based in Kiambu and focuses on helping novices grow to senior developers. We believe in learning by building real world projects that help you gain experience as well as the ability to adapt to any environment.</p>
+            <p>Based in Kiambu, Aaqil university bridges the gap between academia and industry. Our project-based approach transforms beginners into senior-level developers through immersive, real-world training. We don't just teach code—we cultivate adaptable problem-solvers ready for any tech environment.</p>
         </div>
     </section>
 </div>
