@@ -89,6 +89,12 @@
     }
 }
 
+.ck-editor .ck-content {
+	*{
+		color: black;
+	}
+}
+
 @import "./partials/app-navbar.css";
 
 @import "./pages/Dashboard.css";
