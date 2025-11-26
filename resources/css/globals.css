@@ -12,38 +12,64 @@ body {
         @apply w-full h-full object-cover;
     }
 
-    .ckedited_content {
-        h1 {
-            @apply text-2xl font-bold text-center mb-2;
-        }
+    .ckedited_content,
+    .ck-editor .ck-content,
+    .section_content {
+        @apply border border-gray-300 px-4 pb-4 rounded-lg mb-12;
 
-        p {
-            @apply leading-[1.5];
-        }
+		h1 {
+			@apply text-xl text-center font-bold border-b-1 border-gray-300 py-4 mb-4;
+		}
 
-        pre {
-            @apply bg-slate-200 py-4 px-2 rounded-lg my-4;
-            white-space: pre-wrap;
-            word-wrap: break-word;
+		h2 {
+			@apply text-xl font-semibold py-4 mb-2;
+		}
 
-            code {
-                white-space: pre-wrap;
-                word-wrap: break-word;
-            }
-        }
+		h3 {
+			@apply text-xl font-semibold py-4 mb-2;
+		}
 
-        ul,
-        li {
-            @apply list-inside;
-        }
+		pre {
+			@apply bg-gray-700 text-white p-4 rounded-lg my-2 overflow-x-auto;
+			white-space: pre-wrap;
+			word-wrap: break-word;
 
-        ul {
-            @apply list-disc;
-        }
+			code {
+				white-space: pre-wrap;
+				word-wrap: break-word;
+			}
+		}
 
-        ol {
-            @apply list-decimal;
-        }
+		p {
+			line-height: 1.5;
+		}
+
+		p.command {
+			@apply border-l-4 border-green-400 px-2 py-1 my-2 bg-gray-200 text-white;
+		}
+
+		.path {
+			@apply text-gray-300;
+		}
+
+		table {
+			@apply w-full border border-gray-300 text-sm;
+
+			tr,
+			td {
+				@apply border border-gray-300 px-2 py-1;
+			}
+
+			tr {
+				&:first-of-type {
+					@apply font-bold;
+				}
+			}
+
+			td {
+				@apply py-2;
+			}
+		}
     }
 }
 

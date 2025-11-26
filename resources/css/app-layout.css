@@ -90,9 +90,11 @@
 }
 
 .ck-editor .ck-content {
-	*{
-		color: black;
-	}
+    color: black;
+    ul, 
+    ol {
+        @apply px-4;
+    }
 }
 
 @import "./partials/app-navbar.css";
