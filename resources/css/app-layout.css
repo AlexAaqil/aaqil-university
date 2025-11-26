@@ -16,7 +16,7 @@
                     @apply flex items-center gap-2;
 
                     span {
-                        @apply text-sm text-gray-600;
+                        @apply text-sm text-[var(--theme_text-faded)];
 
                         &:not(:last-child) {
                             @apply after:content-['|'] after:ml-2;

@@ -6,22 +6,42 @@
                     <div class="stat">
                         <p>{{ $count_super_admins }}</p>
                         <p>{{ Str::plural('Super Admin', $count_super_admins) }} & {{ $count_users }} {{ Str::plural('User', $count_users) }}</p>
+                        <p class="extras">
+                            <span>
+                                {{ $count_admins }} {{ Str::plural('admin', $count_admins) }}
+                            </span>
+                        </p>
                     </div>
                 @endif
 
                 <div class="stat">
-                    <p>{{ $count_admins }}</p>
-                    <p>{{ Str::plural('Admin', $count_admins) }} & {{ $count_users }} {{ Str::plural('User', $count_users) }}</p>
+                    <p>{{ $count_all_users }}</p>
+                    <p>{{ Str::plural('User', $count_all_users) }}</p>
+                    <p class="extras">
+                        <span>
+                            {{ $count_admins }} {{ Str::plural('admin', $count_admins) }}
+                        </span>
+                    </p>
                 </div>
 
                 <div class="stat">
                     <p>{{ $count_courses }}</p>
-                    <p>Courses &middot; {{ $count_published_courses }} Published / {{ $count_draft_courses }} Draft</p>
+                    <p>Courses</p>
+                    <p class="extras">
+                        <span>
+                            {{ $count_draft_courses }} {{ Str::plural('draft', $count_draft_courses) }}
+                        </span>
+                    </p>
                 </div>
 
                 <div class="stat">
                     <p>{{ $count_messages }}</p>
-                    <p>{{ Str::plural('Message', $count_messages) }} & {{ $count_unread_messages }} Unread</p>
+                    <p>{{ Str::plural('Message', $count_messages) }}</p>
+                    <p class="extras">
+                        <span>
+                            {{ $count_unread_messages }} unread
+                        </span>
+                    </p>
                 </div>
             </div>
         </div>

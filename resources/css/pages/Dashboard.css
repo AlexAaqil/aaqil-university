@@ -4,11 +4,15 @@
             @apply flex flex-col py-4 px-6 rounded-lg bg-blue-50;
 
             p:first-of-type {
-                @apply text-xl font-semibold tracking-wider;
+                @apply text-xl font-semibold tracking-wider text-gray-900;
+            }
+
+            p:nth-of-type(2) {
+                @apply text-gray-900;
             }
 
             p:last-of-type {
-                @apply text-sm text-gray-700;
+                @apply text-sm text-gray-500;
             }
         }
     }

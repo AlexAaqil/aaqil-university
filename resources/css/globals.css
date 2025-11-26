@@ -1,5 +1,11 @@
 @import "./tailwind-utilities.css";
 
+:root {
+    --theme_bg: #222831;
+    --theme_text: #fff;
+    --theme_text-faded: #d1d5dc;
+}
+
 body {
     @apply bg-[#222831] text-white ;
 
@@ -74,14 +80,14 @@ body {
 }
 
 .breadcrumbs {
-    @apply flex items-center text-sm text-gray-700;
+    @apply flex items-center text-sm text-gray-600;
 
     a {
-        @apply font-bold hover:font-semibold relative text-blue-600;
+        @apply font-bold hover:font-semibold relative text-blue-300;
 
         &::after {
             content: '/';
-            @apply mx-2 text-gray-500;
+            @apply mx-2 text-[var(--theme_text-faded)];
         }
     }
 
@@ -89,11 +95,11 @@ body {
         &:not(:last-of-type) {
             &::after {
                 content: '/';
-                @apply mx-2 text-gray-500;
+                @apply mx-2 text-[var(--theme_text-faded)];
             }
         }
 
-        @apply text-gray-700;
+        @apply text-[var(--theme_text-faded)];
     }
 }
 
