@@ -20,6 +20,7 @@ class Admin extends Component
         $count_super_admins = User::where('role', USER_ROLES::SUPER_ADMIN)->count();
         $count_admins = User::where('role', USER_ROLES::ADMIN)->count();
         $count_users = User::where('role', '!=', USER_ROLES::SUPER_ADMIN)->count();
+        $count_all_users = User::count();
 
         $count_messages = ContactMessage::count();
         $count_unread_messages = ContactMessage::where('is_read', false)->count();
@@ -32,6 +33,7 @@ class Admin extends Component
             'count_super_admins',
             'count_admins',
             'count_users',
+            'count_all_users',
 
             'count_messages',
             'count_unread_messages',
