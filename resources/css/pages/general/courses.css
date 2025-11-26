@@ -20,7 +20,8 @@
 				}
 			}
 
-			.courses_list {
+			.courses_list,
+			.specializations_list {
 				@apply lg:grid-cols-3;
 			}
 		}

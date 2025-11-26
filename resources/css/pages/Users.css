@@ -4,7 +4,7 @@
             @apply grid grid-cols-1 md:grid-cols-4 gap-4;
 
             .user {
-                @apply bg-gray-50 p-4 rounded-lg;
+                @apply bg-gray-50 text-gray-900 p-4 rounded-lg;
 
                 .details {
                     @apply flex gap-6;
