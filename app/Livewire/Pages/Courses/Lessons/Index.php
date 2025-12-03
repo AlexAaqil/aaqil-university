@@ -64,7 +64,7 @@ class Index extends Component
             })
             ->orderBy('sort_order')
             ->orderBy('title')
-            ->paginate(12)
+            ->paginate(30)
             ->withQueryString();
     }
 
