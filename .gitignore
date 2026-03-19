@@ -7,7 +7,7 @@
 /storage/pail
 !/storage/app/public/courses
 !/storage/app/public/users
-/vendor
+# /vendor
 .env
 .env.backup
 .env.production
