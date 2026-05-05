@@ -4,6 +4,7 @@
     --theme_bg: #222831;
     --theme_text: #fff;
     --theme_text-faded: #d1d5dc;
+	--muted-foreground: oklch(0.556 0 0);
 }
 
 body {
@@ -21,10 +22,10 @@ body {
     .ckedited_content,
     .ck-editor .ck-content,
     .section_content {
-        @apply border border-gray-300 px-4 pb-4 rounded-lg mb-12;
+        @apply border border-(--muted-foreground) px-4 pb-4 rounded-lg mb-12;
 
 		h1 {
-			@apply text-xl text-center font-bold border-b-1 border-gray-300 py-4 mb-4;
+			@apply text-xl text-center font-bold border-b border-(--muted-foreground) py-4 mb-4;
 		}
 
 		h2 {

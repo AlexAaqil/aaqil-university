@@ -97,6 +97,38 @@
     }
 }
 
+.custom_form {
+    @apply !min-w-[96dvw];
+
+    .header {
+        @apply !bg-gray-900;
+    }
+
+    form {
+        @apply !bg-gray-900;
+
+        label {
+            @apply !text-white;
+        }
+
+        input {
+            @apply !bg-transparent !text-white;
+        }
+    }
+
+    button {
+        @apply !border !border-(--muted-foreground);
+    }
+
+    .ck-editor__editable {
+        @apply !bg-gray-900 text-white;
+    }
+
+    .ck-toolbar {
+        @apply !bg-blue-300;
+    }
+}
+
 @import "./partials/app-navbar.css";
 
 @import "./pages/Dashboard.css";
